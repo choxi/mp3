@@ -8,8 +8,13 @@ add wave -noupdate -format Literal -radix hexadecimal /mp3_cpu/dram_magic/i_data
 add wave -noupdate -format Literal -radix hexadecimal /mp3_cpu/acontrolrom/opcode
 add wave -noupdate -format Literal -radix hexadecimal -expand /mp3_cpu/aid_stage/aregfile/ram
 add wave -noupdate -format Logic /mp3_cpu/aid_stage/aregfile/regwrite
+add wave -noupdate -format Literal /mp3_cpu/writedata
+add wave -noupdate -format Literal /mp3_cpu/aluout_mem
+add wave -noupdate -format Literal /mp3_cpu/aluout_wb
+add wave -noupdate -format Literal /mp3_cpu/dataout_mem
+add wave -noupdate -format Literal /mp3_cpu/dataout_wb
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {503 ns} 0}
+WaveRestoreCursors {{Cursor 1} {1164 ns} 0}
 configure wave -namecolwidth 275
 configure wave -valuecolwidth 58
 configure wave -justifyvalue left
@@ -23,4 +28,4 @@ configure wave -gridperiod 1
 configure wave -griddelta 40
 configure wave -timeline 0
 update
-WaveRestoreZoom {0 ns} {196 ns}
+WaveRestoreZoom {1625 ns} {2025 ns}

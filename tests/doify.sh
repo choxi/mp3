@@ -51,7 +51,6 @@ force /reset_l 1 @5
 -- force /start_h 0 @ 100
 
 echo "Done initializing processor, loading $1 program code."
-run 5
 EOF
 
 for MEMPATH in $(echo "$MEMPATHS" | tr "," " ")

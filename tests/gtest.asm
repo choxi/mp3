@@ -1,0 +1,88 @@
+ORIGIN 0
+SEGMENT CodeSegment:
+
+; Should see R1 increasing then decreasing back to 0.
+
+testStart:
+;	ADD	R1, R1, -1
+;	NOP
+;	NOP
+;	NOP
+;	NOP
+;	NOP
+;	ADD	R2, R1, 3
+;	NOP
+;	NOP
+;	NOP
+;	NOP
+;	NOP
+;	AND	R3, R2, R1
+;	NOP
+;	NOP
+;	NOP
+;	NOP
+;	NOP
+;	NOT	R4, R3
+;	NOP
+;	NOP
+;	NOP
+;	NOP
+;	NOP
+	LDR	R5, R0, target
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	STR	R5, R0, dest
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	LDR	R6, R0, dest
+halt:
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+
+;halt:
+	BRnzp	halt
+
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+
+	DATA2 4xBADD
+
+target:
+	DATA2	4x600D
+
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+
+dest:
+	DATA2 4xBADD
+
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
+	DATA2 4xBBAD
