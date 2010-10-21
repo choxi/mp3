@@ -75,13 +75,13 @@ BEGIN
             D_DATAOUT(7 downto 0) <= mem(int_d_address); -- after delay_16b_mem; --TODO
             D_DATAOUT(15 downto 8) <= mem(int_d_address + 1); -- after delay_16b_mem; --TODO
 
-            --D_MRESP_H <= '1' after 10 ns, '0' after 10 ns + clock_period; --TODO
+            D_MRESP_H <= '1'; -- after 10 ns, '0' after 10 ns + clock_period; --TODO
 
         ELSIF (D_MWRITE_L = '0' and D_MREAD_L = '1') THEN
              
             mem(int_d_address) := D_DATAIN(7 downto 0);
             mem(int_d_address + 1) := D_DATAIN(15 downto 8);
-            --D_MRESP_H <= '1' after 10 ns, '0' after 10 ns + clock_period; --TODO
+            D_MRESP_H <= '1'; -- after 10 ns, '0' after 10 ns + clock_period; --TODO
            
         ELSIF (D_MWRITE_L = '0' and D_MREAD_L = '0') then
           ASSERT false 
@@ -93,7 +93,7 @@ BEGIN
             I_DATAOUT(7 downto 0) <= mem(int_i_address); -- after delay_16b_mem; --TODO
             I_DATAOUT(15 downto 8) <= mem(int_i_address + 1); -- after delay_16b_mem; --TODO
 
-            --I_MRESP_H <= '1' after 10 ns, '0' after 10 ns + clock_period;
+            I_MRESP_H <= '1';-- after 10 ns, '0' after 10 ns + clock_period;
 				--END IF;
 
       ELSE
