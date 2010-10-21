@@ -1,0 +1,52 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.NUMERIC_STD.all;
+
+LIBRARY ece411;
+USE ece411.LC3b_types.all;
+
+ENTITY ControlROM IS
+   PORT( 
+      Opcode       : IN     LC3b_opcode;
+      AdjSel_EX    : OUT    std_logic;
+      SextSel_EX   : OUT    std_logic;
+      BaseSel_EX   : OUT    std_logic;
+      ShfSel_EX    : OUT    std_logic;
+      ALUop_EX     : OUT    LC3b_aluop;
+      Branch_MEM   : OUT    std_logic;
+      Write_MEM    : OUT    std_logic;
+      Read_MEM     : OUT    std_logic;
+      RegWrite_WB  : OUT    std_logic;
+      ALUMemSel_WB : OUT    std_logic;
+      SetCC_WB     : OUT    std_logic;
+   );
+
+-- Declarations
+
+END ControlROM ;
+
+--
+
+ARCHITECTURE untitled OF ControlROM IS
+signal input_word : std_logic_vector (3 downto 0);
+BEGIN
+  input_word <= opcode; 
+  generate_signals : process (input_word)
+  case input_word is
+    when "0001" =>
+      AdjSel_EX <= '0' after delay_control;
+      SextSel_EX   : OUT    std_logic;
+      BaseSel_EX   : OUT    std_logic;
+      ShfSel_EX    : OUT    std_logic;
+      ALUop_EX     : OUT    LC3b_aluop;
+      Branch_MEM   : OUT    std_logic;
+      Write_MEM    : OUT    std_logic;
+      Read_MEM     : OUT    std_logic;
+      RegWrite_WB  : OUT    std_logic;
+      ALUMemSel_WB : OUT    std_logic;
+      SetCC_WB     : OUT    std_logic;
+      OUTPUT_WORD <= "00111010101" after delay_control;
+    when "0100001" =>
+      OUTPUT_WORD <= "00111010100" after delay_control;
+    when others =>
+  end case;
