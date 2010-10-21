@@ -1,0 +1,220 @@
+ORIGIN 0
+SEGMENT CodeSegment:
+
+testStart:
+
+test0:		; nzp test
+	ADD	R1, R0, 15
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	BRnzp	test1;
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+
+	DATA2	4xBAD1
+	DATA2	4xBAD2
+	DATA2	4xBAD3
+	DATA2	4xBAD4
+	DATA2 4xBAD5
+
+test1:		; n test
+	ADD	R1, R0, -1
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	BRn	test2;
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+
+	DATA2	4xBAD1
+	DATA2	4xBAD2
+	DATA2	4xBAD3
+	DATA2	4xBAD4
+	DATA2 4xBAD5
+
+test2:		; z test
+	ADD	R1, R0, 0
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	BRz	test3;
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+
+	DATA2	4xBAD1
+	DATA2	4xBAD2
+	DATA2	4xBAD3
+	DATA2	4xBAD4
+	DATA2 4xBAD5
+
+test3:		; p test
+	ADD	R1, R0, 7
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	BRp	test4;
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+
+	DATA2	4xBAD1
+	DATA2	4xBAD2
+	DATA2	4xBAD3
+	DATA2	4xBAD4
+	DATA2 4xBAD5
+
+test4:		; nz test - actual case: n
+	ADD	R1, R0, -1
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	BRnz	test5;
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+
+	DATA2	4xBAD1
+	DATA2	4xBAD2
+	DATA2	4xBAD3
+	DATA2	4xBAD4
+	DATA2 4xBAD5
+
+test5:		; nz test - actual case: z
+	ADD	R1, R0, 0
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	BRnz	test6;
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+
+	DATA2	4xBAD1
+	DATA2	4xBAD2
+	DATA2	4xBAD3
+	DATA2	4xBAD4
+	DATA2 4xBAD5
+
+test6:		; np test - actual case: n
+	ADD	R1, R0, -14
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	BRnp	test7;
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+
+	DATA2	4xBAD1
+	DATA2	4xBAD2
+	DATA2	4xBAD3
+	DATA2	4xBAD4
+	DATA2 4xBAD5
+
+test7:		; np test - actual case: p
+	ADD	R1, R0, 9
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	BRnp	test8;
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+
+	DATA2	4xBAD1
+	DATA2	4xBAD2
+	DATA2	4xBAD3
+	DATA2	4xBAD4
+	DATA2 4xBAD5
+
+test8:		; zp test - actual case: z
+	ADD	R1, R0, 0
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	BRzp	test9;
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+
+	DATA2	4xBAD1
+	DATA2	4xBAD2
+	DATA2	4xBAD3
+	DATA2	4xBAD4
+	DATA2 4xBAD5
+
+test9:		; zp test - actual case: p
+	ADD	R1, R0, 11
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	BRzp	halt;
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+
+	DATA2	4xBAD1
+	DATA2	4xBAD2
+	DATA2	4xBAD3
+	DATA2	4xBAD4
+	DATA2 4xBAD5
+
+halt:
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	BRnzp	halt
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+
+bad:
+	DATA2 4xBADD
