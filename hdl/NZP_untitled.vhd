@@ -16,6 +16,7 @@ USE ece411.LC3b_types.all;
 
 ENTITY NZP IS
    PORT( 
+      RESET_L  : IN     std_logic;
       GenCCout : IN     LC3b_cc;
       LoadNZP  : IN     std_logic;
       --clk      : IN     std_logic;
@@ -35,8 +36,14 @@ BEGIN
 	------------------------------
 	BEGIN
 		--IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0')) THEN
-			IF (LOADNZP = '1') THEN
-				PRE_NZP <= GENCCOUT;
+		  IF (RESET_L = '0') THEN
+		    PRE_NZP <= "000";
+		  ELSE
+			  IF (LOADNZP = '1') THEN
+				  PRE_NZP <= GENCCOUT;
+			  ELSE
+			    PRE_NZP <= PRE_NZP;
+			  END IF;
 			END IF;
 		--END IF;
 	END PROCESS VHDL_NZP;

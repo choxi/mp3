@@ -18,7 +18,7 @@ ENTITY NZP IS
    PORT( 
       GenCCout : IN     LC3b_cc;
       LoadNZP  : IN     std_logic;
-      clk      : IN     std_logic;
+      --clk      : IN     std_logic;
       NZPout   : OUT    LC3b_cc
    );
 
@@ -31,14 +31,20 @@ ARCHITECTURE UNTITLED OF NZP IS
 SIGNAL PRE_NZP : STD_LOGIC_VECTOR (2 DOWNTO 0);
 BEGIN
 	------------------------------
-	VHDL_NZP : PROCESS (CLK, GENCCOUT)
+	VHDL_NZP : PROCESS (GENCCOUT)
 	------------------------------
 	BEGIN
-		IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0')) THEN
-			IF (LOADNZP = '1') THEN
-				PRE_NZP <= GENCCOUT;
+		--IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0')) THEN
+		  IF (RESET = '0') THEN
+		    PRE_NZP <= "000";
+		  ELSE
+			  IF (LOADNZP = '1') THEN
+				  PRE_NZP <= GENCCOUT;
+			  ELSE
+			    PRE_NZP <= PRE_NZP;
+			  END IF;
 			END IF;
-		END IF;
+		--END IF;
 	END PROCESS VHDL_NZP;
 	NZPout <= PRE_NZP AFTER DELAY_REG;
 END UNTITLED;
