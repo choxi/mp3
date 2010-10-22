@@ -33,9 +33,9 @@ ARCHITECTURE untitled OF Reg16 IS
 BEGIN
   PROCESS (clk, RESET, Input)
   BEGIN
-    if RESET = '0' then
+    if (RESET = '0') then
       pre_out <= (others => '0');
-    elsif clk'event and clk = '1' then
+    elsif (clk'event and clk = '1') then
       if (load = '1') then
         pre_out <= Input;
       end if;
