@@ -152,7 +152,7 @@ BEGIN
       Branch     <= '0';
       Write      <= '0';
       Read       <= '1';
-      RegWrite   <= '1';
+      RegWrite   <= '0';
       ALUMemSel  <= '1';
       SetCC   	  <= '1';
       

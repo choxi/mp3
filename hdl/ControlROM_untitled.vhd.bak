@@ -157,6 +157,17 @@ BEGIN
       SetCC   	  <= '1';
       
     when others =>
+      AdjSel     <= '1';
+      SextSel    <= '0';
+      BaseSel    <= '0';
+      ImmSel     <= '0';
+      ALUop      <= ALU_PASS;
+      Branch     <= '1';
+      Write      <= '1';
+      Read       <= '1';
+      RegWrite   <= '0';
+      ALUMemSel  <= '0';
+      SetCC	     <= '0';
   end case;
   end process;
     AdjSel_ID       <= AdjSel after delay_rom;
