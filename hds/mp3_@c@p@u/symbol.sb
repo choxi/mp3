@@ -25,9 +25,11 @@ appVersion "2005.3 (Build 75)"
 model (Symbol
 commonDM (CommonDM
 ldm (LogicalDM
+suid 2,0
 usingSuid 1
 emptyRow *1 (LEmptyRow
 )
+uid 53,0
 optionalChildren [
 *2 (RefLabelRowHdr
 )
@@ -62,13 +64,37 @@ tm "InitColHdrMgr"
 *13 (EolColHdr
 tm "EolColHdrMgr"
 )
+*14 (LogPort
+port (LogicalPort
+lang 2
+decl (Decl
+n "RESET_L"
+t "std_logic"
+o 1
+suid 1,0
+)
+)
+uid 94,0
+)
+*15 (LogPort
+port (LogicalPort
+decl (Decl
+n "clk"
+t "std_logic"
+o 2
+suid 2,0
+)
+)
+uid 96,0
+)
 ]
 )
 pdm (PhysicalDM
 displayShortBounds 1
 editShortBounds 1
+uid 66,0
 optionalChildren [
-*14 (Sheet
+*16 (Sheet
 sheetRow (SheetRow
 headerVa (MVa
 cellColor "49152,49152,49152"
@@ -85,27 +111,43 @@ cellColor "39936,56832,65280"
 fontColor "0,0,0"
 font "courier,10,0"
 )
-emptyMRCItem *15 (MRCItem
+emptyMRCItem *17 (MRCItem
 litem &1
-pos 3
-dimension 20
-)
-optionalChildren [
-*16 (MRCItem
-litem &2
 pos 0
 dimension 20
 )
-*17 (MRCItem
+uid 68,0
+optionalChildren [
+*18 (MRCItem
+litem &2
+pos 0
+dimension 20
+uid 69,0
+)
+*19 (MRCItem
 litem &3
 pos 1
 dimension 23
+uid 70,0
 )
-*18 (MRCItem
+*20 (MRCItem
 litem &4
 pos 2
 hidden 1
 dimension 20
+uid 71,0
+)
+*21 (MRCItem
+litem &14
+pos 0
+dimension 20
+uid 93,0
+)
+*22 (MRCItem
+litem &15
+pos 1
+dimension 20
+uid 95,0
 )
 ]
 )
@@ -116,80 +158,91 @@ fontColor "0,0,0"
 font "courier,10,0"
 textAngle 90
 )
+uid 72,0
 optionalChildren [
-*19 (MRCItem
+*23 (MRCItem
 litem &5
 pos 0
 dimension 20
+uid 73,0
 )
-*20 (MRCItem
+*24 (MRCItem
 litem &7
 pos 1
 dimension 50
+uid 74,0
 )
-*21 (MRCItem
+*25 (MRCItem
 litem &8
 pos 2
 dimension 100
+uid 75,0
 )
-*22 (MRCItem
+*26 (MRCItem
 litem &9
 pos 3
 dimension 50
+uid 76,0
 )
-*23 (MRCItem
+*27 (MRCItem
 litem &10
 pos 4
 dimension 100
+uid 77,0
 )
-*24 (MRCItem
+*28 (MRCItem
 litem &11
 pos 5
 dimension 100
+uid 78,0
 )
-*25 (MRCItem
+*29 (MRCItem
 litem &12
 pos 6
 dimension 50
+uid 79,0
 )
-*26 (MRCItem
+*30 (MRCItem
 litem &13
 pos 7
 dimension 80
+uid 80,0
 )
 ]
 )
 fixedCol 4
 fixedRow 2
 name "Ports"
+uid 67,0
 vaOverrides [
 ]
 )
 ]
 )
 active 1
+uid 52,0
 )
 VExpander (VariableExpander
 vvMap [
 (vvPair
 variable "HDLDir"
-value "/home/engr/tkalbar2/ece411/mp3/hdl"
+value "/home/engr/rchoxi2/ece411/mp3/hdl"
 )
 (vvPair
 variable "HDSDir"
-value "/home/engr/tkalbar2/ece411/mp3/hds"
+value "/home/engr/rchoxi2/ece411/mp3/hds"
 )
 (vvPair
 variable "SideDataDesignDir"
-value "/home/engr/tkalbar2/ece411/mp3/hds/mp3_cpu/symbol.sb.info"
+value "/home/engr/rchoxi2/ece411/mp3/hds/mp3_@c@p@u/symbol.sb.info"
 )
 (vvPair
 variable "SideDataUserDir"
-value "/home/engr/tkalbar2/ece411/mp3/hds/mp3_cpu/symbol.sb.user"
+value "/home/engr/rchoxi2/ece411/mp3/hds/mp3_@c@p@u/symbol.sb.user"
 )
 (vvPair
 variable "SourceDir"
-value "/home/engr/tkalbar2/ece411/mp3/hds"
+value "/home/engr/rchoxi2/ece411/mp3/hds"
 )
 (vvPair
 variable "appl"
@@ -205,31 +258,31 @@ value "%(unit)_config"
 )
 (vvPair
 variable "d"
-value "/home/engr/tkalbar2/ece411/mp3/hds/mp3_cpu"
+value "/home/engr/rchoxi2/ece411/mp3/hds/mp3_@c@p@u"
 )
 (vvPair
 variable "d_logical"
-value "/home/engr/tkalbar2/ece411/mp3/hds/mp3_cpu"
+value "/home/engr/rchoxi2/ece411/mp3/hds/mp3_CPU"
 )
 (vvPair
 variable "date"
-value "10/17/10"
+value "10/25/10"
 )
 (vvPair
 variable "day"
-value "Sun"
+value "Mon"
 )
 (vvPair
 variable "day_long"
-value "Sunday"
+value "Monday"
 )
 (vvPair
 variable "dd"
-value "17"
+value "25"
 )
 (vvPair
 variable "entity_name"
-value "mp3_cpu"
+value "mp3_CPU"
 )
 (vvPair
 variable "ext"
@@ -253,7 +306,7 @@ value "stdt"
 )
 (vvPair
 variable "host"
-value "eelnx11.ews.illinois.edu"
+value "eelnx28.ews.illinois.edu"
 )
 (vvPair
 variable "language"
@@ -273,7 +326,7 @@ value "10"
 )
 (vvPair
 variable "module_name"
-value "mp3_cpu"
+value "mp3_CPU"
 )
 (vvPair
 variable "month"
@@ -285,11 +338,11 @@ value "October"
 )
 (vvPair
 variable "p"
-value "/home/engr/tkalbar2/ece411/mp3/hds/mp3_cpu/symbol.sb"
+value "/home/engr/rchoxi2/ece411/mp3/hds/mp3_@c@p@u/symbol.sb"
 )
 (vvPair
 variable "p_logical"
-value "/home/engr/tkalbar2/ece411/mp3/hds/mp3_cpu/symbol.sb"
+value "/home/engr/rchoxi2/ece411/mp3/hds/mp3_CPU/symbol.sb"
 )
 (vvPair
 variable "project_name"
@@ -309,7 +362,7 @@ value "<TBD>"
 )
 (vvPair
 variable "task_ModelSimPath"
-value "$HDS_HOME/../Modeltech/linux"
+value "/apps/Linux/mentor/fpgadv72/Modeltech/bin"
 )
 (vvPair
 variable "task_NC-SimPath"
@@ -329,15 +382,15 @@ value "<TBD>"
 )
 (vvPair
 variable "time"
-value "20:40:57"
+value "23:27:17"
 )
 (vvPair
 variable "unit"
-value "mp3_cpu"
+value "mp3_CPU"
 )
 (vvPair
 variable "user"
-value "tkalbar2"
+value "rchoxi2"
 )
 (vvPair
 variable "version"
@@ -358,9 +411,101 @@ value "10"
 ]
 )
 LanguageMgr "VhdlLangMgr"
+uid 51,0
 optionalChildren [
-*27 (SymbolBody
+*31 (SymbolBody
 uid 8,0
+optionalChildren [
+*32 (CptPort
+uid 97,0
+ps "OnEdgeStrategy"
+shape (Triangle
+uid 98,0
+ro 90
+va (VaSet
+vasetType 1
+fg "0,65535,0"
+)
+xt "17250,13625,18000,14375"
+)
+tg (CPTG
+uid 99,0
+ps "CptPortTextPlaceStrategy"
+stg "VerticalLayoutStrategy"
+f (Text
+uid 100,0
+va (VaSet
+font "courier,8,0"
+)
+xt "19000,13550,22500,14450"
+st "RESET_L"
+blo "19000,14250"
+tm "CptPortNameMgr"
+)
+)
+dt (MLText
+uid 101,0
+va (VaSet
+font "courier,8,0"
+)
+xt "44000,1800,59000,2700"
+st "RESET_L : IN     std_logic  ;"
+)
+thePort (LogicalPort
+lang 2
+decl (Decl
+n "RESET_L"
+t "std_logic"
+o 1
+suid 1,0
+)
+)
+)
+*33 (CptPort
+uid 102,0
+ps "OnEdgeStrategy"
+shape (Triangle
+uid 103,0
+ro 90
+va (VaSet
+vasetType 1
+fg "0,65535,0"
+)
+xt "17250,14625,18000,15375"
+)
+tg (CPTG
+uid 104,0
+ps "CptPortTextPlaceStrategy"
+stg "VerticalLayoutStrategy"
+f (Text
+uid 105,0
+va (VaSet
+font "courier,8,0"
+)
+xt "19000,14550,20500,15450"
+st "clk"
+blo "19000,15250"
+tm "CptPortNameMgr"
+)
+)
+dt (MLText
+uid 106,0
+va (VaSet
+font "courier,8,0"
+)
+xt "44000,2700,58000,3600"
+st "clk     : IN     std_logic "
+)
+thePort (LogicalPort
+decl (Decl
+n "clk"
+t "std_logic"
+o 2
+suid 2,0
+)
+)
+)
+]
 shape (Rectangle
 uid 9,0
 va (VaSet
@@ -369,7 +514,7 @@ fg "0,65535,0"
 lineColor "0,32896,0"
 lineWidth 2
 )
-xt "15000,6000,39000,26000"
+xt "18000,13000,42000,33000"
 )
 biTextGroup (BiTextGroup
 uid 10,0
@@ -380,21 +525,21 @@ uid 11,0
 va (VaSet
 font "courier,8,1"
 )
-xt "24750,15100,27750,16000"
+xt "27750,22100,30750,23000"
 st "ece411"
-blo "24750,15800"
+blo "27750,22800"
 )
 second (Text
 uid 12,0
 va (VaSet
 font "courier,8,1"
 )
-xt "24750,16000,28250,16900"
-st "mp3_cpu"
-blo "24750,16700"
+xt "27750,23000,31250,23900"
+st "mp3_CPU"
+blo "27750,23700"
 )
 )
-gi *28 (GenericInterface
+gi *34 (GenericInterface
 uid 13,0
 ps "CenterOffsetStrategy"
 matrix (Matrix
@@ -404,7 +549,7 @@ uid 15,0
 va (VaSet
 font "courier,8,0"
 )
-xt "0,12000,10500,12900"
+xt "3000,19000,13500,19900"
 st "Generic Declarations"
 )
 header "Generic Declarations"
@@ -421,10 +566,10 @@ portVis (PortSigDisplay
 sIVOD 1
 )
 )
-*29 (Grouping
+*35 (Grouping
 uid 16,0
 optionalChildren [
-*30 (CommentText
+*36 (CommentText
 uid 18,0
 shape (Rectangle
 uid 19,0
@@ -443,7 +588,7 @@ fg "0,0,32768"
 bg "0,0,32768"
 font "courier,8,0"
 )
-xt "32200,50050,45700,50950"
+xt "32200,50050,45200,50950"
 st "
 by %user on %dd %month %year
 "
@@ -456,7 +601,7 @@ position 1
 ignorePrefs 1
 titleBlock 1
 )
-*31 (CommentText
+*37 (CommentText
 uid 21,0
 shape (Rectangle
 uid 22,0
@@ -488,7 +633,7 @@ position 1
 ignorePrefs 1
 titleBlock 1
 )
-*32 (CommentText
+*38 (CommentText
 uid 24,0
 shape (Rectangle
 uid 25,0
@@ -520,7 +665,7 @@ position 1
 ignorePrefs 1
 titleBlock 1
 )
-*33 (CommentText
+*39 (CommentText
 uid 27,0
 shape (Rectangle
 uid 28,0
@@ -552,7 +697,7 @@ position 1
 ignorePrefs 1
 titleBlock 1
 )
-*34 (CommentText
+*40 (CommentText
 uid 30,0
 shape (Rectangle
 uid 31,0
@@ -583,7 +728,7 @@ visibleWidth 20000
 ignorePrefs 1
 titleBlock 1
 )
-*35 (CommentText
+*41 (CommentText
 uid 33,0
 shape (Rectangle
 uid 34,0
@@ -615,7 +760,7 @@ position 1
 ignorePrefs 1
 titleBlock 1
 )
-*36 (CommentText
+*42 (CommentText
 uid 36,0
 shape (Rectangle
 uid 37,0
@@ -646,7 +791,7 @@ position 1
 ignorePrefs 1
 titleBlock 1
 )
-*37 (CommentText
+*43 (CommentText
 uid 39,0
 shape (Rectangle
 uid 40,0
@@ -678,7 +823,7 @@ position 1
 ignorePrefs 1
 titleBlock 1
 )
-*38 (CommentText
+*44 (CommentText
 uid 42,0
 shape (Rectangle
 uid 43,0
@@ -710,7 +855,7 @@ position 1
 ignorePrefs 1
 titleBlock 1
 )
-*39 (CommentText
+*45 (CommentText
 uid 45,0
 shape (Rectangle
 uid 46,0
@@ -729,7 +874,7 @@ fg "0,0,32768"
 bg "0,0,32768"
 font "courier,8,0"
 )
-xt "32200,49050,41200,49950"
+xt "32200,49050,43200,49950"
 st "
 %library/%unit/%view
 "
@@ -767,11 +912,11 @@ xShown 1
 yShown 1
 color "26368,26368,26368"
 )
-packageList *40 (PackageList
+packageList *46 (PackageList
 uid 48,0
 stg "VerticalLayoutStrategy"
 textVec [
-*41 (Text
+*47 (Text
 uid 49,0
 va (VaSet
 font "courier,8,1"
@@ -780,7 +925,7 @@ xt "0,0,6500,900"
 st "Package List"
 blo "0,700"
 )
-*42 (MLText
+*48 (MLText
 uid 50,0
 va (VaSet
 font "courier,8,0"
@@ -791,15 +936,15 @@ USE ieee.std_logic_1164.all;
 USE ieee.NUMERIC_STD.all;
 
 LIBRARY ece411;
-USE ece411.LC3b_types.all;
-"
+USE ece411.LC3b_types.all;"
 tm "PackageList"
 )
 ]
 )
-windowSize "0,0,1015,690"
-viewArea "0,0,0,0"
-cachedDiagramExtent "0,0,0,0"
+windowSize "-3,25,1012,715"
+viewArea "-500,-500,70780,48730"
+cachedDiagramExtent "0,0,69000,51000"
+hasePageBreakOrigin 1
 pageBreakOrigin "0,0"
 defaultCommentText (CommentText
 shape (Rectangle
@@ -884,7 +1029,7 @@ st "<cell>"
 blo "24750,16700"
 )
 )
-gi *43 (GenericInterface
+gi *49 (GenericInterface
 ps "CenterOffsetStrategy"
 matrix (Matrix
 text (MLText
@@ -983,7 +1128,7 @@ o 0
 )
 )
 )
-DeclarativeBlock *44 (SymDeclBlock
+DeclarativeBlock *50 (SymDeclBlock
 uid 1,0
 stg "SymDeclLayoutStrategy"
 declLabel (Text
@@ -1009,9 +1154,9 @@ uid 4,0
 va (VaSet
 font "courier,8,1"
 )
-xt "42000,1800,44500,2700"
+xt "42000,3600,44500,4500"
 st "User:"
-blo "42000,2500"
+blo "42000,4300"
 )
 internalLabel (Text
 uid 6,0
@@ -1028,7 +1173,7 @@ uid 5,0
 va (VaSet
 font "courier,8,0"
 )
-xt "44000,2700,44000,2700"
+xt "44000,4500,44000,4500"
 tm "SyDeclarativeTextMgr"
 )
 internalText (MLText
@@ -1041,5 +1186,5 @@ xt "42000,0,42000,0"
 tm "SyDeclarativeTextMgr"
 )
 )
-lastUid 50,0
+lastUid 118,0
 )

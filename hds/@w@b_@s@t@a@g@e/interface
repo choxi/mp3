@@ -69,7 +69,7 @@ port (LogicalPort
 decl (Decl
 n "ALUMemSel_WB"
 t "std_logic"
-o 75
+o 1
 suid 28,0
 )
 )
@@ -80,7 +80,7 @@ port (LogicalPort
 decl (Decl
 n "ALUout_WB"
 t "lc3b_word"
-o 45
+o 2
 suid 29,0
 )
 )
@@ -91,7 +91,7 @@ port (LogicalPort
 decl (Decl
 n "dataout_WB"
 t "lc3b_word"
-o 40
+o 5
 suid 30,0
 )
 )
@@ -103,7 +103,7 @@ m 1
 decl (Decl
 n "RegNZP"
 t "lc3b_nzp"
-o 45
+o 6
 suid 31,0
 )
 )
@@ -115,7 +115,7 @@ lang 2
 decl (Decl
 n "RESET_L"
 t "std_logic"
-o 20
+o 3
 suid 32,0
 )
 )
@@ -126,7 +126,7 @@ port (LogicalPort
 decl (Decl
 n "SetCC_WB"
 t "std_logic"
-o 74
+o 4
 suid 33,0
 )
 )
@@ -138,7 +138,7 @@ m 1
 decl (Decl
 n "WriteData"
 t "lc3b_word"
-o 18
+o 7
 suid 34,0
 )
 )
@@ -220,19 +220,19 @@ uid 456,0
 )
 *30 (MRCItem
 litem &18
-pos 4
+pos 6
 dimension 20
 uid 458,0
 )
 *31 (MRCItem
 litem &19
-pos 5
+pos 4
 dimension 20
 uid 460,0
 )
 *32 (MRCItem
 litem &20
-pos 6
+pos 5
 dimension 20
 uid 462,0
 )
@@ -313,23 +313,23 @@ VExpander (VariableExpander
 vvMap [
 (vvPair
 variable "HDLDir"
-value "/home/engr/tkalbar2/ece411/mp3/hdl"
+value "/home/engr/rchoxi2/ece411/mp3/hdl"
 )
 (vvPair
 variable "HDSDir"
-value "/home/engr/tkalbar2/ece411/mp3/hds"
+value "/home/engr/rchoxi2/ece411/mp3/hds"
 )
 (vvPair
 variable "SideDataDesignDir"
-value "/home/engr/tkalbar2/ece411/mp3/hds/@w@b_@s@t@a@g@e/interface.info"
+value "/home/engr/rchoxi2/ece411/mp3/hds/@w@b_@s@t@a@g@e/interface.info"
 )
 (vvPair
 variable "SideDataUserDir"
-value "/home/engr/tkalbar2/ece411/mp3/hds/@w@b_@s@t@a@g@e/interface.user"
+value "/home/engr/rchoxi2/ece411/mp3/hds/@w@b_@s@t@a@g@e/interface.user"
 )
 (vvPair
 variable "SourceDir"
-value "/home/engr/tkalbar2/ece411/mp3/hds"
+value "/home/engr/rchoxi2/ece411/mp3/hds"
 )
 (vvPair
 variable "appl"
@@ -345,27 +345,27 @@ value "%(unit)_config"
 )
 (vvPair
 variable "d"
-value "/home/engr/tkalbar2/ece411/mp3/hds/@w@b_@s@t@a@g@e"
+value "/home/engr/rchoxi2/ece411/mp3/hds/@w@b_@s@t@a@g@e"
 )
 (vvPair
 variable "d_logical"
-value "/home/engr/tkalbar2/ece411/mp3/hds/WB_STAGE"
+value "/home/engr/rchoxi2/ece411/mp3/hds/WB_STAGE"
 )
 (vvPair
 variable "date"
-value "10/21/10"
+value "10/25/10"
 )
 (vvPair
 variable "day"
-value "Thu"
+value "Mon"
 )
 (vvPair
 variable "day_long"
-value "Thursday"
+value "Monday"
 )
 (vvPair
 variable "dd"
-value "21"
+value "25"
 )
 (vvPair
 variable "entity_name"
@@ -393,7 +393,7 @@ value "stdt"
 )
 (vvPair
 variable "host"
-value "eelnx8.ews.illinois.edu"
+value "eelnx28.ews.illinois.edu"
 )
 (vvPair
 variable "language"
@@ -425,11 +425,11 @@ value "October"
 )
 (vvPair
 variable "p"
-value "/home/engr/tkalbar2/ece411/mp3/hds/@w@b_@s@t@a@g@e/interface"
+value "/home/engr/rchoxi2/ece411/mp3/hds/@w@b_@s@t@a@g@e/interface"
 )
 (vvPair
 variable "p_logical"
-value "/home/engr/tkalbar2/ece411/mp3/hds/WB_STAGE/interface"
+value "/home/engr/rchoxi2/ece411/mp3/hds/WB_STAGE/interface"
 )
 (vvPair
 variable "project_name"
@@ -449,7 +449,7 @@ value "<TBD>"
 )
 (vvPair
 variable "task_ModelSimPath"
-value "$HDS_HOME/../Modeltech/linux"
+value "/apps/Linux/mentor/fpgadv72/Modeltech/bin"
 )
 (vvPair
 variable "task_NC-SimPath"
@@ -469,7 +469,7 @@ value "<TBD>"
 )
 (vvPair
 variable "time"
-value "20:05:25"
+value "22:55:22"
 )
 (vvPair
 variable "unit"
@@ -477,7 +477,7 @@ value "WB_STAGE"
 )
 (vvPair
 variable "user"
-value "tkalbar2"
+value "rchoxi2"
 )
 (vvPair
 variable "version"
@@ -545,7 +545,7 @@ thePort (LogicalPort
 decl (Decl
 n "ALUMemSel_WB"
 t "std_logic"
-o 75
+o 1
 suid 28,0
 )
 )
@@ -590,7 +590,7 @@ thePort (LogicalPort
 decl (Decl
 n "ALUout_WB"
 t "lc3b_word"
-o 45
+o 2
 suid 29,0
 )
 )
@@ -635,7 +635,7 @@ thePort (LogicalPort
 decl (Decl
 n "dataout_WB"
 t "lc3b_word"
-o 40
+o 5
 suid 30,0
 )
 )
@@ -682,7 +682,7 @@ m 1
 decl (Decl
 n "RegNZP"
 t "lc3b_nzp"
-o 45
+o 6
 suid 31,0
 )
 )
@@ -728,7 +728,7 @@ lang 2
 decl (Decl
 n "RESET_L"
 t "std_logic"
-o 20
+o 3
 suid 32,0
 )
 )
@@ -775,7 +775,7 @@ thePort (LogicalPort
 decl (Decl
 n "SetCC_WB"
 t "std_logic"
-o 74
+o 4
 suid 33,0
 )
 )
@@ -822,7 +822,7 @@ m 1
 decl (Decl
 n "WriteData"
 t "lc3b_word"
-o 18
+o 7
 suid 34,0
 )
 )
@@ -1320,7 +1320,7 @@ tm "PanelText"
 )
 parentGraphicsRef (HdmGraphicsRef
 libraryName "ece411"
-entityName "mp3_cpu"
+entityName "mp3_datapath"
 viewName "struct.bd"
 )
 defaultSymbolBody (SymbolBody
@@ -1510,5 +1510,6 @@ xt "42000,0,42000,0"
 tm "SyDeclarativeTextMgr"
 )
 )
-lastUid 462,0
+lastUid 474,0
+okToSyncOnLoad 1
 )

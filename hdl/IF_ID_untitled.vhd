@@ -18,11 +18,11 @@ ENTITY IF_ID IS
    PORT( 
       Instrout : IN     lc3b_word;
       PC_IF    : IN     lc3b_word;
-      RESET_L  : IN     std_logic;
       clk      : IN     std_logic;
       DR       : OUT    lc3b_reg;
       Opcode   : OUT    LC3b_opcode;
       PC_ID    : OUT    lc3b_word;
+      RESET_L  : IN    std_logic;
       SR1      : OUT    lc3b_reg;
       SR2      : OUT    lc3b_reg;
       bit4_ID  : OUT    std_logic;
