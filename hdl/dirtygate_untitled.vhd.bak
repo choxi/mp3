@@ -28,5 +28,6 @@ END dirtygate ;
 --
 ARCHITECTURE untitled OF dirtygate IS
 BEGIN
+  dgate <= (NOT(clk) OR dclk);
 END ARCHITECTURE untitled;
 

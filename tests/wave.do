@@ -55,7 +55,7 @@ add wave -noupdate -format Logic -radix hexadecimal /mp3_cpu/memory/pmread_li
 add wave -noupdate -format Logic -radix hexadecimal /mp3_cpu/memory/pmwrite_ld
 add wave -noupdate -format Logic -radix hexadecimal /mp3_cpu/memory/pmwrite_li
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {5793 ns} 0}
+WaveRestoreCursors {{Cursor 1} {8808 ns} 0}
 configure wave -namecolwidth 242
 configure wave -valuecolwidth 40
 configure wave -justifyvalue left
@@ -69,4 +69,4 @@ configure wave -gridperiod 1
 configure wave -griddelta 40
 configure wave -timeline 0
 update
-WaveRestoreZoom {5553 ns} {6055 ns}
+WaveRestoreZoom {8723 ns} {9235 ns}
