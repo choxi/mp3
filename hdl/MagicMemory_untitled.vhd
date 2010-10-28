@@ -17,15 +17,15 @@ USE ece411.LC3b_types.all;
 ENTITY MagicMemory IS
    PORT( 
       D_ADDRESS  : IN     LC3b_word;
-      D_DATAIN   : IN     LC3b_word;
+      D_DATAIN   : IN     LC3b_oword;
       D_MREAD_L  : IN     std_logic;
       D_MWRITE_L : IN     std_logic;
       I_ADDRESS  : IN     LC3b_word;
       I_MREAD_L  : IN     std_logic;
       RESET_L    : IN     std_logic;
-      D_DATAOUT  : OUT    LC3b_word;
+      D_DATAOUT  : OUT    LC3b_oword;
       D_MRESP_H  : OUT    std_logic;
-      I_DATAOUT  : OUT    LC3b_word;
+      I_DATAOUT  : OUT    LC3b_oword;
       I_MRESP_H  : OUT    std_logic
    );
 
@@ -45,8 +45,8 @@ BEGIN
      VARIABLE int_i_address : integer;
      VARIABLE int_d_address : integer;
    BEGIN
-		 int_i_address := to_integer(unsigned(I_ADDRESS(15 downto 1) & '0'));
-   		int_d_address := to_integer(unsigned(D_ADDRESS(15 downto 1) & '0')); 
+		int_i_address := to_integer(unsigned(I_ADDRESS(15 downto 9) & "0000000"));
+   		int_d_address := to_integer(unsigned(D_ADDRESS(15 downto 9) & "0000000")); 
 		IF RESET_L = '0' then
 			I_MRESP_H <= '0';
 			D_MRESP_H <= '0';	

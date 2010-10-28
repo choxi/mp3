@@ -50,7 +50,7 @@ BEGIN
 		IF RESET_L = '0' then
 			I_MRESP_H <= '0';
 			D_MRESP_H <= '0';	
-			myDRAMinit_64k(mem);
+			--myDRAMinit_64k(mem);
 		ELSE
 			--ERROR CASES checked here
 			IF ((int_d_address >= 0) and (int_d_address <= 65535) and (int_i_address >= 0) and (int_i_address <= 65535)) THEN
