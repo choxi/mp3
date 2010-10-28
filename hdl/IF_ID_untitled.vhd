@@ -16,21 +16,22 @@ USE ece411.LC3b_types.all;
 
 ENTITY IF_ID IS
    PORT( 
-      Instrout : IN     lc3b_word;
-      PC_IF    : IN     lc3b_word;
-      clk      : IN     std_logic;
-      DR       : OUT    lc3b_reg;
-      Opcode   : OUT    LC3b_opcode;
-      PC_ID    : OUT    lc3b_word;
-      RESET_L  : IN    std_logic;
-      SR1      : OUT    lc3b_reg;
-      SR2      : OUT    lc3b_reg;
-      bit4_ID  : OUT    std_logic;
-      bit5_ID  : OUT    std_logic;
-      imm5     : OUT    lc3b_imm5;
-      nzp_ID   : OUT    lc3b_nzp;
-      offset6  : OUT    lc3b_index6;
-      offset9  : OUT    lc3b_offset9
+      Instrout  : IN     lc3b_word;
+      PC_IF     : IN     lc3b_word;
+      clk       : IN     std_logic;
+      DR        : OUT    lc3b_reg;
+      Opcode    : OUT    LC3b_opcode;
+      PC_ID     : OUT    lc3b_word;
+      RESET_L   : IN     std_logic;
+      SR1       : OUT    lc3b_reg;
+      SR2       : OUT    lc3b_reg;
+      bit4_ID   : OUT    std_logic;
+      bit5_ID   : OUT    std_logic;
+      imm5      : OUT    lc3b_imm5;
+      nzp_ID    : OUT    lc3b_nzp;
+      offset6   : OUT    lc3b_index6;
+      offset9   : OUT    lc3b_offset9;
+      mem_stall : IN     std_logic
    );
 
 -- Declarations
@@ -67,7 +68,7 @@ BEGIN
     offset9 <= Reg_offset9 after delay_reg;
   END PROCESS READ_REG;
                      
-  WRITE_REG : PROCESS(CLK, Instrout, RESET_L)
+  WRITE_REG : PROCESS(CLK, Instrout, RESET_L, MEM_STALL)
   BEGIN
     IF RESET_L = '0' THEN
       Reg_DR <= "000";
@@ -83,7 +84,7 @@ BEGIN
       Reg_offset9 <= "000000000";     
     END IF;
     
-		IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0')) THEN  
+		IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (MEM_STALL = '1')) THEN  
       Reg_DR <= Instrout(11 downto 9);
       Reg_Opcode <= Instrout(15 downto 12);
       Reg_PC_ID <= PC_IF;

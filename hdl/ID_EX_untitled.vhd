@@ -59,7 +59,8 @@ ENTITY ID_EX IS
       adj_offset6_EX  : OUT    lc3b_word;
       adj_offset9_EX  : OUT    lc3b_word;
       nzp_EX          : OUT    lc3b_nzp;
-      sext_offset6_EX : OUT    lc3b_word
+      sext_offset6_EX : OUT    lc3b_word;
+      mem_stall       : IN     std_logic
    );
 
 -- Declarations
@@ -140,10 +141,7 @@ BEGIN
     sext_offset6_EX <=  Reg_sext_offset6_EX after delay_reg;
   END PROCESS READ_REG;
 
-  WRITE_REG : PROCESS(
-	CLK,
-	RESET_L
-  )
+  WRITE_REG : PROCESS(CLK, RESET_L, MEM_STALL)
   
   BEGIN
     IF (RESET_L = '0') THEN
@@ -155,14 +153,14 @@ BEGIN
       Reg_DR_EX           <=   "000";
       Reg_ImmSel_EX       <=   '0';
       Reg_PC_EX           <=   "0000000000000000";
-      Reg_Read_EX         <=   '0';
+      Reg_Read_EX         <=   '1';
       Reg_RegWrite_EX     <=   '0';
       Reg_SR1_data_EX     <=   "0000000000000000";
       Reg_SR2_data_EX     <=   "0000000000000000";
       Reg_STR_data_EX     <=   "0000000000000000";
       Reg_SetCC_EX        <=   '0';
       Reg_SextSel_EX      <=   '0';
-      Reg_Write_EX        <=   '0';
+      Reg_Write_EX        <=   '1';
       Reg_adj_imm5_EX     <=   "0000000000000000";
       Reg_adj_offset6_EX  <=   "0000000000000000";
       Reg_adj_offset9_EX  <=   "0000000000000000";
@@ -170,7 +168,7 @@ BEGIN
       Reg_sext_offset6_EX <=   "0000000000000000";
     END IF;
     
-    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0')) THEN
+    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (MEM_STALL = '1')) THEN
       Reg_ALUMemSel_EX    <=   ALUMemSel_ID    ;
       Reg_ALUop_EX        <=   ALUop_ID        ;
       Reg_AdjSel_EX       <=   AdjSel_ID       ;
