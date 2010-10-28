@@ -88,11 +88,10 @@ uid 3167,0
 )
 *16 (LogPort
 port (LogicalPort
-m 1
 decl (Decl
 n "DATAIN"
 t "LC3b_word"
-o 13
+o 2
 suid 309,0
 )
 )
@@ -100,10 +99,11 @@ uid 3169,0
 )
 *17 (LogPort
 port (LogicalPort
+m 1
 decl (Decl
 n "DATAOUT"
 t "LC3b_word"
-o 2
+o 13
 suid 310,0
 )
 )
@@ -170,10 +170,11 @@ uid 3181,0
 *23 (LogPort
 port (LogicalPort
 lang 2
+m 1
 decl (Decl
 n "pmdatain"
 t "LC3b_oword"
-o 11
+o 18
 suid 316,0
 )
 )
@@ -182,11 +183,10 @@ uid 3183,0
 *24 (LogPort
 port (LogicalPort
 lang 2
-m 1
 decl (Decl
 n "pmdataout"
 t "LC3b_oword"
-o 18
+o 11
 suid 317,0
 )
 )
@@ -335,97 +335,97 @@ uid 3168,0
 )
 *39 (MRCItem
 litem &16
-pos 2
+pos 17
 dimension 20
 uid 3170,0
 )
 *40 (MRCItem
 litem &17
-pos 3
+pos 16
 dimension 20
 uid 3172,0
 )
 *41 (MRCItem
 litem &18
-pos 4
+pos 2
 dimension 20
 uid 3174,0
 )
 *42 (MRCItem
 litem &19
-pos 5
+pos 3
 dimension 20
 uid 3176,0
 )
 *43 (MRCItem
 litem &20
-pos 6
+pos 4
 dimension 20
 uid 3178,0
 )
 *44 (MRCItem
 litem &21
-pos 7
+pos 5
 dimension 20
 uid 3180,0
 )
 *45 (MRCItem
 litem &22
-pos 8
+pos 6
 dimension 20
 uid 3182,0
 )
 *46 (MRCItem
 litem &23
-pos 9
+pos 15
 dimension 20
 uid 3184,0
 )
 *47 (MRCItem
 litem &24
-pos 10
+pos 14
 dimension 20
 uid 3186,0
 )
 *48 (MRCItem
 litem &25
-pos 11
+pos 7
 dimension 20
 uid 3188,0
 )
 *49 (MRCItem
 litem &26
-pos 12
+pos 8
 dimension 20
 uid 3190,0
 )
 *50 (MRCItem
 litem &27
-pos 13
+pos 9
 dimension 20
 uid 3192,0
 )
 *51 (MRCItem
 litem &28
-pos 14
+pos 10
 dimension 20
 uid 3194,0
 )
 *52 (MRCItem
 litem &29
-pos 15
+pos 11
 dimension 20
 uid 3196,0
 )
 *53 (MRCItem
 litem &30
-pos 16
+pos 12
 dimension 20
 uid 3198,0
 )
 *54 (MRCItem
 litem &31
-pos 17
+pos 13
 dimension 20
 uid 3200,0
 )
@@ -545,19 +545,19 @@ value "/home/engr/rchoxi2/ece411/mp3/hds/L1_Datapath"
 )
 (vvPair
 variable "date"
-value "10/26/10"
+value "10/27/10"
 )
 (vvPair
 variable "day"
-value "Tue"
+value "Wed"
 )
 (vvPair
 variable "day_long"
-value "Tuesday"
+value "Wednesday"
 )
 (vvPair
 variable "dd"
-value "26"
+value "27"
 )
 (vvPair
 variable "entity_name"
@@ -585,7 +585,7 @@ value "stdt"
 )
 (vvPair
 variable "host"
-value "gllnx23.ews.illinois.edu"
+value "eelnx32.ews.illinois.edu"
 )
 (vvPair
 variable "language"
@@ -661,7 +661,7 @@ value "<TBD>"
 )
 (vvPair
 variable "time"
-value "01:07:08"
+value "20:43:03"
 )
 (vvPair
 variable "unit"
@@ -728,7 +728,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,1800,61500,2700"
-st "ADDRESS      : IN     LC3b_word  ;"
+st "ADDRESS      : IN     LC3b_word  ;
+"
 )
 thePort (LogicalPort
 decl (Decl
@@ -772,7 +773,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,7200,61500,8100"
-st "clk          : IN     std_logic  ;"
+st "clk          : IN     std_logic  ;
+"
 )
 thePort (LogicalPort
 decl (Decl
@@ -787,27 +789,25 @@ suid 308,0
 uid 3085,0
 ps "OnEdgeStrategy"
 shape (Triangle
-uid 3086,0
 ro 90
 va (VaSet
 vasetType 1
 fg "0,65535,0"
 )
-xt "34000,31625,34750,32375"
+xt "19250,34625,20000,35375"
 )
 tg (CPTG
 uid 3087,0
 ps "CptPortTextPlaceStrategy"
-stg "RightVerticalLayoutStrategy"
+stg "VerticalLayoutStrategy"
 f (Text
 uid 3088,0
 va (VaSet
 font "courier,8,0"
 )
-xt "30000,31550,33000,32450"
+xt "21000,34550,24000,35450"
 st "DATAIN"
-ju 2
-blo "33000,32250"
+blo "21000,35250"
 tm "CptPortNameMgr"
 )
 )
@@ -816,15 +816,15 @@ uid 3089,0
 va (VaSet
 font "courier,8,0"
 )
-xt "44000,12600,61500,13500"
-st "DATAIN       : OUT    LC3b_word  ;"
+xt "44000,2700,61500,3600"
+st "DATAIN       : IN     LC3b_word  ;
+"
 )
 thePort (LogicalPort
-m 1
 decl (Decl
 n "DATAIN"
 t "LC3b_word"
-o 13
+o 2
 suid 309,0
 )
 )
@@ -833,26 +833,26 @@ suid 309,0
 uid 3090,0
 ps "OnEdgeStrategy"
 shape (Triangle
-uid 3091,0
 ro 90
 va (VaSet
 vasetType 1
 fg "0,65535,0"
 )
-xt "19250,29625,20000,30375"
+xt "36000,34625,36750,35375"
 )
 tg (CPTG
 uid 3092,0
 ps "CptPortTextPlaceStrategy"
-stg "VerticalLayoutStrategy"
+stg "RightVerticalLayoutStrategy"
 f (Text
 uid 3093,0
 va (VaSet
 font "courier,8,0"
 )
-xt "21000,29550,24500,30450"
+xt "31500,34550,35000,35450"
 st "DATAOUT"
-blo "21000,30250"
+ju 2
+blo "35000,35250"
 tm "CptPortNameMgr"
 )
 )
@@ -861,14 +861,16 @@ uid 3094,0
 va (VaSet
 font "courier,8,0"
 )
-xt "44000,2700,61500,3600"
-st "DATAOUT      : IN     LC3b_word  ;"
+xt "44000,12600,61500,13500"
+st "DATAOUT      : OUT    LC3b_word  ;
+"
 )
 thePort (LogicalPort
+m 1
 decl (Decl
 n "DATAOUT"
 t "LC3b_word"
-o 2
+o 13
 suid 310,0
 )
 )
@@ -906,7 +908,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,3600,61500,4500"
-st "MREAD_L      : IN     std_logic  ;"
+st "MREAD_L      : IN     std_logic  ;
+"
 )
 thePort (LogicalPort
 decl (Decl
@@ -927,7 +930,7 @@ va (VaSet
 vasetType 1
 fg "0,65535,0"
 )
-xt "34000,32625,34750,33375"
+xt "36000,32625,36750,33375"
 )
 tg (CPTG
 uid 3102,0
@@ -938,10 +941,10 @@ uid 3103,0
 va (VaSet
 font "courier,8,0"
 )
-xt "29500,32550,33000,33450"
+xt "31500,32550,35000,33450"
 st "MRESP_H"
 ju 2
-blo "33000,33250"
+blo "35000,33250"
 tm "CptPortNameMgr"
 )
 )
@@ -951,7 +954,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,13500,61500,14400"
-st "MRESP_H      : OUT    std_logic  ;"
+st "MRESP_H      : OUT    std_logic  ;
+"
 )
 thePort (LogicalPort
 m 1
@@ -996,7 +1000,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,4500,61500,5400"
-st "MWRITEH_L    : IN     std_logic  ;"
+st "MWRITEH_L    : IN     std_logic  ;
+"
 )
 thePort (LogicalPort
 decl (Decl
@@ -1040,7 +1045,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,5400,61500,6300"
-st "MWRITEL_L    : IN     std_logic  ;"
+st "MWRITEL_L    : IN     std_logic  ;
+"
 )
 thePort (LogicalPort
 decl (Decl
@@ -1061,7 +1067,7 @@ va (VaSet
 vasetType 1
 fg "0,65535,0"
 )
-xt "34000,28625,34750,29375"
+xt "36000,28625,36750,29375"
 )
 tg (CPTG
 uid 3117,0
@@ -1072,10 +1078,10 @@ uid 3118,0
 va (VaSet
 font "courier,8,0"
 )
-xt "28500,28550,33000,29450"
+xt "30500,28550,35000,29450"
 st "PMADDRESS"
 ju 2
-blo "33000,29250"
+blo "35000,29250"
 tm "CptPortNameMgr"
 )
 )
@@ -1085,7 +1091,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,14400,61500,15300"
-st "PMADDRESS    : OUT    LC3b_word  ;"
+st "PMADDRESS    : OUT    LC3b_word  ;
+"
 )
 thePort (LogicalPort
 lang 2
@@ -1102,26 +1109,27 @@ suid 315,0
 uid 3120,0
 ps "OnEdgeStrategy"
 shape (Triangle
-uid 3121,0
+uid 3297,0
 ro 90
 va (VaSet
 vasetType 1
 fg "0,65535,0"
 )
-xt "19250,27625,20000,28375"
+xt "36000,33625,36750,34375"
 )
 tg (CPTG
 uid 3122,0
 ps "CptPortTextPlaceStrategy"
-stg "VerticalLayoutStrategy"
+stg "RightVerticalLayoutStrategy"
 f (Text
 uid 3123,0
 va (VaSet
 font "courier,8,0"
 )
-xt "21000,27550,25000,28450"
+xt "31000,33550,35000,34450"
 st "pmdatain"
-blo "21000,28250"
+ju 2
+blo "35000,34250"
 tm "CptPortNameMgr"
 )
 )
@@ -1130,15 +1138,17 @@ uid 3124,0
 va (VaSet
 font "courier,8,0"
 )
-xt "44000,10800,62000,11700"
-st "pmdatain     : IN     LC3b_oword  ;"
+xt "44000,17100,61000,18000"
+st "pmdatain     : OUT    LC3b_oword 
+"
 )
 thePort (LogicalPort
 lang 2
+m 1
 decl (Decl
 n "pmdatain"
 t "LC3b_oword"
-o 11
+o 18
 suid 316,0
 )
 )
@@ -1147,27 +1157,26 @@ suid 316,0
 uid 3125,0
 ps "OnEdgeStrategy"
 shape (Triangle
-uid 3126,0
+uid 3298,0
 ro 90
 va (VaSet
 vasetType 1
 fg "0,65535,0"
 )
-xt "34000,27625,34750,28375"
+xt "19250,33625,20000,34375"
 )
 tg (CPTG
 uid 3127,0
 ps "CptPortTextPlaceStrategy"
-stg "RightVerticalLayoutStrategy"
+stg "VerticalLayoutStrategy"
 f (Text
 uid 3128,0
 va (VaSet
 font "courier,8,0"
 )
-xt "28500,27550,33000,28450"
+xt "21000,33550,25500,34450"
 st "pmdataout"
-ju 2
-blo "33000,28250"
+blo "21000,34250"
 tm "CptPortNameMgr"
 )
 )
@@ -1176,16 +1185,16 @@ uid 3129,0
 va (VaSet
 font "courier,8,0"
 )
-xt "44000,17100,61000,18000"
-st "pmdataout    : OUT    LC3b_oword "
+xt "44000,10800,62000,11700"
+st "pmdataout    : IN     LC3b_oword  ;
+"
 )
 thePort (LogicalPort
 lang 2
-m 1
 decl (Decl
 n "pmdataout"
 t "LC3b_oword"
-o 18
+o 11
 suid 317,0
 )
 )
@@ -1223,7 +1232,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,11700,61500,12600"
-st "pmresp_h     : IN     std_logic  ;"
+st "pmresp_h     : IN     std_logic  ;
+"
 )
 thePort (LogicalPort
 decl (Decl
@@ -1267,7 +1277,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,6300,61500,7200"
-st "RESET_L      : IN     std_logic  ;"
+st "RESET_L      : IN     std_logic  ;
+"
 )
 thePort (LogicalPort
 decl (Decl
@@ -1311,7 +1322,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,15300,61500,16200"
-st "dirty        : OUT    std_logic  ;"
+st "dirty        : OUT    std_logic  ;
+"
 )
 thePort (LogicalPort
 m 1
@@ -1356,7 +1368,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,8100,61500,9000"
-st "in_idlehit   : IN     std_logic  ;"
+st "in_idlehit   : IN     std_logic  ;
+"
 )
 thePort (LogicalPort
 decl (Decl
@@ -1400,7 +1413,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,9000,61500,9900"
-st "in_load      : IN     std_logic  ;"
+st "in_load      : IN     std_logic  ;
+"
 )
 thePort (LogicalPort
 decl (Decl
@@ -1444,7 +1458,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,9900,61500,10800"
-st "in_writeback : IN     std_logic  ;"
+st "in_writeback : IN     std_logic  ;
+"
 )
 thePort (LogicalPort
 decl (Decl
@@ -1488,7 +1503,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,16200,61500,17100"
-st "miss         : OUT    std_logic  ;"
+st "miss         : OUT    std_logic  ;
+"
 )
 thePort (LogicalPort
 m 1
@@ -1509,7 +1525,7 @@ fg "0,65535,0"
 lineColor "0,32896,0"
 lineWidth 2
 )
-xt "20000,10000,34000,35000"
+xt "20000,10000,36000,36000"
 )
 oxt "15000,6000,29000,16000"
 biTextGroup (BiTextGroup
@@ -2185,6 +2201,6 @@ xt "42000,0,42000,0"
 tm "SyDeclarativeTextMgr"
 )
 )
-lastUid 3272,0
+lastUid 3298,0
 okToSyncOnLoad 1
 )
