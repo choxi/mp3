@@ -60,7 +60,9 @@ ENTITY ID_EX IS
       adj_offset9_EX  : OUT    lc3b_word;
       nzp_EX          : OUT    lc3b_nzp;
       sext_offset6_EX : OUT    lc3b_word;
-      mem_stall       : IN     std_logic
+      mem_stall       : IN     std_logic;
+      Opcode_EX       : OUT    lc3b_opcode;
+      Opcode_ID       : IN     LC3b_opcode
    );
 
 -- Declarations
@@ -91,6 +93,7 @@ ARCHITECTURE untitled OF ID_EX IS
       SIGNAL Reg_adj_offset9_EX  :  lc3b_word;
       SIGNAL Reg_nzp_EX          :  lc3b_nzp;
       SIGNAL Reg_sext_offset6_EX :  lc3b_word;
+      SIGNAL Reg_Opcode_EX       :  lc3b_opcode;
       
 BEGIN
   
@@ -115,7 +118,8 @@ BEGIN
 	Reg_adj_offset6_EX  ,
 	Reg_adj_offset9_EX  ,
 	Reg_nzp_EX          ,
-	Reg_sext_offset6_EX 
+	Reg_sext_offset6_EX,
+	Reg_Opcode_EX 
   )
   BEGIN
     ALUMemSel_EX    <=  Reg_ALUMemSel_EX    after delay_reg;
@@ -139,6 +143,7 @@ BEGIN
     adj_offset9_EX  <=  Reg_adj_offset9_EX  after delay_reg;
     nzp_EX          <=  Reg_nzp_EX          after delay_reg;
     sext_offset6_EX <=  Reg_sext_offset6_EX after delay_reg;
+    Opcode_EX       <=  Reg_Opcode_EX       after delay_reg;
   END PROCESS READ_REG;
 
   WRITE_REG : PROCESS(CLK, RESET_L, MEM_STALL)
@@ -166,6 +171,7 @@ BEGIN
       Reg_adj_offset9_EX  <=   "0000000000000000";
       Reg_nzp_EX          <=   "000";
       Reg_sext_offset6_EX <=   "0000000000000000";
+      Reg_Opcode_EX       <=   "0000";
     END IF;
     
     IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (MEM_STALL = '1')) THEN
@@ -190,6 +196,7 @@ BEGIN
       Reg_adj_offset9_EX  <=   adj_offset9_ID  ;
       Reg_nzp_EX          <=   nzp_ID          ;
       Reg_sext_offset6_EX <=   sext_offset6_ID ;
+      Reg_Opcode_EX       <=   Opcode_ID;
     END IF;
   END PROCESS WRITE_REG;
 END ARCHITECTURE untitled;

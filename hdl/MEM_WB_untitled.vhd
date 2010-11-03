@@ -19,6 +19,7 @@ ENTITY MEM_WB IS
       ALUMemSel_MEM : IN     std_logic;
       ALUout_MEM    : IN     lc3b_word;
       DR_MEM        : IN     lc3b_reg;
+      Opcode_MEM    : IN     lc3b_opcode;
       RESET_L       : IN     std_logic;
       RegWrite_MEM  : IN     std_logic;
       SetCC_MEM     : IN     std_logic;
@@ -28,6 +29,7 @@ ENTITY MEM_WB IS
       ALUMemSel_WB  : OUT    std_logic;
       ALUout_WB     : OUT    lc3b_word;
       DestReg       : OUT    lc3b_reg;
+      Opcode_WB     : OUT    lc3b_opcode;
       RegWrite      : OUT    std_logic;
       SetCC_WB      : OUT    std_logic;
       dataout_WB    : OUT    lc3b_word
@@ -47,6 +49,7 @@ ARCHITECTURE untitled OF MEM_WB IS
       SIGNAL Reg_dataout_WB       :  lc3b_word;
       SIGNAL Reg_ALUout_WB        :  lc3b_word;
       SIGNAL Reg_DestReg          :  lc3b_reg;
+      SIGNAL Reg_Opcode_WB        :  lc3b_opcode;
       
 BEGIN
   
@@ -56,7 +59,8 @@ BEGIN
 	Reg_SetCC_WB      ,
 	Reg_dataout_WB    ,
 	Reg_ALUout_WB     ,
-	Reg_DestReg       
+	Reg_DestReg       ,
+	Reg_Opcode_WB       
   )
   BEGIN
 	  RegWrite     <=  Reg_RegWrite      	  after delay_reg;
@@ -66,6 +70,7 @@ BEGIN
     dataout_WB   <=  Reg_dataout_WB       after delay_reg;
     ALUout_WB    <=  Reg_ALUout_WB        after delay_reg;
     DestReg      <=  Reg_DestReg          after delay_reg;
+    Opcode_WB    <=  Reg_Opcode_WB        after delay_reg;
   END PROCESS READ_REG;
 
 -- does CLK belong in the sensitivity list? Yes. 
@@ -80,6 +85,7 @@ BEGIN
       Reg_dataout_WB           <=   "0000000000000000";
       Reg_ALUout_WB            <=   "0000000000000000";
       Reg_DestReg              <=   "000";
+      Reg_Opcode_WB            <=   "0000";
     END IF;
     
     IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (MEM_STALL = '1')) THEN
@@ -90,6 +96,7 @@ BEGIN
       Reg_dataout_WB     <=   dataout_MEM  	;
       Reg_ALUout_WB      <=   ALUout_MEM   	;
       Reg_DestReg        <=   DR_MEM			     ;
+      Reg_Opcode_WB      <=   Opcode_MEM    ;
 	 END IF;
   END PROCESS WRITE_REG;
 END ARCHITECTURE untitled;

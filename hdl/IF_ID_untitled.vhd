@@ -20,7 +20,6 @@ ENTITY IF_ID IS
       PC_IF     : IN     lc3b_word;
       clk       : IN     std_logic;
       DR        : OUT    lc3b_reg;
-      Opcode    : OUT    LC3b_opcode;
       PC_ID     : OUT    lc3b_word;
       RESET_L   : IN     std_logic;
       SR1       : OUT    lc3b_reg;
@@ -31,7 +30,8 @@ ENTITY IF_ID IS
       nzp_ID    : OUT    lc3b_nzp;
       offset6   : OUT    lc3b_index6;
       offset9   : OUT    lc3b_offset9;
-      mem_stall : IN     std_logic
+      mem_stall : IN     std_logic;
+      Opcode_ID : OUT    LC3b_opcode
    );
 
 -- Declarations
@@ -56,7 +56,7 @@ BEGIN
                      Reg_bit5_ID, Reg_imm5, Reg_nzp_ID, Reg_offset6, Reg_offset9)
   BEGIN
     DR <= Reg_DR after delay_reg;
-    Opcode <= Reg_Opcode after delay_reg;
+    Opcode_ID <= Reg_Opcode after delay_reg;
     PC_ID <= Reg_PC_ID after delay_reg;
     SR1 <= Reg_SR1 after delay_reg;
     SR2 <= Reg_SR2 after delay_reg;
