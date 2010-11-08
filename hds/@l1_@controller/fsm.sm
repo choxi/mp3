@@ -38,23 +38,23 @@ VExpander (VariableExpander
 vvMap [
 (vvPair
 variable "HDLDir"
-value "/home/engr/tkalbar2/ece411/mp2.2/hdl"
+value "/home/engr/rchoxi2/ece411/mp3/hdl"
 )
 (vvPair
 variable "HDSDir"
-value "/home/engr/tkalbar2/ece411/mp2.2/hds"
+value "/home/engr/rchoxi2/ece411/mp3/hds"
 )
 (vvPair
 variable "SideDataDesignDir"
-value "/home/engr/tkalbar2/ece411/mp2.2/hds/@cache_@controller/fsm.sm.info"
+value "/home/engr/rchoxi2/ece411/mp3/hds/@l1_@controller/fsm.sm.info"
 )
 (vvPair
 variable "SideDataUserDir"
-value "/home/engr/tkalbar2/ece411/mp2.2/hds/@cache_@controller/fsm.sm.user"
+value "/home/engr/rchoxi2/ece411/mp3/hds/@l1_@controller/fsm.sm.user"
 )
 (vvPair
 variable "SourceDir"
-value "/home/engr/tkalbar2/ece411/mp2.2/hds"
+value "/home/engr/rchoxi2/ece411/mp3/hds"
 )
 (vvPair
 variable "appl"
@@ -70,31 +70,31 @@ value "%(unit)_config"
 )
 (vvPair
 variable "d"
-value "/home/engr/tkalbar2/ece411/mp2.2/hds/@cache_@controller"
+value "/home/engr/rchoxi2/ece411/mp3/hds/@l1_@controller"
 )
 (vvPair
 variable "d_logical"
-value "/home/engr/tkalbar2/ece411/mp2.2/hds/Cache_Controller"
+value "/home/engr/rchoxi2/ece411/mp3/hds/L1_Controller"
 )
 (vvPair
 variable "date"
-value "10/04/10"
+value "11/07/10"
 )
 (vvPair
 variable "day"
-value "Mon"
+value "Sun"
 )
 (vvPair
 variable "day_long"
-value "Monday"
+value "Sunday"
 )
 (vvPair
 variable "dd"
-value "04"
+value "07"
 )
 (vvPair
 variable "entity_name"
-value "Cache_Controller"
+value "L1_Controller"
 )
 (vvPair
 variable "ext"
@@ -118,7 +118,7 @@ value "stdt"
 )
 (vvPair
 variable "host"
-value "gllnx27.ews.illinois.edu"
+value "gllnx16.ews.illinois.edu"
 )
 (vvPair
 variable "language"
@@ -134,31 +134,31 @@ value "$HDS_PROJECT_DIR/compile"
 )
 (vvPair
 variable "mm"
-value "10"
+value "11"
 )
 (vvPair
 variable "module_name"
-value "Cache_Controller"
+value "L1_Controller"
 )
 (vvPair
 variable "month"
-value "Oct"
+value "Nov"
 )
 (vvPair
 variable "month_long"
-value "October"
+value "November"
 )
 (vvPair
 variable "p"
-value "/home/engr/tkalbar2/ece411/mp2.2/hds/@cache_@controller/fsm.sm"
+value "/home/engr/rchoxi2/ece411/mp3/hds/@l1_@controller/fsm.sm"
 )
 (vvPair
 variable "p_logical"
-value "/home/engr/tkalbar2/ece411/mp2.2/hds/Cache_Controller/fsm.sm"
+value "/home/engr/rchoxi2/ece411/mp3/hds/L1_Controller/fsm.sm"
 )
 (vvPair
 variable "project_name"
-value "ece411"
+value "ece411_mp3"
 )
 (vvPair
 variable "series"
@@ -174,7 +174,7 @@ value "<TBD>"
 )
 (vvPair
 variable "task_ModelSimPath"
-value "$HDS_HOME/../Modeltech/linux"
+value "/apps/Linux/mentor/fpgadv72/Modeltech/bin"
 )
 (vvPair
 variable "task_NC-SimPath"
@@ -194,15 +194,15 @@ value "<TBD>"
 )
 (vvPair
 variable "time"
-value "18:43:02"
+value "21:57:39"
 )
 (vvPair
 variable "unit"
-value "Cache_Controller"
+value "L1_Controller"
 )
 (vvPair
 variable "user"
-value "tkalbar2"
+value "rchoxi2"
 )
 (vvPair
 variable "version"
@@ -1068,7 +1068,7 @@ fg "0,0,32768"
 bg "0,0,32768"
 font "courier,8,0"
 )
-xt "32200,47050,46200,47950"
+xt "32200,47050,44700,47950"
 st "
 %library/%unit/%view
 "
@@ -1104,7 +1104,7 @@ fg "0,65535,65535"
 lineColor "0,32768,49152"
 lineWidth 2
 )
-xt "28943,29267,36801,37125"
+xt "27431,30419,35289,38277"
 radius 3929
 )
 name (Text
@@ -1112,10 +1112,10 @@ uid 226,0
 va (VaSet
 font "courier,10,1"
 )
-xt "29572,32696,36172,33696"
+xt "28060,33848,34660,34848"
 st "WRITE_BACK"
 ju 0
-blo "32872,33496"
+blo "31360,34648"
 tm "ONodeName"
 )
 wait (TextAssociate
@@ -1128,9 +1128,9 @@ isHidden 1
 fg "0,0,32768"
 font "courier,10,1"
 )
-xt "33272,33596,36872,34596"
+xt "31760,34748,35360,35748"
 st "wait 2"
-blo "33272,34396"
+blo "31760,35548"
 tm "SmWaitText"
 )
 )
@@ -1140,8 +1140,8 @@ va (VaSet
 isHidden 1
 font "courier,8,1"
 )
-xt "32872,34096,32872,34096"
-blo "32872,34096"
+xt "31360,35248,31360,35248"
+blo "31360,35248"
 tm "SmEncodingMgr"
 )
 actionBlk (SmStateActionsBlock
@@ -1158,7 +1158,7 @@ lineColor "39936,56832,65280"
 lineWidth -1
 fillStyle 1
 )
-xt "12968,32370,27368,35270"
+xt "11456,33522,25856,36422"
 )
 autoResize 1
 tline (Line
@@ -1169,10 +1169,10 @@ isHidden 1
 lineColor "39936,56832,65280"
 lineWidth -1
 )
-xt "13068,32270,27268,32270"
+xt "11556,33422,25756,33422"
 pts [
-"13068,32270"
-"27268,32270"
+"11556,33422"
+"25756,33422"
 ]
 )
 bline (Line
@@ -1183,10 +1183,10 @@ isHidden 1
 lineColor "39936,56832,65280"
 lineWidth -1
 )
-xt "13068,32995,27268,32995"
+xt "11556,34147,25756,34147"
 pts [
-"13068,32995"
-"27268,32995"
+"11556,34147"
+"25756,34147"
 ]
 )
 ttri (Triangle
@@ -1200,7 +1200,7 @@ bg "0,0,0"
 lineColor "39936,56832,65280"
 lineWidth -1
 )
-xt "12618,31895,12968,32245"
+xt "11106,33047,11456,33397"
 )
 btri (Triangle
 uid 237,0
@@ -1213,7 +1213,7 @@ bg "0,0,0"
 lineColor "39936,56832,65280"
 lineWidth -1
 )
-xt "12618,30645,12968,30995"
+xt "11106,31797,11456,32147"
 )
 entryActions (MLText
 uid 238,0
@@ -1221,7 +1221,7 @@ va (VaSet
 isHidden 1
 font "courier,8,0"
 )
-xt "13068,32070,13068,32070"
+xt "11556,33222,11556,33222"
 tm "Actions"
 )
 inActions (MLText
@@ -1229,7 +1229,7 @@ uid 239,0
 va (VaSet
 font "courier,8,0"
 )
-xt "13068,32470,27268,35170"
+xt "11556,33622,25756,36322"
 st "pmwrite_l <= '0' after 3ns;
 in_writeback <= '1';
 in_idlehit <= '0';"
@@ -1241,7 +1241,7 @@ va (VaSet
 isHidden 1
 font "courier,8,0"
 )
-xt "16168,30820,16168,30820"
+xt "14656,31972,14656,31972"
 tm "Actions"
 )
 )
@@ -1254,7 +1254,7 @@ va (VaSet
 isHidden 1
 font "courier,8,1"
 )
-xt "30722,33996,36222,34896"
+xt "29210,35148,34710,36048"
 st "CASE: expr"
 tm "SmCaseExpr"
 )
@@ -1615,10 +1615,10 @@ uid 286,0
 va (VaSet
 vasetType 3
 )
-xt "35512,20435,39902,30286"
+xt "34000,20435,39902,31438"
 pts [
 "39902,20435"
-"35512,30286"
+"34000,31438"
 ]
 arrow 1
 )
@@ -1637,7 +1637,7 @@ fg "65535,65535,65535"
 bg "0,0,0"
 lineColor "0,32768,49152"
 )
-xt "34399,24285,43599,27085"
+xt "33643,24861,42843,27661"
 )
 autoResize 1
 lineShape (Line
@@ -1646,10 +1646,10 @@ va (VaSet
 vasetType 3
 isHidden 1
 )
-xt "37149,26085,37149,26085"
+xt "36393,26661,36393,26661"
 pts [
-"37149,26085"
-"37149,26085"
+"36393,26661"
+"36393,26661"
 ]
 )
 condition (MLText
@@ -1657,7 +1657,7 @@ uid 290,0
 va (VaSet
 font "courier,8,0"
 )
-xt "34899,24785,43099,26585"
+xt "34143,25361,42343,27161"
 st "miss = '1'
 AND dirty = '1'"
 tm "Condition"
@@ -1667,7 +1667,7 @@ uid 291,0
 va (VaSet
 font "courier,8,0"
 )
-xt "38999,26985,38999,26985"
+xt "38243,27561,38243,27561"
 tm "Actions"
 )
 )
@@ -1681,7 +1681,7 @@ vasetType 1
 fg "65535,65535,65535"
 bg "0,0,0"
 )
-xt "38812,20768,40114,22070"
+xt "38661,20883,39963,22185"
 radius 651
 )
 pr (Text
@@ -1689,10 +1689,10 @@ uid 294,0
 va (VaSet
 font "courier,8,0"
 )
-xt "39213,20969,39713,21869"
+xt "39062,21084,39562,21984"
 st "1"
 ju 0
-blo "39463,21669"
+blo "39312,21784"
 tm "TransitionPriority"
 )
 padding "100,100"
@@ -1705,10 +1705,10 @@ uid 296,0
 va (VaSet
 vasetType 3
 )
-xt "46406,18690,55437,30672"
+xt "46406,18690,54830,30606"
 pts [
 "46406,18690"
-"55437,30672"
+"54830,30606"
 ]
 arrow 1
 )
@@ -1727,7 +1727,7 @@ fg "65535,65535,65535"
 bg "0,0,0"
 lineColor "0,32768,49152"
 )
-xt "48334,22741,57534,25541"
+xt "48030,22708,57230,25508"
 )
 autoResize 1
 lineShape (Line
@@ -1736,10 +1736,10 @@ va (VaSet
 vasetType 3
 isHidden 1
 )
-xt "51084,24541,51084,24541"
+xt "50780,24508,50780,24508"
 pts [
-"51084,24541"
-"51084,24541"
+"50780,24508"
+"50780,24508"
 ]
 )
 condition (MLText
@@ -1747,7 +1747,7 @@ uid 300,0
 va (VaSet
 font "courier,8,0"
 )
-xt "48834,23241,57034,25041"
+xt "48530,23208,56730,25008"
 st "miss = '1'
 AND dirty = '0'"
 tm "Condition"
@@ -1757,7 +1757,7 @@ uid 301,0
 va (VaSet
 font "courier,8,0"
 )
-xt "52934,25441,52934,25441"
+xt "52630,25408,52630,25408"
 tm "Actions"
 )
 )
@@ -1771,7 +1771,7 @@ vasetType 1
 fg "65535,65535,65535"
 bg "0,0,0"
 )
-xt "46657,19236,47959,20538"
+xt "46597,19230,47899,20532"
 radius 651
 )
 pr (Text
@@ -1779,10 +1779,10 @@ uid 304,0
 va (VaSet
 font "courier,8,0"
 )
-xt "47058,19437,47558,20337"
+xt "46998,19431,47498,20331"
 st "2"
 ju 0
-blo "47308,20137"
+blo "47248,20131"
 tm "TransitionPriority"
 )
 padding "100,100"
@@ -1795,10 +1795,10 @@ uid 384,0
 va (VaSet
 vasetType 3
 )
-xt "36463,34789,50982,36703"
+xt "35264,34760,50512,34792"
 pts [
-"36463,34789"
-"50982,36703"
+"35264,34792"
+"50512,34760"
 ]
 arrow 1
 )
@@ -1816,7 +1816,7 @@ fg "65535,65535,65535"
 bg "0,0,0"
 lineColor "0,32768,49152"
 )
-xt "39335,34958,48035,36858"
+xt "38500,33988,47200,35888"
 )
 autoResize 1
 lineShape (Line
@@ -1825,10 +1825,10 @@ va (VaSet
 vasetType 3
 isHidden 1
 )
-xt "42085,36758,42085,36758"
+xt "41250,35788,41250,35788"
 pts [
-"42085,36758"
-"42085,36758"
+"41250,35788"
+"41250,35788"
 ]
 )
 condition (MLText
@@ -1836,7 +1836,7 @@ uid 388,0
 va (VaSet
 font "courier,8,0"
 )
-xt "39835,35458,47535,36358"
+xt "39000,34488,46700,35388"
 st "pmresp_h = '1'"
 tm "Condition"
 )
@@ -1845,7 +1845,7 @@ uid 389,0
 va (VaSet
 font "courier,8,0"
 )
-xt "43685,36758,43685,36758"
+xt "42850,35788,42850,35788"
 tm "Actions"
 )
 )
@@ -1860,7 +1860,7 @@ isHidden 1
 fg "65535,65535,65535"
 bg "0,0,0"
 )
-xt "37263,34329,38565,35631"
+xt "36137,34137,37439,35439"
 radius 651
 )
 pr (Text
@@ -1869,10 +1869,10 @@ va (VaSet
 isHidden 1
 font "courier,8,0"
 )
-xt "37664,34530,38164,35430"
+xt "36538,34338,37038,35238"
 st "1"
 ju 0
-blo "37914,35230"
+blo "36788,35038"
 tm "TransitionPriority"
 )
 padding "100,100"
@@ -1885,10 +1885,10 @@ uid 394,0
 va (VaSet
 vasetType 3
 )
-xt "44304,20907,51061,32711"
+xt "43826,21099,51061,32711"
 pts [
 "51061,32711"
-"44304,20907"
+"43826,21099"
 ]
 arrow 1
 )
@@ -1906,7 +1906,7 @@ fg "65535,65535,65535"
 bg "0,0,0"
 lineColor "0,32768,49152"
 )
-xt "42718,27533,51418,29433"
+xt "42479,27629,51179,29529"
 )
 autoResize 1
 lineShape (Line
@@ -1915,10 +1915,10 @@ va (VaSet
 vasetType 3
 isHidden 1
 )
-xt "45468,29333,45468,29333"
+xt "45229,29429,45229,29429"
 pts [
-"45468,29333"
-"45468,29333"
+"45229,29429"
+"45229,29429"
 ]
 )
 condition (MLText
@@ -1926,7 +1926,7 @@ uid 398,0
 va (VaSet
 font "courier,8,0"
 )
-xt "43218,28033,50918,28933"
+xt "42979,28129,50679,29029"
 st "pmresp_h = '1'"
 tm "Condition"
 )
@@ -1935,7 +1935,7 @@ uid 399,0
 va (VaSet
 font "courier,8,0"
 )
-xt "47068,29333,47068,29333"
+xt "46829,29429,46829,29429"
 tm "Actions"
 )
 )
@@ -1950,7 +1950,7 @@ isHidden 1
 fg "65535,65535,65535"
 bg "0,0,0"
 )
-xt "49734,30879,51036,32181"
+xt "49686,30898,50988,32200"
 radius 651
 )
 pr (Text
@@ -1959,10 +1959,10 @@ va (VaSet
 isHidden 1
 font "courier,8,0"
 )
-xt "50135,31080,50635,31980"
+xt "50087,31099,50587,31999"
 st "1"
 ju 0
-blo "50385,31780"
+blo "50337,31799"
 tm "TransitionPriority"
 )
 padding "100,100"
@@ -2085,8 +2085,8 @@ tm "SmCompilerDirectivesTextMgr"
 ]
 associable 1
 )
-windowSize "-3,25,1283,1002"
-viewArea "1728,-16000,78264,42032"
+windowSize "-9,0,1277,977"
+viewArea "1700,-8512,78236,51536"
 cachedDiagramExtent "-250,-1000,77000,49000"
 hasePageBreakOrigin 1
 pageBreakOrigin "-69000,-2000"
@@ -2405,7 +2405,7 @@ stateOrder [
 name "csm"
 )
 ]
-lastUid 514,0
+lastUid 532,0
 commonDM (CommonDM
 ldm (LogicalDM
 emptyRow *53 (LEmptyRow
