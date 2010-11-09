@@ -29,14 +29,14 @@ END RESETTER ;
 --
 ARCHITECTURE untitled OF RESETTER IS
 BEGIN
-  doReset: PROCESS  (RESET_L)
+  doReset: PROCESS  (RESET_L, PMRESP_H, pre_state)
   begin
   if (RESET_L = '0') then
     state <= '1';
-  elsif (PMRESP_H = 'U' ) then
-    state <= '1';
-  else  
+  elsif ( (PMRESP_H = '1') OR (PMRESP_H = '0') ) then
     state <= pre_state;
+  else  
+    state <= '1';
   end if;
   end process;
   
