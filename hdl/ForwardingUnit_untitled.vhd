@@ -16,16 +16,19 @@ USE ece411.LC3b_types.all;
 
 ENTITY ForwardingUnit IS
    PORT( 
-      DR_MEM       : IN     lc3b_reg;
-      RegWrite_MEM : IN     std_logic;
-      SR1_EX       : IN     lc3b_reg;
-      SR2_EX       : IN     lc3b_reg;
-      FUMux1_sel   : OUT    std_logic;
-      FUMux2_sel   : OUT    std_logic;
-      FUTypeWB1    : OUT    std_logic;
-      FUTypeWB2    : OUT    std_logic;
-      DestReg      : IN     lc3b_reg;
-      RegWrite     : IN     std_logic
+      DR_MEM          : IN     lc3b_reg;
+      RegWrite_MEM    : IN     std_logic;
+      SR1_EX          : IN     lc3b_reg;
+      SR2_EX          : IN     lc3b_reg;
+      FUMux1_sel      : OUT    std_logic;
+      FUMux2_sel      : OUT    std_logic;
+      FUTypeWB1       : OUT    std_logic;
+      FUTypeWB2       : OUT    std_logic;
+      DestReg         : IN     lc3b_reg;
+      RegWrite        : IN     std_logic;
+      DR_EX           : IN     lc3b_reg;
+      Write_EX        : IN     std_logic;
+      STR_dataout_sel : OUT    std_logic
    );
 
 -- Declarations
@@ -58,6 +61,12 @@ BEGIN
       ELSE
         FUMux2_sel <= '0';
         FUTypeWB2 <= '0';
+      END IF;
+      
+      IF ((Write_EX = '0') AND (RegWrite_MEM = '1') AND (DR_EX = DR_MEM)) THEN
+        STR_dataout_sel <= '1';
+      ELSE
+        STR_dataout_sel <= '0';
       END IF;
   END PROCESS;
 END ARCHITECTURE untitled;

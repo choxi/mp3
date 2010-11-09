@@ -16,33 +16,33 @@ USE ece411.LC3b_types.all;
 
 ENTITY EX_MEM IS
    PORT( 
-      ALUMemSel_EX  : IN     std_logic;
-      ALUout_EX     : IN     lc3b_word;
-      Branch_EX     : IN     std_logic;
-      DR_EX         : IN     lc3b_reg;
-      Opcode_EX     : IN     lc3b_opcode;
-      RESET_L       : IN     std_logic;
-      Read_EX       : IN     std_logic;
-      RegWrite_EX   : IN     std_logic;
-      STR_data_EX   : IN     lc3b_word;
-      SetCC_EX      : IN     std_logic;
-      Write_EX      : IN     std_logic;
-      address_EX    : IN     lc3b_word;
-      clk           : IN     std_logic;
-      mem_stall     : IN     std_logic;
-      nzp_EX        : IN     lc3b_nzp;
-      ALUMemSel_MEM : OUT    std_logic;
-      ALUout_MEM    : OUT    LC3b_word;
-      Branch_MEM    : OUT    std_logic;
-      DR_MEM        : OUT    lc3b_reg;
-      Opcode_MEM    : OUT    lc3b_opcode;
-      Read_MEM      : OUT    std_logic;
-      RegWrite_MEM  : OUT    std_logic;
-      STR_data_MEM  : OUT    lc3b_word;
-      SetCC_MEM     : OUT    std_logic;
-      Write_MEM     : OUT    std_logic;
-      address_MEM   : OUT    lc3b_word;
-      nzp_MEM       : OUT    lc3b_nzp
+      ALUMemSel_EX   : IN     std_logic;
+      ALUout_EX      : IN     lc3b_word;
+      Branch_EX      : IN     std_logic;
+      DR_EX          : IN     lc3b_reg;
+      Opcode_EX      : IN     lc3b_opcode;
+      RESET_L        : IN     std_logic;
+      Read_EX        : IN     std_logic;
+      RegWrite_EX    : IN     std_logic;
+      SetCC_EX       : IN     std_logic;
+      Write_EX       : IN     std_logic;
+      address_EX     : IN     lc3b_word;
+      clk            : IN     std_logic;
+      mem_stall      : IN     std_logic;
+      nzp_EX         : IN     lc3b_nzp;
+      ALUMemSel_MEM  : OUT    std_logic;
+      ALUout_MEM     : OUT    LC3b_word;
+      Branch_MEM     : OUT    std_logic;
+      DR_MEM         : OUT    lc3b_reg;
+      Opcode_MEM     : OUT    lc3b_opcode;
+      Read_MEM       : OUT    std_logic;
+      RegWrite_MEM   : OUT    std_logic;
+      STR_data_MEM   : OUT    lc3b_word;
+      SetCC_MEM      : OUT    std_logic;
+      Write_MEM      : OUT    std_logic;
+      address_MEM    : OUT    lc3b_word;
+      nzp_MEM        : OUT    lc3b_nzp;
+      STR_dataout_EX : IN     lc3b_word
    );
 
 -- Declarations
@@ -139,7 +139,7 @@ BEGIN
       Reg_address_MEM      <=   address_EX   ;
       Reg_ALUout_MEM       <=   ALUout_EX    ;
                                                    
-      Reg_STR_data_MEM     <=   STR_data_EX  ;
+      Reg_STR_data_MEM     <=   STR_dataout_EX  ;
       Reg_DR_MEM           <=   DR_EX        ;
       Reg_Opcode_MEM       <=   Opcode_EX    ;
 	 END IF;
