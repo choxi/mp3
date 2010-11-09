@@ -15,6 +15,14 @@ fwdTest:
 	ADD    R4, R3, 1
 	STR    R4, R1, TheData
 	LDR    R5, R1, TheData
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	LDR   R5, R1, TheData
+	ADD   R0, R5, 4	
 TheData:
 	NOP
 	DATA2   4x0032

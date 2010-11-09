@@ -28,7 +28,6 @@ ENTITY EX_MEM IS
       Write_EX       : IN     std_logic;
       address_EX     : IN     lc3b_word;
       clk            : IN     std_logic;
-      mem_stall      : IN     std_logic;
       nzp_EX         : IN     lc3b_nzp;
       ALUMemSel_MEM  : OUT    std_logic;
       ALUout_MEM     : OUT    LC3b_word;
@@ -42,7 +41,8 @@ ENTITY EX_MEM IS
       Write_MEM      : OUT    std_logic;
       address_MEM    : OUT    lc3b_word;
       nzp_MEM        : OUT    lc3b_nzp;
-      STR_dataout_EX : IN     lc3b_word
+      STR_dataout_EX : IN     lc3b_word;
+      load_latch     : IN     std_logic
    );
 
 -- Declarations
@@ -104,7 +104,7 @@ BEGIN
   END PROCESS READ_REG;
 
 -- does CLK belong in the sensitivity list?
-  WRITE_REG : PROCESS(CLK,RESET_L, MEM_STALL)
+  WRITE_REG : PROCESS(CLK,RESET_L, LOAD_LATCH)
   
   BEGIN
     IF (RESET_L = '0') THEN
@@ -125,7 +125,7 @@ BEGIN
       Reg_Opcode_MEM       <=   "0000";
     END IF;
     
-    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (MEM_STALL = '1')) THEN
+    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
 
 		  Reg_RegWrite_MEM 		  <=	  RegWrite_EX  ;
       Reg_ALUMemSel_MEM    <=   ALUMemSel_EX ;

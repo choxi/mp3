@@ -103,7 +103,7 @@ value "/home/engr/rchoxi2/ece411/mp3/hds/IF_STAGE"
 )
 (vvPair
 variable "date"
-value "11/02/10"
+value "11/09/10"
 )
 (vvPair
 variable "day"
@@ -115,7 +115,7 @@ value "Tuesday"
 )
 (vvPair
 variable "dd"
-value "02"
+value "09"
 )
 (vvPair
 variable "entity_name"
@@ -143,7 +143,7 @@ value "stdt"
 )
 (vvPair
 variable "host"
-value "eelnx29.ews.illinois.edu"
+value "gllnx7.ews.illinois.edu"
 )
 (vvPair
 variable "language"
@@ -219,7 +219,7 @@ value "<TBD>"
 )
 (vvPair
 variable "time"
-value "22:14:48"
+value "01:27:44"
 )
 (vvPair
 variable "unit"
@@ -1884,71 +1884,7 @@ st "clk         : std_logic
 "
 )
 )
-*58 (PortIoIn
-uid 408,0
-shape (CompositeShape
-uid 409,0
-va (VaSet
-vasetType 1
-fg "0,0,32768"
-)
-optionalChildren [
-(Pentagon
-uid 410,0
-sl 0
-ro 270
-xt "16000,24625,17500,25375"
-)
-(Line
-uid 411,0
-sl 0
-ro 270
-xt "17500,25000,18000,25000"
-pts [
-"17500,25000"
-"18000,25000"
-]
-)
-]
-)
-stc 0
-sf 1
-tg (WTG
-uid 412,0
-ps "PortIoTextPlaceStrategy"
-stg "STSignalDisplayStrategy"
-f (Text
-uid 413,0
-va (VaSet
-font "courier,8,0"
-)
-xt "15500,23550,20000,24450"
-st "mem_stall"
-ju 2
-blo "20000,24250"
-tm "WireNameMgr"
-)
-)
-)
-*59 (Net
-uid 420,0
-decl (Decl
-n "mem_stall"
-t "std_logic"
-o 6
-suid 17,0
-)
-declText (MLText
-uid 421,0
-va (VaSet
-font "courier,8,0"
-)
-xt "22000,6300,34000,7200"
-st "mem_stall   : std_logic
-"
-)
-)
-*60 (Net
+*58 (Net
 uid 464,0
 decl (Decl
 n "Opcode_IF"
@@ -1966,7 +1902,7 @@ st "Opcode_IF   : lc3b_opcode
 "
 )
 )
-*61 (PortIoOut
+*59 (PortIoOut
 uid 466,0
 shape (CompositeShape
 uid 467,0
@@ -2009,6 +1945,70 @@ st "Opcode_IF"
 blo "46000,35200"
 tm "WireNameMgr"
 )
+)
+)
+*60 (PortIoIn
+uid 552,0
+shape (CompositeShape
+uid 553,0
+va (VaSet
+vasetType 1
+fg "0,0,32768"
+)
+optionalChildren [
+(Pentagon
+uid 554,0
+sl 0
+ro 270
+xt "19000,27625,20500,28375"
+)
+(Line
+uid 555,0
+sl 0
+ro 270
+xt "20500,28000,21000,28000"
+pts [
+"20500,28000"
+"21000,28000"
+]
+)
+]
+)
+stc 0
+sf 1
+tg (WTG
+uid 556,0
+ps "PortIoTextPlaceStrategy"
+stg "STSignalDisplayStrategy"
+f (Text
+uid 557,0
+va (VaSet
+font "courier,8,0"
+)
+xt "15500,27550,18000,28450"
+st "fetch"
+ju 2
+blo "18000,28250"
+tm "WireNameMgr"
+)
+)
+)
+*61 (Net
+uid 564,0
+decl (Decl
+n "fetch"
+t "std_logic"
+o 12
+suid 21,0
+)
+declText (MLText
+uid 565,0
+va (VaSet
+font "courier,8,0"
+)
+xt "22000,6300,34000,7200"
+st "fetch       : std_logic
+"
 )
 )
 *62 (Wire
@@ -2470,47 +2470,6 @@ tm "WireNameMgr"
 on &57
 )
 *75 (Wire
-uid 414,0
-shape (OrthoPolyLine
-uid 415,0
-va (VaSet
-vasetType 3
-)
-xt "18000,25000,23250,28000"
-pts [
-"18000,25000"
-"21000,25000"
-"21000,28000"
-"23250,28000"
-]
-)
-start &58
-end &17
-sat 32
-eat 32
-stc 0
-st 0
-sf 1
-si 0
-tg (WTG
-uid 418,0
-ps "ConnStartEndStrategy"
-stg "STSignalDisplayStrategy"
-f (Text
-uid 419,0
-va (VaSet
-isHidden 1
-font "courier,8,0"
-)
-xt "20000,24100,24500,25000"
-st "mem_stall"
-blo "20000,24800"
-tm "WireNameMgr"
-)
-)
-on &59
-)
-*76 (Wire
 uid 456,0
 shape (OrthoPolyLine
 uid 457,0
@@ -2524,7 +2483,7 @@ pts [
 "43000,35000"
 ]
 )
-end &61
+end &59
 sat 16
 eat 32
 sty 1
@@ -2548,7 +2507,48 @@ blo "41000,34800"
 tm "WireNameMgr"
 )
 )
-on &60
+on &58
+)
+*76 (Wire
+uid 558,0
+shape (OrthoPolyLine
+uid 559,0
+va (VaSet
+vasetType 3
+)
+xt "21000,28000,23250,28000"
+pts [
+"21000,28000"
+"23250,28000"
+]
+)
+start &60
+end &17
+ss 0
+es 0
+sat 32
+eat 32
+stc 0
+st 0
+sf 1
+si 0
+tg (WTG
+uid 562,0
+ps "ConnStartEndStrategy"
+stg "STSignalDisplayStrategy"
+f (Text
+uid 563,0
+va (VaSet
+isHidden 1
+font "courier,8,0"
+)
+xt "23000,27100,25500,28000"
+st "fetch"
+blo "23000,27800"
+tm "WireNameMgr"
+)
+)
+on &61
 )
 ]
 bg "65535,65535,65535"
@@ -2667,13 +2667,13 @@ tm "BdCompilerDirectivesTextMgr"
 ]
 associable 1
 )
-windowSize "-3,25,1283,1049"
-viewArea "-18100,-8700,65877,58845"
+windowSize "-3,0,1283,1024"
+viewArea "-18100,-8700,65877,56633"
 cachedDiagramExtent "-5000,0,63000,51000"
 hasePageBreakOrigin 1
 pageBreakOrigin "-6000,0"
 active 1
-lastUid 491,0
+lastUid 567,0
 defaultCommentText (CommentText
 shape (Rectangle
 layer 0
@@ -3718,7 +3718,7 @@ tm "BdDeclarativeTextMgr"
 )
 commonDM (CommonDM
 ldm (LogicalDM
-suid 18,0
+suid 21,0
 usingSuid 1
 emptyRow *109 (LEmptyRow
 )
@@ -3863,17 +3863,6 @@ uid 386,0
 )
 *131 (LeafLogPort
 port (LogicalPort
-decl (Decl
-n "mem_stall"
-t "std_logic"
-o 6
-suid 17,0
-)
-)
-uid 407,0
-)
-*132 (LeafLogPort
-port (LogicalPort
 m 1
 decl (Decl
 n "Opcode_IF"
@@ -3883,6 +3872,17 @@ suid 18,0
 )
 )
 uid 472,0
+)
+*132 (LeafLogPort
+port (LogicalPort
+decl (Decl
+n "fetch"
+t "std_logic"
+o 12
+suid 21,0
+)
+)
+uid 551,0
 )
 ]
 )
@@ -3972,13 +3972,13 @@ uid 313,0
 )
 *144 (MRCItem
 litem &128
-pos 3
+pos 4
 dimension 20
 uid 371,0
 )
 *145 (MRCItem
 litem &129
-pos 4
+pos 5
 dimension 20
 uid 373,0
 )
@@ -3990,15 +3990,15 @@ uid 387,0
 )
 *147 (MRCItem
 litem &131
-pos 5
-dimension 20
-uid 406,0
-)
-*148 (MRCItem
-litem &132
 pos 6
 dimension 20
 uid 473,0
+)
+*148 (MRCItem
+litem &132
+pos 3
+dimension 20
+uid 550,0
 )
 ]
 )

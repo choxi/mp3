@@ -36,7 +36,7 @@ cat << EOF
 echo "--- Executing initialization force file for $1 ---"
 
 echo "Setting clock period to $CLOCK ns, starting at $CLOCK ns."
-force /clk 0  0
+force /clk 1  0
 force /clk 0 $HALF_CLOCK -r $CLOCK
 force /clk 1 $CLOCK -r $CLOCK
 

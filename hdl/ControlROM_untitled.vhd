@@ -6,7 +6,7 @@ LIBRARY ece411;
 USE ece411.LC3b_types.all;
 
 ENTITY ControlROM IS
-   PORT(
+   PORT( 
       RESET_L      : IN     std_logic;
       Clk          : IN     std_logic;
       Opcode       : IN     LC3b_opcode;
@@ -22,7 +22,8 @@ ENTITY ControlROM IS
       Read_ID      : OUT    std_logic;
       RegWrite_ID  : OUT    std_logic;
       ALUMemSel_ID : OUT    std_logic;
-      SetCC_ID     : OUT    std_logic
+      SetCC_ID     : OUT    std_logic;
+      fetch        : IN     std_logic
    );
 
 -- Declarations
@@ -48,7 +49,20 @@ BEGIN
   --input_word <= opcode & bit5 & bit4; 
   generate_signals : process (opcode, bit5, bit4)
   begin
-  
+  IF fetch = '0' THEN
+          AdjSel     <= '1';
+          SextSel    <= '0';
+          BaseSel    <= '0';
+          ImmSel     <= '0';
+          ALUop      <= ALU_PASS;
+          Branch     <= '0';
+          Write      <= '1';
+          Read       <= '1';
+          RegWrite   <= '0';
+          ALUMemSel  <= '0';
+          SetCC	     <= '0';
+  ELSE
+    
   case opcode is
     when OP_ADD =>
       AdjSel     <= '1';
@@ -169,6 +183,7 @@ BEGIN
       ALUMemSel  <= '0';
       SetCC	     <= '0';
   end case;
+  END IF;
   end process;
     AdjSel_ID       <= AdjSel after delay_rom;
     SextSel_ID      <= SextSel after delay_rom;

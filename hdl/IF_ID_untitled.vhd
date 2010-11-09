@@ -30,8 +30,8 @@ ENTITY IF_ID IS
       nzp_ID    : OUT    lc3b_nzp;
       offset6   : OUT    lc3b_index6;
       offset9   : OUT    lc3b_offset9;
-      mem_stall : IN     std_logic;
-      Opcode_ID : OUT    LC3b_opcode
+      Opcode_ID : OUT    LC3b_opcode;
+      fetch     : IN     std_logic
    );
 
 -- Declarations
@@ -68,7 +68,7 @@ BEGIN
     offset9 <= Reg_offset9 after delay_reg;
   END PROCESS READ_REG;
                      
-  WRITE_REG : PROCESS(CLK, Instrout, RESET_L, MEM_STALL)
+  WRITE_REG : PROCESS(CLK, Instrout, RESET_L, FETCH)
   BEGIN
     IF RESET_L = '0' THEN
       Reg_DR <= "000";
@@ -84,7 +84,7 @@ BEGIN
       Reg_offset9 <= "000000000";     
     END IF;
     
-		IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (MEM_STALL = '1')) THEN  
+		IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (FETCH = '1')) THEN  
       Reg_DR <= Instrout(11 downto 9);
       Reg_Opcode <= Instrout(15 downto 12);
       Reg_PC_ID <= PC_IF;

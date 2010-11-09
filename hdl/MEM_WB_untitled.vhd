@@ -25,7 +25,7 @@ ENTITY MEM_WB IS
       SetCC_MEM     : IN     std_logic;
       clk           : IN     std_logic;
       dataout_MEM   : IN     lc3b_word;
-      mem_stall     : IN     std_logic;
+      load_latch    : IN     std_logic;
       ALUMemSel_WB  : OUT    std_logic;
       ALUout_WB     : OUT    lc3b_word;
       DestReg       : OUT    lc3b_reg;
@@ -74,7 +74,7 @@ BEGIN
   END PROCESS READ_REG;
 
 -- does CLK belong in the sensitivity list? Yes. 
-  WRITE_REG : PROCESS(CLK ,RESET_L, MEM_STALL)
+  WRITE_REG : PROCESS(CLK ,RESET_L, LOAD_LATCH)
   
   BEGIN
     IF (RESET_L = '0') THEN
@@ -88,7 +88,7 @@ BEGIN
       Reg_Opcode_WB            <=   "0000";
     END IF;
     
-    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (MEM_STALL = '1')) THEN
+    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
 		  Reg_RegWrite   	   <=   RegWrite_MEM  ;
       Reg_ALUMemSel_WB   <=   ALUMemSel_MEM	;
       Reg_SetCC_WB       <=   SetCC_MEM    	;

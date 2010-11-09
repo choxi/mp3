@@ -60,13 +60,13 @@ ENTITY ID_EX IS
       adj_offset9_EX  : OUT    lc3b_word;
       nzp_EX          : OUT    lc3b_nzp;
       sext_offset6_EX : OUT    lc3b_word;
-      mem_stall       : IN     std_logic;
       Opcode_EX       : OUT    lc3b_opcode;
       Opcode_ID       : IN     LC3b_opcode;
       SR1             : IN     lc3b_reg;
       SR2             : IN     lc3b_reg;
       SR1_EX          : OUT    lc3b_reg;
-      SR2_EX          : OUT    lc3b_reg
+      SR2_EX          : OUT    lc3b_reg;
+      load_latch      : IN     std_logic
    );
 
 -- Declarations
@@ -156,7 +156,7 @@ BEGIN
     SR2_EX          <=  Reg_SR2_EX          after delay_reg;    
   END PROCESS READ_REG;
 
-  WRITE_REG : PROCESS(CLK, RESET_L, MEM_STALL)
+  WRITE_REG : PROCESS(CLK, RESET_L, LOAD_LATCH)
   
   BEGIN
     IF (RESET_L = '0') THEN
@@ -186,7 +186,7 @@ BEGIN
       Reg_SR2_EX          <=   "000";
     END IF;
     
-    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (MEM_STALL = '1')) THEN
+    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
       Reg_ALUMemSel_EX    <=   ALUMemSel_ID    ;
       Reg_ALUop_EX        <=   ALUop_ID        ;
       Reg_AdjSel_EX       <=   AdjSel_ID       ;
