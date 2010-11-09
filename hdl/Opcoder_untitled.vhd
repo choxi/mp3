@@ -44,7 +44,7 @@ ARCHITECTURE untitled OF Opcoder IS
     STI_o,
     STR_o,
     TRAP_o,
-    nop_o
+    XXX_o
   );
  
   ATTRIBUTE state_vector : string;
@@ -71,7 +71,7 @@ BEGIN
     elsif (opcode = "1101") then    current_state <= SHF_o;
     elsif (opcode = "1110") then    current_state <= LEA_o;
     elsif (opcode = "1111") then    current_state <= TRAP_o;
-    else                            current_state <= NOP_o;
+    else                            current_state <= XXX_o;
     end if;
   end process update_string;
 END ARCHITECTURE untitled;
