@@ -1,0 +1,36 @@
+ORIGIN 0
+SEGMENT CodeSegment:
+
+fwdTest:
+	ADD	R1, R0, 1
+	ADD	R1, R1, R1
+	LDR	R2, R1, TheData 
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	ADD	R1, R0, 2
+	ADD	R2, R0, 3
+	ADD	R3, R2, R1
+	LDR	R3, R1, TheData
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	ADD	R1, R0, 1
+	ADD	R1, R0, 2
+	ADD 	R2, R1, 0
+	LDR	R3, R2, TheData
+TheData:
+	NOP
+	DATA2   4x0032
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP
+	NOP

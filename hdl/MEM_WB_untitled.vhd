@@ -17,7 +17,7 @@ USE ece411.LC3b_types.all;
 ENTITY MEM_WB IS
    PORT( 
       ALUMemSel_MEM : IN     std_logic;
-      ALUout_MEM    : IN     lc3b_word;
+      ALUout_MEM    : IN     LC3b_word;
       DR_MEM        : IN     lc3b_reg;
       Opcode_MEM    : IN     lc3b_opcode;
       RESET_L       : IN     std_logic;

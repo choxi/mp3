@@ -32,7 +32,7 @@ ENTITY EX_MEM IS
       mem_stall     : IN     std_logic;
       nzp_EX        : IN     lc3b_nzp;
       ALUMemSel_MEM : OUT    std_logic;
-      ALUout_MEM    : OUT    lc3b_word;
+      ALUout_MEM    : OUT    LC3b_word;
       Branch_MEM    : OUT    std_logic;
       DR_MEM        : OUT    lc3b_reg;
       Opcode_MEM    : OUT    lc3b_opcode;
