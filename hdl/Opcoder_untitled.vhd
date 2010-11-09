@@ -44,7 +44,7 @@ ARCHITECTURE untitled OF Opcoder IS
     STI_o,
     STR_o,
     TRAP_o,
-    NOP_o
+    nop_o
   );
  
   ATTRIBUTE state_vector : string;
