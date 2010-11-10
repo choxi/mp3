@@ -31,7 +31,8 @@ ENTITY IF_ID IS
       offset6   : OUT    lc3b_index6;
       offset9   : OUT    lc3b_offset9;
       Opcode_ID : OUT    LC3b_opcode;
-      fetch     : IN     std_logic
+      fetch     : IN     std_logic;
+      brSel     : IN     std_logic
    );
 
 -- Declarations
@@ -84,7 +85,19 @@ BEGIN
       Reg_offset9 <= "000000000";     
     END IF;
     
-		IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (FETCH = '1')) THEN  
+    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (brSel = '1')) THEN
+      Reg_DR <= "000";
+      Reg_Opcode <= "0000";
+      Reg_PC_ID <= "0000000000000000";
+      Reg_SR1 <= "000";
+      Reg_SR2 <= "000";
+      Reg_bit4_ID <= '0';
+      Reg_bit5_ID <= '0';
+      Reg_imm5 <= "00000";
+      Reg_nzp_ID <= "000";
+      Reg_offset6 <= "000000";
+      Reg_offset9 <= "000000000";         
+		ELSIF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (FETCH = '1')) THEN  
       Reg_DR <= Instrout(11 downto 9);
       Reg_Opcode <= Instrout(15 downto 12);
       Reg_PC_ID <= PC_IF;

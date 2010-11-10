@@ -14,7 +14,7 @@ fwdTest:
 	NOP
 	NOP
 	NOP
-TheData:		;ADDRESS = 
+TheData:		;ADDRESS = 0x0018(24) 
 	DATA2   4x0032
 	NOP
 	NOP

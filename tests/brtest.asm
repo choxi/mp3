@@ -5,15 +5,11 @@ testStart:
 
 test0:		; nzp test
 	ADD	R1, R0, 15
-	NOP
-	NOP
-	NOP
-	NOP
-	NOP
-	BRnzp	test1;
-	NOP
-	NOP
-	NOP
+	BRn	test1;
+	ADD     R2, R1, 7
+	ADD	R3, R0, 8
+	ADD	R4, R0, 9
+	ADD	R5, R0, 10
 	NOP
 	NOP
 

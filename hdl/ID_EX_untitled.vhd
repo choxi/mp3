@@ -68,7 +68,8 @@ ENTITY ID_EX IS
       SR2_EX          : OUT    lc3b_reg;
       load_latch      : IN     std_logic;
       LEAMuxSel_ID    : IN     std_logic;
-      LEAMuxSel_EX    : OUT    std_logic
+      LEAMuxSel_EX    : OUT    std_logic;
+      brSel           : IN     std_logic
    );
 
 -- Declarations
@@ -192,7 +193,33 @@ BEGIN
       Reg_LEAMuxSel_EX    <=   '0';
     END IF;
     
-    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
+    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (brSel = '1')) THEN
+      Reg_ALUMemSel_EX    <=   '0';
+      Reg_ALUop_EX        <=   "000";
+      Reg_AdjSel_EX       <=   '0';
+      Reg_BaseSel_EX      <=   '0';
+      Reg_Branch_EX       <=   '0';
+      Reg_DR_EX           <=   "000";
+      Reg_ImmSel_EX       <=   '0';
+      Reg_PC_EX           <=   "0000000000000000";
+      Reg_Read_EX         <=   '1';
+      Reg_RegWrite_EX     <=   '0';
+      Reg_SR1_data_EX     <=   "0000000000000000";
+      Reg_SR2_data_EX     <=   "0000000000000000";
+      Reg_STR_data_EX     <=   "0000000000000000";
+      Reg_SetCC_EX        <=   '0';
+      Reg_SextSel_EX      <=   '0';
+      Reg_Write_EX        <=   '1';
+      Reg_adj_imm5_EX     <=   "0000000000000000";
+      Reg_adj_offset6_EX  <=   "0000000000000000";
+      Reg_adj_offset9_EX  <=   "0000000000000000";
+      Reg_nzp_EX          <=   "000";
+      Reg_sext_offset6_EX <=   "0000000000000000";
+      Reg_Opcode_EX       <=   "0000";
+      Reg_SR1_EX          <=   "000";
+      Reg_SR2_EX          <=   "000";
+      Reg_LEAMuxSel_EX    <=   '0';
+    ELSIF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
       Reg_ALUMemSel_EX    <=   ALUMemSel_ID    ;
       Reg_ALUop_EX        <=   ALUop_ID        ;
       Reg_AdjSel_EX       <=   AdjSel_ID       ;

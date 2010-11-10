@@ -42,7 +42,8 @@ ENTITY EX_MEM IS
       address_MEM    : OUT    lc3b_word;
       nzp_MEM        : OUT    lc3b_nzp;
       STR_dataout_EX : IN     lc3b_word;
-      load_latch     : IN     std_logic
+      load_latch     : IN     std_logic;
+      brSel          : IN     std_logic
    );
 
 -- Declarations
@@ -125,7 +126,23 @@ BEGIN
       Reg_Opcode_MEM       <=   "0000";
     END IF;
     
-    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
+    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (brSel = '1')) THEN
+      Reg_RegWrite_MEM     <=   '0';
+      Reg_ALUMemSel_MEM    <=   '0';
+      Reg_SetCC_MEM        <=   '0';
+
+      Reg_Branch_MEM       <=   '0';
+      Reg_Write_MEM        <=   '1';
+      Reg_Read_MEM         <=   '1';
+      
+      Reg_nzp_MEM          <=   "000";
+      Reg_address_MEM      <=   "0000000000000000";
+      Reg_ALUout_MEM       <=   "0000000000000000";
+      
+      Reg_STR_data_MEM     <=   "0000000000000000";
+      Reg_DR_MEM           <=   "000";
+      Reg_Opcode_MEM       <=   "0000";
+    ELSIF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
 
 		  Reg_RegWrite_MEM 		  <=	  RegWrite_EX  ;
       Reg_ALUMemSel_MEM    <=   ALUMemSel_EX ;
