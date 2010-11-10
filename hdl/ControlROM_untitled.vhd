@@ -23,7 +23,8 @@ ENTITY ControlROM IS
       RegWrite_ID  : OUT    std_logic;
       ALUMemSel_ID : OUT    std_logic;
       SetCC_ID     : OUT    std_logic;
-      fetch        : IN     std_logic
+      fetch        : IN     std_logic;
+      LEAMuxSel_ID : OUT    std_logic
    );
 
 -- Declarations
@@ -45,6 +46,8 @@ signal Read      : std_logic;
 signal RegWrite  : std_logic;
 signal ALUMemSel : std_logic;
 signal SetCC     : std_logic;
+signal LEAMuxSel : std_logic;
+
 BEGIN
   --input_word <= opcode & bit5 & bit4; 
   generate_signals : process (opcode, bit5, bit4)
@@ -61,6 +64,7 @@ BEGIN
           RegWrite   <= '0';
           ALUMemSel  <= '0';
           SetCC	     <= '0';
+          LEAMuxSel  <= '0';
   ELSE
     
   case opcode is
@@ -80,6 +84,7 @@ BEGIN
       RegWrite   <= '1';
       ALUMemSel  <= '0';
       SetCC   	  <= '1';
+      LEAMuxSel  <= '0';
       
     when OP_AND =>
       AdjSel     <= '1';
@@ -97,6 +102,7 @@ BEGIN
       RegWrite   <= '1';
       ALUMemSel  <= '0';
       SetCC      <= '1';
+      LEAMuxSel  <= '0';
 
     when OP_BR =>
       AdjSel     <= '1';
@@ -110,6 +116,7 @@ BEGIN
       RegWrite   <= '0';
       ALUMemSel  <= '0';
       SetCC	     <= '0';
+      LEAMuxSel  <= '0';
       
     when OP_LDR =>
       AdjSel     <= '1';
@@ -123,6 +130,7 @@ BEGIN
       RegWrite   <= '1';
       ALUMemSel  <= '1';
       SetCC   	  <= '1';
+      LEAMuxSel  <= '0';
       
     when OP_NOT =>
       AdjSel     <= '1';
@@ -135,7 +143,8 @@ BEGIN
       Read       <= '1';
       RegWrite   <= '1';
       ALUMemSel  <= '0';
-      SetCC   	  <= '1'; 
+      SetCC   	  <= '1';
+      LEAMuxSel  <= '0'; 
     
     when OP_SHF =>
       AdjSel     <= '1';
@@ -155,7 +164,8 @@ BEGIN
       Read       <= '1';
       RegWrite   <= '1';
       ALUMemSel  <= '0';
-      SetCC   	  <= '1';      
+      SetCC   	  <= '1';
+      LEAMuxSel  <= '0';      
     
     when OP_STR =>
       AdjSel     <= '1';
@@ -169,6 +179,23 @@ BEGIN
       RegWrite   <= '0';
       ALUMemSel  <= '1';
       SetCC   	  <= '1';
+      LEAMuxSel  <= '0';
+    
+    when OP_LEA =>
+      AdjSel     <= '0';
+      SextSel    <= '1';
+      BaseSel    <= '1';
+      ImmSel     <= '0';
+      ALUop      <= ALU_PASS;
+      Branch     <= '0';
+      Write      <= '1';
+      Read       <= '1';
+      RegWrite   <= '1';
+      ALUMemSel  <= '0';
+      SetCC      <= '1';
+      LEAMuxSel  <= '1';
+      
+    
       
     when others =>
       AdjSel     <= '1';
@@ -182,6 +209,7 @@ BEGIN
       RegWrite   <= '0';
       ALUMemSel  <= '0';
       SetCC	     <= '0';
+      LEAMuxSel  <= '0';
   end case;
   END IF;
   end process;
@@ -196,4 +224,5 @@ BEGIN
     RegWrite_ID     <= RegWrite after delay_rom;
     ALUMemSel_ID    <= ALUMemSel after delay_rom;
     SetCC_ID	       <= SetCC after delay_rom;
+    LEAMuxSel_ID    <= LEAMuxSel after delay_rom;
 end untitled; 

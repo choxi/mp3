@@ -66,7 +66,9 @@ ENTITY ID_EX IS
       SR2             : IN     lc3b_reg;
       SR1_EX          : OUT    lc3b_reg;
       SR2_EX          : OUT    lc3b_reg;
-      load_latch      : IN     std_logic
+      load_latch      : IN     std_logic;
+      LEAMuxSel_ID    : IN     std_logic;
+      LEAMuxSel_EX    : OUT    std_logic
    );
 
 -- Declarations
@@ -100,34 +102,36 @@ ARCHITECTURE untitled OF ID_EX IS
       SIGNAL Reg_Opcode_EX       :  lc3b_opcode;
       SIGNAL Reg_SR1_EX          :  lc3b_reg;
       SIGNAL Reg_SR2_EX          :  lc3b_reg;
+      SIGNAL Reg_LEAMuxSel_EX    :  std_logic;
       
 BEGIN
   
   READ_REG : PROCESS (
-	Reg_ALUMemSel_EX    ,
-	Reg_ALUop_EX        ,
-	Reg_AdjSel_EX       ,
-	Reg_BaseSel_EX      ,
-	Reg_Branch_EX       ,
-	Reg_DR_EX           ,
-	Reg_ImmSel_EX       ,
-	Reg_PC_EX           ,
-	Reg_Read_EX         ,
-	Reg_RegWrite_EX     ,
-	Reg_SR1_data_EX     ,
-	Reg_SR2_data_EX     ,
-	Reg_STR_data_EX     ,
-	Reg_SetCC_EX        ,
-	Reg_SextSel_EX      ,
-	Reg_Write_EX        ,
-	Reg_adj_imm5_EX     ,
-	Reg_adj_offset6_EX  ,
-	Reg_adj_offset9_EX  ,
-	Reg_nzp_EX          ,
-	Reg_sext_offset6_EX,
-	Reg_Opcode_EX,
-	Reg_SR1_EX, 
-	Reg_SR2_EX
+	  Reg_ALUMemSel_EX    ,
+	  Reg_ALUop_EX        ,
+	  Reg_AdjSel_EX       ,
+	  Reg_BaseSel_EX      ,
+	  Reg_Branch_EX       ,
+	  Reg_DR_EX           ,
+	  Reg_ImmSel_EX       ,
+	  Reg_PC_EX           ,
+	  Reg_Read_EX         ,
+	  Reg_RegWrite_EX     ,
+	  Reg_SR1_data_EX     ,
+	  Reg_SR2_data_EX     ,
+	  Reg_STR_data_EX     ,
+	  Reg_SetCC_EX        ,
+	  Reg_SextSel_EX      ,
+	  Reg_Write_EX        ,
+	  Reg_adj_imm5_EX     ,
+	  Reg_adj_offset6_EX  ,
+	  Reg_adj_offset9_EX  ,
+	  Reg_nzp_EX          ,
+	  Reg_sext_offset6_EX,
+	  Reg_Opcode_EX,
+	  Reg_SR1_EX, 
+	  Reg_SR2_EX,
+	  Reg_LEAMuxSel_EX
   )
   BEGIN
     ALUMemSel_EX    <=  Reg_ALUMemSel_EX    after delay_reg;
@@ -153,7 +157,8 @@ BEGIN
     sext_offset6_EX <=  Reg_sext_offset6_EX after delay_reg;
     Opcode_EX       <=  Reg_Opcode_EX       after delay_reg;
     SR1_EX          <=  Reg_SR1_EX          after delay_reg;
-    SR2_EX          <=  Reg_SR2_EX          after delay_reg;    
+    SR2_EX          <=  Reg_SR2_EX          after delay_reg; 
+    LEAMuxSel_EX    <=  Reg_LEAMuxSel_EX    after delay_reg;   
   END PROCESS READ_REG;
 
   WRITE_REG : PROCESS(CLK, RESET_L, LOAD_LATCH)
@@ -184,6 +189,7 @@ BEGIN
       Reg_Opcode_EX       <=   "0000";
       Reg_SR1_EX          <=   "000";
       Reg_SR2_EX          <=   "000";
+      Reg_LEAMuxSel_EX    <=   '0';
     END IF;
     
     IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
@@ -211,6 +217,7 @@ BEGIN
       Reg_Opcode_EX       <=   Opcode_ID;
       Reg_SR1_EX          <=   SR1;
       Reg_SR2_EX          <=   SR2;
+      Reg_LEAMuxSel_EX    <=   LEAMuxSel_ID;
     END IF;
   END PROCESS WRITE_REG;
 END ARCHITECTURE untitled;
