@@ -28,7 +28,8 @@ ENTITY ForwardingUnit IS
       RegWrite        : IN     std_logic;
       DR_EX           : IN     lc3b_reg;
       Write_EX        : IN     std_logic;
-      STR_dataout_sel : OUT    std_logic
+      STR_dataout_sel : OUT    std_logic;
+      FUTypeWB_DR     : OUT    std_logic
    );
 
 -- Declarations
@@ -64,8 +65,14 @@ BEGIN
       END IF;
       
       IF ((Write_EX = '0') AND (RegWrite_MEM = '1') AND (DR_EX = DR_MEM)) THEN
+        FUTypeWB_DR <= '0';
+        STR_dataout_sel <= '1';
+      ELSIF ((Write_EX = '0') AND (RegWrite = '1') AND (DR_EX = DestReg) 
+        AND (NOT ((RegWrite_MEM = '1') AND (DR_EX = DR_MEM))) ) THEN
+        FUTypeWB_DR <= '1';
         STR_dataout_sel <= '1';
       ELSE
+        FUTypeWB_DR <= '0';
         STR_dataout_sel <= '0';
       END IF;
   END PROCESS;

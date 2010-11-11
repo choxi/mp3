@@ -43,7 +43,11 @@ ENTITY EX_MEM IS
       nzp_MEM        : OUT    lc3b_nzp;
       STR_dataout_EX : IN     lc3b_word;
       load_latch     : IN     std_logic;
-      brSel          : IN     std_logic
+      brSel          : IN     std_logic;
+      indirect_EX    : IN     std_logic;
+      isSTI_EX       : IN     std_logic;
+      indirect_MEM   : OUT    std_logic;
+      isSTI_MEM      : OUT    std_logic
    );
 
 -- Declarations
@@ -68,6 +72,8 @@ ARCHITECTURE untitled OF EX_MEM IS
       SIGNAL Reg_STR_data_MEM     :  lc3b_word;
       SIGNAL Reg_DR_MEM           :  lc3b_reg;
       SIGNAL Reg_Opcode_MEM       :  lc3b_opcode;
+      SIGNAL Reg_indirect_MEM     :  std_logic;
+      SIGNAL Reg_isSTI_MEM        :  std_logic;
       
 BEGIN
   
@@ -83,7 +89,9 @@ BEGIN
 	Reg_ALUout_MEM     ,
 	Reg_STR_data_MEM   ,
 	Reg_DR_MEM         ,
-	Reg_Opcode_MEM         
+	Reg_Opcode_MEM,
+	Reg_indirect_MEM,
+	Reg_isSTI_MEM         
   )
   	
   BEGIN
@@ -102,6 +110,8 @@ BEGIN
     STR_data_MEM     <=  Reg_STR_data_MEM     after delay_reg;
     DR_MEM           <=  Reg_DR_MEM           after delay_reg;
     Opcode_MEM       <=  Reg_Opcode_MEM       after delay_reg;
+    indirect_MEM     <=  Reg_indirect_MEM     after delay_reg;
+    isSTI_MEM        <=  Reg_isSTI_MEM        after delay_reg;
   END PROCESS READ_REG;
 
 -- does CLK belong in the sensitivity list?
@@ -124,6 +134,9 @@ BEGIN
       Reg_STR_data_MEM     <=   "0000000000000000";
       Reg_DR_MEM           <=   "000";
       Reg_Opcode_MEM       <=   "0000";
+      
+      Reg_indirect_MEM     <=   '0';
+      Reg_isSTI_MEM        <=   '0';
     END IF;
     
     IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (brSel = '1')) THEN
@@ -142,6 +155,9 @@ BEGIN
       Reg_STR_data_MEM     <=   "0000000000000000";
       Reg_DR_MEM           <=   "000";
       Reg_Opcode_MEM       <=   "0000";
+      
+      Reg_indirect_MEM     <=   '0';
+      Reg_isSTI_MEM        <=   '0';
     ELSIF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
 
 		  Reg_RegWrite_MEM 		  <=	  RegWrite_EX  ;
@@ -159,6 +175,9 @@ BEGIN
       Reg_STR_data_MEM     <=   STR_dataout_EX  ;
       Reg_DR_MEM           <=   DR_EX        ;
       Reg_Opcode_MEM       <=   Opcode_EX    ;
+      
+      Reg_indirect_MEM     <=   indirect_EX;
+      Reg_isSTI_MEM        <=   isSTI_EX;
 	 END IF;
   END PROCESS WRITE_REG;
 END ARCHITECTURE untitled;

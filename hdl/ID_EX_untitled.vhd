@@ -69,7 +69,11 @@ ENTITY ID_EX IS
       load_latch      : IN     std_logic;
       LEAMuxSel_ID    : IN     std_logic;
       LEAMuxSel_EX    : OUT    std_logic;
-      brSel           : IN     std_logic
+      brSel           : IN     std_logic;
+      indirect_ID     : IN     std_logic;
+      isSTI_ID        : IN     std_logic;
+      indirect_EX     : OUT    std_logic;
+      isSTI_EX        : OUT    std_logic
    );
 
 -- Declarations
@@ -104,6 +108,8 @@ ARCHITECTURE untitled OF ID_EX IS
       SIGNAL Reg_SR1_EX          :  lc3b_reg;
       SIGNAL Reg_SR2_EX          :  lc3b_reg;
       SIGNAL Reg_LEAMuxSel_EX    :  std_logic;
+      SIGNAL Reg_indirect_EX     :  std_logic;
+      SIGNAL Reg_isSTI_EX        :  std_logic;
       
 BEGIN
   
@@ -132,7 +138,9 @@ BEGIN
 	  Reg_Opcode_EX,
 	  Reg_SR1_EX, 
 	  Reg_SR2_EX,
-	  Reg_LEAMuxSel_EX
+	  Reg_LEAMuxSel_EX,
+	  Reg_indirect_EX,
+	  Reg_isSTI_EX
   )
   BEGIN
     ALUMemSel_EX    <=  Reg_ALUMemSel_EX    after delay_reg;
@@ -159,7 +167,9 @@ BEGIN
     Opcode_EX       <=  Reg_Opcode_EX       after delay_reg;
     SR1_EX          <=  Reg_SR1_EX          after delay_reg;
     SR2_EX          <=  Reg_SR2_EX          after delay_reg; 
-    LEAMuxSel_EX    <=  Reg_LEAMuxSel_EX    after delay_reg;   
+    LEAMuxSel_EX    <=  Reg_LEAMuxSel_EX    after delay_reg;
+    indirect_EX     <=  Reg_indirect_EX     after delay_reg;
+    isSTI_EX        <=  Reg_isSTI_EX        after delay_reg;   
   END PROCESS READ_REG;
 
   WRITE_REG : PROCESS(CLK, RESET_L, LOAD_LATCH)
@@ -191,6 +201,8 @@ BEGIN
       Reg_SR1_EX          <=   "000";
       Reg_SR2_EX          <=   "000";
       Reg_LEAMuxSel_EX    <=   '0';
+      Reg_indirect_EX     <=   '0';
+      Reg_isSTI_EX        <=   '0';
     END IF;
     
     IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (brSel = '1')) THEN
@@ -219,6 +231,8 @@ BEGIN
       Reg_SR1_EX          <=   "000";
       Reg_SR2_EX          <=   "000";
       Reg_LEAMuxSel_EX    <=   '0';
+      Reg_indirect_EX     <=   '0';
+      Reg_isSTI_EX        <=   '0';
     ELSIF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
       Reg_ALUMemSel_EX    <=   ALUMemSel_ID    ;
       Reg_ALUop_EX        <=   ALUop_ID        ;
@@ -245,6 +259,8 @@ BEGIN
       Reg_SR1_EX          <=   SR1;
       Reg_SR2_EX          <=   SR2;
       Reg_LEAMuxSel_EX    <=   LEAMuxSel_ID;
+      Reg_indirect_EX     <=   indirect_ID;
+      Reg_isSTI_EX        <=   isSTI_ID;
     END IF;
   END PROCESS WRITE_REG;
 END ARCHITECTURE untitled;

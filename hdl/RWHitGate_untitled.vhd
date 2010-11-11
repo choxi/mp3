@@ -27,6 +27,6 @@ END RWHitGate ;
 --
 ARCHITECTURE untitled OF RWHitGate IS
 BEGIN
-  rw_hit_gate <= ((clk) AND NOT(clk'delayed(6ns)));
+  rw_hit_gate <= ((clk) AND NOT(clk'delayed(10ns)));
 END ARCHITECTURE untitled;
 

@@ -24,7 +24,9 @@ ENTITY ControlROM IS
       ALUMemSel_ID : OUT    std_logic;
       SetCC_ID     : OUT    std_logic;
       fetch        : IN     std_logic;
-      LEAMuxSel_ID : OUT    std_logic
+      LEAMuxSel_ID : OUT    std_logic;
+      indirect_ID  : OUT    std_logic;
+      isSTI_ID     : OUT    std_logic
    );
 
 -- Declarations
@@ -65,6 +67,8 @@ BEGIN
           ALUMemSel  <= '0';
           SetCC	     <= '0';
           LEAMuxSel  <= '0';
+          indirect_ID <= '0';
+          isSTI_ID   <= '0';
   ELSE
     
   case opcode is
@@ -85,6 +89,9 @@ BEGIN
       ALUMemSel  <= '0';
       SetCC   	  <= '1';
       LEAMuxSel  <= '0';
+      indirect_ID <= '0';
+      isSTI_ID   <= '0';      
+      
       
     when OP_AND =>
       AdjSel     <= '1';
@@ -103,6 +110,8 @@ BEGIN
       ALUMemSel  <= '0';
       SetCC      <= '1';
       LEAMuxSel  <= '0';
+      indirect_ID <= '0';
+      isSTI_ID   <= '0'; 
 
     when OP_BR =>
       AdjSel     <= '1';
@@ -117,6 +126,8 @@ BEGIN
       ALUMemSel  <= '0';
       SetCC	     <= '0';
       LEAMuxSel  <= '0';
+      indirect_ID <= '0';
+      isSTI_ID   <= '0'; 
       
     when OP_LDR =>
       AdjSel     <= '1';
@@ -131,6 +142,24 @@ BEGIN
       ALUMemSel  <= '1';
       SetCC   	  <= '1';
       LEAMuxSel  <= '0';
+      indirect_ID <= '0';
+      isSTI_ID   <= '0';
+      
+    when OP_LDI =>
+      AdjSel     <= '1';
+      SextSel    <= '0';
+      BaseSel    <= '0';
+      ImmSel     <= '0';
+      ALUop      <= ALU_PASS;
+      Branch     <= '0';
+      Write      <= '1';
+      Read       <= '0';
+      RegWrite   <= '1';
+      ALUMemSel  <= '1';
+      SetCC   	  <= '1';
+      LEAMuxSel  <= '0';
+      indirect_ID <= '1';
+      isSTI_ID   <= '0';
       
     when OP_NOT =>
       AdjSel     <= '1';
@@ -144,7 +173,9 @@ BEGIN
       RegWrite   <= '1';
       ALUMemSel  <= '0';
       SetCC   	  <= '1';
-      LEAMuxSel  <= '0'; 
+      LEAMuxSel  <= '0';
+      indirect_ID <= '0';
+      isSTI_ID   <= '0';  
     
     when OP_SHF =>
       AdjSel     <= '1';
@@ -165,7 +196,9 @@ BEGIN
       RegWrite   <= '1';
       ALUMemSel  <= '0';
       SetCC   	  <= '1';
-      LEAMuxSel  <= '0';      
+      LEAMuxSel  <= '0';
+      indirect_ID <= '0';
+      isSTI_ID   <= '0';       
     
     when OP_STR =>
       AdjSel     <= '1';
@@ -180,6 +213,24 @@ BEGIN
       ALUMemSel  <= '1';
       SetCC   	  <= '1';
       LEAMuxSel  <= '0';
+      indirect_ID <= '0';
+      isSTI_ID   <= '0'; 
+      
+    when OP_STI =>
+      AdjSel     <= '1';
+      SextSel    <= '0';
+      BaseSel    <= '0';
+      ImmSel     <= '0';
+      ALUop      <= ALU_PASS;
+      Branch     <= '0';
+      Write      <= '0';
+      Read       <= '1';
+      RegWrite   <= '0';
+      ALUMemSel  <= '1';
+      SetCC   	  <= '1';
+      LEAMuxSel  <= '0';
+      indirect_ID <= '1';
+      isSTI_ID   <= '1'; 
     
     when OP_LEA =>
       AdjSel     <= '0';
@@ -194,6 +245,8 @@ BEGIN
       ALUMemSel  <= '0';
       SetCC      <= '1';
       LEAMuxSel  <= '1';
+      indirect_ID <= '0';
+      isSTI_ID   <= '0'; 
       
     
       
@@ -210,6 +263,9 @@ BEGIN
       ALUMemSel  <= '0';
       SetCC	     <= '0';
       LEAMuxSel  <= '0';
+      indirect_ID <= '0';
+      isSTI_ID   <= '0'; 
+      
   end case;
   END IF;
   end process;
