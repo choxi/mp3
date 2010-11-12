@@ -31,7 +31,6 @@ ENTITY EX_MEM IS
       address_EX     : IN     lc3b_word;
       clk            : IN     std_logic;
       nzp_EX         : IN     lc3b_nzp;
-      --isBub  : IN     std_logic
       ALUMemSel_MEM  : OUT    std_logic;
       ALUout_MEM     : OUT    LC3b_word;
       Branch_MEM     : OUT    std_logic;
@@ -54,7 +53,10 @@ ENTITY EX_MEM IS
       PC_MEM         : OUT    lc3b_word;
       JSRSel_MEM     : OUT    std_logic;
       AdjSel_EX      : IN     std_logic;
-      AdjSel_MEM     : OUT    std_logic
+      AdjSel_MEM     : OUT    std_logic;
+      ZextSel_EX     : IN     std_logic;
+      ZextSel_MEM    : OUT    std_logic;
+      ZextSel_WB     : IN     std_logic
    );
 
 -- Declarations
@@ -84,6 +86,7 @@ ARCHITECTURE untitled OF EX_MEM IS
       SIGNAL Reg_indirect_MEM     :  std_logic;
       SIGNAL Reg_isSTI_MEM        :  std_logic;
       SIGNAL Reg_AdjSel_MEM       :  std_logic;
+      SIGNAL Reg_ZextSel_MEM      :  std_logic;
       
 BEGIN
   
@@ -104,7 +107,8 @@ BEGIN
 	Reg_Opcode_MEM     ,
 	Reg_indirect_MEM   ,
 	Reg_isSTI_MEM,
-	Reg_AdjSel_MEM         
+	Reg_AdjSel_MEM,
+	Reg_ZextSel_MEM         
   )
   	
   BEGIN
@@ -128,10 +132,11 @@ BEGIN
     indirect_MEM     <=  Reg_indirect_MEM     after delay_reg;
     isSTI_MEM        <=  Reg_isSTI_MEM        after delay_reg;
     AdjSel_MEM       <=  Reg_AdjSel_MEM       after delay_reg;
+    ZextSel_MEM      <=  Reg_ZextSel_MEM      after delay_reg;
   END PROCESS READ_REG;
 
 -- does CLK belong in the sensitivity list?
-  WRITE_REG : PROCESS(CLK,RESET_L, LOAD_LATCH)
+  WRITE_REG : PROCESS(CLK,RESET_L, LOAD_LATCH, ZextSel_WB)
   
   BEGIN
     IF (RESET_L = '0') THEN
@@ -156,8 +161,9 @@ BEGIN
       Reg_indirect_MEM     <=   '0';
       Reg_isSTI_MEM        <=   '0';
       Reg_AdjSel_MEM       <=   '1';
+      Reg_ZextSel_MEM      <=   '0';
     END IF;
-    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (brSel = '1') AND (LOAD_LATCH = '1') ) THEN
+    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND ((brSel = '1') OR (ZextSel_WB = '1')) AND (LOAD_LATCH = '1') ) THEN
       Reg_RegWrite_MEM     <=   '0';
       Reg_ALUMemSel_MEM    <=   '0';
       Reg_SetCC_MEM        <=   '0';
@@ -179,6 +185,7 @@ BEGIN
       Reg_indirect_MEM     <=   '0';
       Reg_isSTI_MEM        <=   '0';
       Reg_AdjSel_MEM       <=   '1';
+      Reg_ZextSel_MEM      <=   '0';
     ELSIF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
 
 		  Reg_RegWrite_MEM 		  <=	  RegWrite_EX  ;
@@ -202,6 +209,7 @@ BEGIN
       Reg_indirect_MEM     <=   indirect_EX;
       Reg_isSTI_MEM        <=   isSTI_EX;
       Reg_AdjSel_MEM       <=   AdjSel_EX;
+      Reg_ZextSel_MEM      <=   ZextSel_EX;
 	 END IF;
   END PROCESS WRITE_REG;
 END ARCHITECTURE untitled;

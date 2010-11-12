@@ -80,7 +80,11 @@ ENTITY ID_EX IS
       JSRSel_EX       : OUT    std_logic;
       DR_ID           : IN     lc3b_reg;
       jump_ID         : IN     std_logic;
-      jump_EX         : OUT    std_logic
+      jump_EX         : OUT    std_logic;
+      zext8_ID        : IN     LC3b_word;
+      zext8_EX        : OUT    lc3b_word;
+      ZextSel_EX      : OUT    std_logic;
+      ZextSel_ID      : IN     std_logic
    );
 
 -- Declarations
@@ -120,6 +124,8 @@ ARCHITECTURE untitled OF ID_EX IS
       SIGNAL Reg_indirect_EX     :  std_logic;
       SIGNAL Reg_isSTI_EX        :  std_logic;
       SIGNAL Reg_jump_EX         :  std_logic;
+      SIGNAL Reg_zext8_EX        :  lc3b_word;
+      SIGNAL Reg_ZextSel_EX      :  std_logic;
       
 BEGIN
   
@@ -153,7 +159,9 @@ BEGIN
 	  Reg_LEAMuxSel_EX,
 	  Reg_indirect_EX,
 	  Reg_isSTI_EX,
-	  Reg_jump_EX
+	  Reg_jump_EX,
+	  Reg_zext8_EX,
+	  Reg_ZextSel_EX
   )
   BEGIN
     ALUMemSel_EX    <=  Reg_ALUMemSel_EX    after delay_reg;
@@ -176,7 +184,7 @@ BEGIN
     adj_imm5_EX     <=  Reg_adj_imm5_EX     after delay_reg;
     adj_offset6_EX  <=  Reg_adj_offset6_EX  after delay_reg;
     adj_offset9_EX  <=  Reg_adj_offset9_EX  after delay_reg;
-    adj_offset11_EX <=  Reg_adj_offset11_EX  after delay_reg;
+    adj_offset11_EX <=  Reg_adj_offset11_EX after delay_reg;
     nzp_EX          <=  Reg_nzp_EX          after delay_reg;
     sext_offset6_EX <=  Reg_sext_offset6_EX after delay_reg;
     Opcode_EX       <=  Reg_Opcode_EX       after delay_reg;
@@ -185,7 +193,9 @@ BEGIN
     LEAMuxSel_EX    <=  Reg_LEAMuxSel_EX    after delay_reg;
     indirect_EX     <=  Reg_indirect_EX     after delay_reg;
     isSTI_EX        <=  Reg_isSTI_EX        after delay_reg;  
-    jump_EX         <=  Reg_jump_EX         after delay_reg; 
+    jump_EX         <=  Reg_jump_EX         after delay_reg;
+    zext8_EX        <=  Reg_zext8_EX        after delay_reg; 
+    ZextSel_EX      <=  Reg_ZextSel_EX      after delay_reg; 
   END PROCESS READ_REG;
 
   WRITE_REG : PROCESS(CLK, RESET_L, LOAD_LATCH)
@@ -222,6 +232,8 @@ BEGIN
       Reg_indirect_EX     <=   '0';
       Reg_isSTI_EX        <=   '0';
       Reg_jump_EX         <=   '0';
+      Reg_zext8_EX        <=   "0000000000000000";
+      Reg_ZextSel_EX      <=   '0';
     END IF;
     IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (brSel = '1') AND (LOAD_LATCH = '1')) THEN
       Reg_ALUMemSel_EX    <=   '0';
@@ -254,6 +266,9 @@ BEGIN
       Reg_indirect_EX     <=   '0';
       Reg_isSTI_EX        <=   '0';
       Reg_jump_EX         <=   '0';
+      Reg_zext8_EX        <=   "0000000000000000";
+      Reg_ZextSel_EX      <=   '0';
+      
     ELSIF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
       Reg_ALUMemSel_EX    <=   ALUMemSel_ID    ;
       Reg_ALUop_EX        <=   ALUop_ID        ;
@@ -285,6 +300,8 @@ BEGIN
       Reg_indirect_EX     <=   indirect_ID;
       Reg_isSTI_EX        <=   isSTI_ID;
       Reg_jump_EX         <=   jump_ID;
+      Reg_zext8_EX        <=   zext8_ID;
+      Reg_ZextSel_EX      <=   ZextSel_ID;
     END IF;
   END PROCESS WRITE_REG;
 END ARCHITECTURE untitled;

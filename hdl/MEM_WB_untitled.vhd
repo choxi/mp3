@@ -38,8 +38,9 @@ ENTITY MEM_WB IS
       dataout_WB    : OUT    lc3b_word;
       JSRSel_WB     : OUT    std_logic;
       nzp_mem       : IN     lc3b_nzp;
-      nzp_wb        : OUT    lc3b_nzp
-      --isBub  : IN     std_logic
+      nzp_wb        : OUT    lc3b_nzp;
+      ZextSel_MEM   : IN     std_logic;
+      ZextSel_WB    : OUT    std_logic
    );
 
 -- Declarations
@@ -61,7 +62,7 @@ ARCHITECTURE untitled OF MEM_WB IS
       SIGNAL Reg_DestReg          :  lc3b_reg;
       SIGNAL Reg_Opcode_WB        :  lc3b_opcode;
       SIGNAL Reg_nzp_wb           :  lc3b_nzp;
-      
+      SIGNAL Reg_ZextSel_WB       :  std_logic;
 BEGIN
   
   READ_REG : PROCESS(
@@ -74,7 +75,8 @@ BEGIN
 	Reg_ALUout_WB     ,
 	Reg_DestReg       ,
 	Reg_Opcode_WB     ,
-	Reg_nzp_wb  
+	Reg_nzp_wb,
+	Reg_ZextSel_WB  
   )
   BEGIN
 	  RegWrite     <=  Reg_RegWrite      	  after delay_reg;
@@ -88,6 +90,7 @@ BEGIN
     DestReg      <=  Reg_DestReg          after delay_reg;
     Opcode_WB    <=  Reg_Opcode_WB        after delay_reg;
     nzp_wb       <=  Reg_nzp_wb           after delay_reg;
+    ZextSel_WB   <=  Reg_ZextSel_Wb       after delay_reg;
   END PROCESS READ_REG;
 
 -- does CLK belong in the sensitivity list? Yes. 
@@ -106,9 +109,22 @@ BEGIN
       Reg_DestReg              <=   "000";
       Reg_Opcode_WB            <=   "0000";
       Reg_nzp_wb               <=   "000";
+      Reg_ZextSel_WB           <=   '0';
     END IF;
-    
-    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
+    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (Reg_ZextSel_WB = '1') AND (LOAD_LATCH = '1')) THEN
+      Reg_RegWrite   			       <=   '0';
+      Reg_ALUMemSel_WB         <=   '0';
+      Reg_SetCC_WB             <=   '0';
+      Reg_JSRSel_WB            <=   '0';
+
+      Reg_PC_WB                <=   "0000000000000000";
+      Reg_dataout_WB           <=   "0000000000000000";
+      Reg_ALUout_WB            <=   "0000000000000000";
+      Reg_DestReg              <=   "000";
+      Reg_Opcode_WB            <=   "0000";
+      Reg_nzp_wb               <=   "000";
+      Reg_ZextSel_WB           <=   '0';      
+    ELSIF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
 		  Reg_RegWrite   	   <=   RegWrite_MEM  ;
       Reg_ALUMemSel_WB   <=   ALUMemSel_MEM	;
       Reg_SetCC_WB       <=   SetCC_MEM    	;
@@ -119,7 +135,8 @@ BEGIN
       Reg_ALUout_WB      <=   ALUout_MEM   	;
       Reg_DestReg        <=   DR_MEM			     ;
       Reg_Opcode_WB      <=   Opcode_MEM    ;
-      Reg_nzp_WB      <=   nzp_MEM    ;
+      Reg_nzp_WB         <=   nzp_MEM    ;
+      Reg_ZextSel_WB     <=   ZextSel_MEM;
 	 END IF;
   END PROCESS WRITE_REG;
 END ARCHITECTURE untitled;

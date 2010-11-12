@@ -30,7 +30,7 @@ ENTITY ControlROM IS
       isSTI_ID     : OUT    std_logic;
       jump_ID      : OUT    std_logic;
       JSRSel_ID    : OUT    std_logic;
-      ByteOp_ID    : OUT    std_logic
+      ZextSel_ID   : OUT    std_logic
    );
 
 -- Declarations
@@ -43,6 +43,7 @@ ARCHITECTURE untitled OF ControlROM IS
 
 signal AdjSel    : std_logic;
 signal SextSel   : std_logic;
+signal ZextSel   : std_logic;
 signal BaseSel   : std_logic;
 signal ImmSel    : std_logic;
 signal ALUop     : LC3b_aluop;
@@ -65,6 +66,7 @@ BEGIN
   IF fetch = '0' THEN
           AdjSel     <= '1';
           SextSel    <= '0';
+          ZextSel    <= '0';
           BaseSel    <= '0';
           ImmSel     <= '0';
           ALUop      <= ALU_PASS;
@@ -85,6 +87,7 @@ BEGIN
     when OP_ADD =>
       AdjSel     <= '1';
       SextSel    <= '0';
+      ZextSel    <= '0';
       BaseSel    <= '0';
       if (bit5 = '1') then
         ImmSel   <= '1';
@@ -108,6 +111,7 @@ BEGIN
     when OP_AND =>
       AdjSel     <= '1';
       SextSel    <= '0';
+      ZextSel    <= '0';
       BaseSel    <= '0';
       if (bit5 = '1') then
         ImmSel   <= '1';
@@ -130,6 +134,7 @@ BEGIN
     when OP_BR =>
       AdjSel     <= '1';
       SextSel    <= '1';
+      ZextSel    <= '0';
       BaseSel    <= '1';
       ImmSel     <= '0';
       ALUop      <= ALU_PASS;
@@ -148,6 +153,7 @@ BEGIN
     when OP_LDR =>
       AdjSel     <= '1';
       SextSel    <= '0';
+      ZextSel    <= '0';
       BaseSel    <= '0';
       ImmSel     <= '0';
       ALUop      <= ALU_PASS;
@@ -166,6 +172,7 @@ BEGIN
     when OP_LDI =>
       AdjSel     <= '1';
       SextSel    <= '0';
+      ZextSel    <= '0';
       BaseSel    <= '0';
       ImmSel     <= '0';
       ALUop      <= ALU_PASS;
@@ -181,9 +188,29 @@ BEGIN
       jump       <= '0';
       JSRSel     <= '0';
       
+    when OP_LDB =>
+      AdjSel     <= '0';
+      SextSel    <= '0';
+      ZextSel    <= '0';
+      BaseSel    <= '0';
+      ImmSel     <= '0';
+      ALUop      <= ALU_PASS;
+      Branch     <= '0';
+      Write      <= '1';
+      Read       <= '0';
+      RegWrite   <= '1';
+      ALUMemSel  <= '1';
+      SetCC   	  <= '1';
+      LEAMuxSel  <= '0';
+      indirect   <= '0';
+      isSTI      <= '0';
+      jump       <= '0';
+      JSRSel     <= '0'; 
+      
     when OP_NOT =>
       AdjSel     <= '1';
       SextSel    <= '0';
+      ZextSel    <= '0';
       BaseSel    <= '0';
       ImmSel     <= '0';
       ALUop      <= ALU_NOT;
@@ -202,6 +229,7 @@ BEGIN
     when OP_SHF =>
       AdjSel     <= '1';
       SextSel    <= '0';
+      ZextSel    <= '0';
       BaseSel    <= '0';
       ImmSel     <= '1';
       if (bit4 = '0') then
@@ -227,6 +255,7 @@ BEGIN
     when OP_STR =>
       AdjSel     <= '1';
       SextSel    <= '0';
+      ZextSel    <= '0';
       BaseSel    <= '0';
       ImmSel     <= '0';
       ALUop      <= ALU_PASS;
@@ -245,6 +274,7 @@ BEGIN
     when OP_STI =>
       AdjSel     <= '1';
       SextSel    <= '0';
+      ZextSel    <= '0';
       BaseSel    <= '0';
       ImmSel     <= '0';
       ALUop      <= ALU_PASS;
@@ -259,10 +289,30 @@ BEGIN
       isSTI      <= '1';
       jump       <= '0';
       JSRSel     <= '0';
+      
+    when OP_STB =>
+       AdjSel     <= '0';
+       SextSel    <= '0';
+       ZextSel    <= '0';
+       BaseSel    <= '0';
+       ImmSel     <= '0';
+       ALUop      <= ALU_PASS;
+       Branch     <= '0';
+       Write      <= '0';
+       Read       <= '1';
+       RegWrite   <= '0';
+       ALUMemSel  <= '1';
+       SetCC   	  <= '1';
+       LEAMuxSel  <= '0';
+       indirect   <= '0';
+       isSTI      <= '0';
+       jump       <= '0';
+       JSRSel     <= '0';
     
     when OP_LEA =>
       AdjSel     <= '1';
       SextSel    <= '1';
+      ZextSel    <= '0';
       BaseSel    <= '1';
       ImmSel     <= '0';
       ALUop      <= ALU_PASS;
@@ -281,6 +331,7 @@ BEGIN
     when OP_JMP =>
       AdjSel     <= '1';
       SextSel    <= '1';
+      ZextSel    <= '0';
       BaseSel    <= '1';
       ImmSel     <= '0';
       ALUop      <= ALU_PASS;
@@ -299,6 +350,7 @@ BEGIN
   when OP_JSR =>
       AdjSel     <= '1';
       SextSel    <= '1';
+      ZextSel    <= '0';
       BaseSel    <= '1';
       ImmSel     <= '0';
       ALUop      <= ALU_PASS;
@@ -317,10 +369,30 @@ BEGIN
       isSTI      <= '0';
       jump       <= '1';
       JSRSel     <= '1';
+  
+  when OP_TRAP =>
+      AdjSel     <= '1';
+      SextSel    <= '0';
+      ZextSel    <= '1';
+      BaseSel    <= '0';
+      ImmSel     <= '0';
+      ALUop      <= ALU_PASS;
+      Branch     <= '0';
+      Write      <= '1';
+      Read       <= '0';
+      RegWrite   <= '1';
+      ALUMemSel  <= '0';
+      SetCC      <= '0';
+      LEAMuxSel  <= '0';
+      indirect   <= '0';
+      isSTI      <= '0';
+      jump       <= '0';
+      JSRSel     <= '0';
       
     when others =>
       AdjSel     <= '1';
       SextSel    <= '0';
+      ZextSel    <= '0';
       BaseSel    <= '0';
       ImmSel     <= '0';
       ALUop      <= ALU_PASS;
@@ -355,5 +427,5 @@ BEGIN
     isSTI_ID        <= isSTI after delay_rom;
     jump_ID         <= jump after delay_rom;
     JSRSel_ID       <= JSRSel after delay_rom;
-    ByteOp_ID       <= AdjSel after delay_rom;
+    ZextSel_ID      <= ZextSel after delay_rom;
 end untitled; 

@@ -35,7 +35,9 @@ ENTITY IF_ID IS
       brSel     : IN     std_logic;
       offset11  : OUT    LC3b_offset11;
       fetch     : IN     std_logic;
-      jump_EX   : IN     std_logic
+      jump_EX   : IN     std_logic;
+      trap8     : OUT    LC3b_trapvect8;
+      ZextSel_WB : IN    std_logic
    );
 
 -- Declarations
@@ -57,10 +59,11 @@ ARCHITECTURE untitled OF IF_ID IS
   SIGNAL Reg_offset6 : lc3b_index6;
   SIGNAL Reg_offset9 : lc3b_offset9;
   SIGNAL Reg_offset11 : lc3b_offset11;
+  SIGNAL Reg_trap8 : lc3b_trapvect8;
 BEGIN
   READ_REG : PROCESS(Reg_DR, Reg_Opcode, Reg_PC_ID, Reg_SR1, Reg_SR2, Reg_bit4_ID, 
                      Reg_bit5_ID, Reg_bit11_ID, Reg_imm5, Reg_nzp_ID, Reg_offset6,
-                     Reg_offset9, Reg_offset11)
+                     Reg_offset9, Reg_offset11, Reg_trap8)
   BEGIN
     DR <= Reg_DR after delay_reg;
     Opcode_ID <= Reg_Opcode after delay_reg;
@@ -75,9 +78,10 @@ BEGIN
     offset6 <= Reg_offset6 after delay_reg;
     offset9 <= Reg_offset9 after delay_reg;
     offset11 <= Reg_offset11 after delay_reg;
+    trap8 <= Reg_trap8 after delay_reg;
   END PROCESS READ_REG;
                      
-  WRITE_REG : PROCESS(CLK, Instrout, RESET_L, FETCH, jump_EX)
+  WRITE_REG : PROCESS(CLK, Instrout, RESET_L, FETCH, jump_EX, ZextSel_WB)
   BEGIN
     IF RESET_L = '0' THEN
       Reg_DR <= "000";
@@ -92,10 +96,11 @@ BEGIN
       Reg_nzp_ID <= "000";
       Reg_offset6 <= "000000";
       Reg_offset9 <= "000000000";
-      Reg_offset11 <= "00000000000";     
+      Reg_offset11 <= "00000000000";
+      Reg_trap8 <= "00000000";     
     END IF;
     
-    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND ((brSel = '1') OR (jump_EX = '1')) ) THEN
+    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND ((ZextSel_WB = '1') OR (brSel = '1') OR (jump_EX = '1') ) ) THEN
       Reg_DR <= "000";
       Reg_Opcode <= "0000";
       Reg_PC_ID <= "0000000000000000";
@@ -108,7 +113,8 @@ BEGIN
       Reg_nzp_ID <= "000";
       Reg_offset6 <= "000000";
       Reg_offset9 <= "000000000";
-      Reg_offset11 <= "00000000000";         
+      Reg_offset11 <= "00000000000";
+      Reg_trap8 <= "00000000";          
 		ELSIF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (FETCH = '1')) THEN  
       Reg_DR <= Instrout(11 downto 9);
       Reg_Opcode <= Instrout(15 downto 12);
@@ -123,6 +129,7 @@ BEGIN
       Reg_offset6 <= Instrout(5 downto 0);
       Reg_offset9 <= Instrout(8 downto 0);
       Reg_offset11 <= Instrout(10 downto 0);
+      Reg_trap8 <= Instrout(7 downto 0);
     END IF;
   END PROCESS WRITE_REG;
 END ARCHITECTURE untitled;
