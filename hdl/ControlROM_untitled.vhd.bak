@@ -29,7 +29,8 @@ ENTITY ControlROM IS
       indirect_ID  : OUT    std_logic;
       isSTI_ID     : OUT    std_logic;
       jump_ID      : OUT    std_logic;
-      JSRSel_ID    : OUT    std_logic
+      JSRSel_ID    : OUT    std_logic;
+      ByteOp_ID    : OUT    std_logic
    );
 
 -- Declarations
@@ -221,7 +222,7 @@ BEGIN
       indirect   <= '0';
       isSTI      <= '0';
       jump       <= '0';
-      JSRSel     <= '0';  
+      JSRSel     <= '0';
     
     when OP_STR =>
       AdjSel     <= '1';
@@ -260,7 +261,7 @@ BEGIN
       JSRSel     <= '0';
     
     when OP_LEA =>
-      AdjSel     <= '0';
+      AdjSel     <= '1';
       SextSel    <= '1';
       BaseSel    <= '1';
       ImmSel     <= '0';
@@ -312,7 +313,6 @@ BEGIN
       else
         LEAMuxSel <= '0';
       end if;
-      LEAMuxSel  <= '0';
       indirect   <= '0';
       isSTI      <= '0';
       jump       <= '1';
@@ -334,7 +334,7 @@ BEGIN
       indirect   <= '0';
       isSTI      <= '0';
       jump       <= '0';
-      JSRSel     <= '0'; 
+      JSRSel     <= '0';
       
   end case;
   END IF;
@@ -355,4 +355,5 @@ BEGIN
     isSTI_ID        <= isSTI after delay_rom;
     jump_ID         <= jump after delay_rom;
     JSRSel_ID       <= JSRSel after delay_rom;
+    ByteOp_ID       <= AdjSel after delay_rom;
 end untitled; 

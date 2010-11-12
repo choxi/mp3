@@ -29,13 +29,13 @@ ENTITY IF_ID IS
       bit11_ID  : OUT    std_logic;
       imm5      : OUT    lc3b_imm5;
       nzp_ID    : OUT    lc3b_nzp;
-      --isBub  : IN     std_logic
       offset6   : OUT    lc3b_index6;
       offset9   : OUT    lc3b_offset9;
       Opcode_ID : OUT    LC3b_opcode;
       brSel     : IN     std_logic;
       offset11  : OUT    LC3b_offset11;
-      fetch     : IN     std_logic
+      fetch     : IN     std_logic;
+      jump_EX   : IN     std_logic
    );
 
 -- Declarations
@@ -77,7 +77,7 @@ BEGIN
     offset11 <= Reg_offset11 after delay_reg;
   END PROCESS READ_REG;
                      
-  WRITE_REG : PROCESS(CLK, Instrout, RESET_L, FETCH)
+  WRITE_REG : PROCESS(CLK, Instrout, RESET_L, FETCH, jump_EX)
   BEGIN
     IF RESET_L = '0' THEN
       Reg_DR <= "000";
@@ -95,7 +95,7 @@ BEGIN
       Reg_offset11 <= "00000000000";     
     END IF;
     
-    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (brSel = '1')) THEN
+    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND ((brSel = '1') OR (jump_EX = '1')) ) THEN
       Reg_DR <= "000";
       Reg_Opcode <= "0000";
       Reg_PC_ID <= "0000000000000000";

@@ -221,7 +221,7 @@ BEGIN
       indirect   <= '0';
       isSTI      <= '0';
       jump       <= '0';
-      JSRSel     <= '0';  
+      JSRSel     <= '0';
     
     when OP_STR =>
       AdjSel     <= '1';
@@ -260,7 +260,7 @@ BEGIN
       JSRSel     <= '0';
     
     when OP_LEA =>
-      AdjSel     <= '0';
+      AdjSel     <= '1';
       SextSel    <= '1';
       BaseSel    <= '1';
       ImmSel     <= '0';
@@ -333,7 +333,7 @@ BEGIN
       indirect   <= '0';
       isSTI      <= '0';
       jump       <= '0';
-      JSRSel     <= '0'; 
+      JSRSel     <= '0';
       
   end case;
   END IF;

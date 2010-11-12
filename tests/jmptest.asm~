@@ -2,36 +2,24 @@ ORIGIN 0
 SEGMENT CodeSegment:
 
 testStart:
-	NOP
-	NOP
-	NOP
+
 	LEA	R1, jsrtarget
-	NOP
-	NOP
-	NOP
+
 	JSRR	R1
-	NOP
-	NOP	; remove these later
-	NOP
+
 
 halt:
 	LDR	R6, R0, fail
 	BRnzp	halt
 
-	NOP
-	NOP
-	NOP
-	NOP
-	NOP
 
 jsrtarget:
 	LDR	R6, R0, target
 	BRnzp jsrtarget
-
-	NOP
-	NOP
-	NOP
-
+	ADD R4, R4, R4
+	ADD R4, R4, R4
+	ADD R4, R4, R4
+	ADD R4, R4, R4
 failt0:	DATA2 4xBAD0
 failt1:	DATA2 4xBAD1
 target:	DATA2 4x600D

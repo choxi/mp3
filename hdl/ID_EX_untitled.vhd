@@ -37,7 +37,6 @@ ENTITY ID_EX IS
       adj_offset9_ID  : IN     lc3b_word;
       clk             : IN     std_logic;
       nzp_ID          : IN     lc3b_nzp;
-      --isBub  : IN     std_logic
       sext_imm5_ID    : IN     lc3b_word;
       sext_offset6_ID : IN     lc3b_word;
       ALUMemSel_EX    : OUT    std_logic;

@@ -5,7 +5,6 @@ add wave -noupdate -format Logic /mp3_cpu/memory/datacache/in_idlehit
 add wave -noupdate -format Logic /mp3_cpu/memory/datacache/in_load
 add wave -noupdate -format Logic /mp3_cpu/memory/datacache/in_writeback
 add wave -noupdate -format Logic /mp3_cpu/d_mread_l
-add wave -noupdate -format Logic /mp3_cpu/d_mwrite_l
 add wave -noupdate -format Literal -radix hexadecimal /mp3_cpu/datapath/amem_stage/d_address
 add wave -noupdate -format Literal -radix hexadecimal /mp3_cpu/datapath/d_dataout
 add wave -noupdate -format Literal -radix hexadecimal /mp3_cpu/datapath/aif_stage/pc/output
@@ -21,8 +20,8 @@ add wave -noupdate -color {Orange Red} -format Literal /mp3_cpu/datapath/op_wb/c
 add wave -noupdate -color White -format Literal -radix hexadecimal -expand /mp3_cpu/datapath/aid_stage/aregfile/ram
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {1461 ns} 0}
-configure wave -namecolwidth 284
-configure wave -valuecolwidth 59
+configure wave -namecolwidth 303
+configure wave -valuecolwidth 40
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
 configure wave -snapdistance 10

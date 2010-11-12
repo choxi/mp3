@@ -10,6 +10,10 @@ halt:
 jsrtarget:
 	LDR	R6, R0, target
 	BRnzp jsrtarget
+	ADD R4, R4, R4
+	ADD R4, R4, R4
+	ADD R4, R4, R4
+	ADD R4, R4, R4
 failt0:	DATA2 4xBAD0
 failt1:	DATA2 4xBAD1
 target:	DATA2 4x600D
