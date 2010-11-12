@@ -61,7 +61,7 @@ signal JSRSel    : std_logic;
 
 BEGIN
   --input_word <= opcode & bit5 & bit4; 
-  generate_signals : process (opcode, bit5, bit4, bit11)
+  generate_signals : process (fetch, opcode, bit5, bit4, bit11)
   begin
   IF fetch = '0' THEN
           AdjSel     <= '1';
@@ -239,7 +239,6 @@ BEGIN
       else
         ALUop    <= ALU_SRA;
       end if;
-      ALUop      <= ALU_PASS;
       Branch     <= '0';
       Write      <= '1';
       Read       <= '1';
