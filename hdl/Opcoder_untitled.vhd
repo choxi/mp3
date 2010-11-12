@@ -17,8 +17,8 @@ USE ece411.LC3b_types.all;
 ENTITY Opcoder IS
    PORT( 
       Opcode : IN     LC3b_opcode;
-      NZP    : IN     LC3b_nzp;
-      isBub  : IN     std_logic
+      NZP    : IN     LC3b_nzp
+      --isBub  : IN     std_logic
    );
 
 -- Declarations
@@ -57,12 +57,16 @@ ARCHITECTURE untitled OF Opcoder IS
   Signal current_state: STATE_TYPE;
 
 BEGIN
-  update_string: process (opcode)
+  update_string: process (opcode, NZP)
   begin
-    if (isBub = '1')        then    current_state <= BUB_o;
-    elsif (opcode = "0000") then
-      if (NZP = "000") then         current_state <= NOP_o;
-      else                          current_state <= BR_o;
+    --if (isBub = '1')        then    current_state <= BUB_o;
+    --elsif (opcode = "0000") then
+
+    if    (opcode = "0000") then
+      if (NZP = "000") then         
+        current_state <= NOP_o;
+      else                          
+        current_state <= BR_o;
     end if;
     elsif (opcode = "0001") then    current_state <= ADD_o;
     elsif (opcode = "0010") then    current_state <= LDB_o;

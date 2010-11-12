@@ -8,7 +8,7 @@ add wave -noupdate -format Logic /mp3_cpu/d_mread_l
 add wave -noupdate -format Logic /mp3_cpu/d_mwrite_l
 add wave -noupdate -format Literal -radix hexadecimal /mp3_cpu/datapath/amem_stage/d_address
 add wave -noupdate -format Literal -radix hexadecimal /mp3_cpu/datapath/d_dataout
-add wave -noupdate -format Literal /mp3_cpu/datapath/aif_stage/pc/output
+add wave -noupdate -format Literal -radix hexadecimal /mp3_cpu/datapath/aif_stage/pc/output
 add wave -noupdate -format Logic /mp3_cpu/datapath/astallunit/d_mresp_h
 add wave -noupdate -format Logic /mp3_cpu/datapath/astallunit/state
 add wave -noupdate -format Logic /mp3_cpu/datapath/astallunit/indirect_mem
@@ -22,7 +22,7 @@ add wave -noupdate -color White -format Literal -radix hexadecimal -expand /mp3_
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {1461 ns} 0}
 configure wave -namecolwidth 284
-configure wave -valuecolwidth 164
+configure wave -valuecolwidth 59
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
 configure wave -snapdistance 10
@@ -34,4 +34,4 @@ configure wave -gridperiod 1
 configure wave -griddelta 40
 configure wave -timeline 0
 update
-WaveRestoreZoom {1262 ns} {1586 ns}
+WaveRestoreZoom {3427 ns} {4149 ns}

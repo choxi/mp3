@@ -1,0 +1,299 @@
+ORIGIN 0
+SEGMENT CodeSegment:
+
+
+;****************************** Test 0 ******************************
+;************************** LDI miss/miss ***************************
+;Cache Line Boundary
+SEGMENT TEST0:
+    ;init regs
+    LEA R0, TEST0
+    AND R1, R0, 0
+    AND R2, R0, 0
+    AND R3, R0, 0
+    AND R4, R0, 0
+    AND R5, R0, 0
+    NOP
+    NOP
+
+;Cache Line Boundary
+    ;start test
+    ADD R0, R0, 2
+    LDI R1, R0, T0_DirectData
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BRnzp TEST1
+
+;Cache Line Boundary
+T0_DirectData:
+    DATA2 4xBADD
+    DATA2 T0_IndirectData
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+
+;Cache Line Boundary
+T0_IndirectData:
+    DATA2 4x600D
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+
+;****************************** Test 1 ******************************
+;*************************** LDI hit/miss ***************************
+;Cache Line Boundary
+SEGMENT TEST1:
+    ;init regs
+    LEA R0, TEST1
+    AND R1, R0, 0
+    AND R2, R0, 0
+    AND R3, R0, 0
+    AND R4, R0, 0
+    AND R5, R0, 0
+    ADD R7, R7, 1
+	NOP
+;Cache Line Boundary
+    ;start test
+    LDR R2, R2, T1_DirectData   
+    ADD R0, R0, 2
+    LDI R1, R0, T1_DirectData
+    NOP
+    NOP
+    NOP
+    NOP
+    BRnzp TEST2            
+
+;Cache Line Boundary
+T1_DirectData:
+    DATA2 4xBADD
+    DATA2 T1_IndirectData
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+
+;Cache Line Boundary
+T1_IndirectData:
+    DATA2 4x600D
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+   
+;****************************** Test 2 ******************************
+;*************************** LDI hit/hit ***************************
+;Cache Line Boundary
+SEGMENT TEST2:
+    ;init regs
+    LEA R0, TEST2
+    AND R1, R0, 0
+    AND R2, R0, 0
+    AND R3, R0, 0
+    AND R4, R0, 0
+    AND R5, R0, 0
+    ADD R7, R7, 1
+    NOP
+
+;Cache Line Boundary
+    ;start test
+    LDR R2, R2, T2_DirectData   
+    ADD R0, R0, 2
+    LDI R1, R0, T2_DirectData
+    NOP
+    NOP
+    NOP
+    NOP
+    BRnzp TEST3            
+
+;Cache Line Boundary
+T2_DirectData:
+    DATA2 4xBADD
+    DATA2 T2_IndirectData
+    DATA2 4xBADD
+    DATA2 4xBADD
+T2_IndirectData:
+    DATA2 4x600D
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+
+;****************************** Test 3 ******************************
+;*************************** LDI miss/hit ***************************
+;Cache Line Boundary
+SEGMENT TEST3:
+    ;init regs
+    LEA R0, TEST3
+    AND R1, R0, 0
+    AND R2, R0, 0
+    AND R3, R0, 0
+    AND R4, R0, 0
+    AND R5, R0, 0
+    ADD R7, R7, 1
+    NOP
+
+;Cache Line Boundary
+    ;start test
+    ADD R0, R0, 2
+    LDI R1, R0, T3_DirectData
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    BRnzp TEST4
+
+;Cache Line Boundary
+T3_DirectData:
+    DATA2 4xBADD
+    DATA2 T3_IndirectData
+    DATA2 4xBADD
+    DATA2 4xBADD
+T3_IndirectData:
+    DATA2 4x600D
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+
+;****************************** Test 4 ******************************
+;*************************** JMP - Hazard ***************************
+;Cache Line Boundary
+SEGMENT TEST4:
+    ;init regs
+    AND R0, R0, 0   
+    AND R1, R0, 0
+    AND R2, R0, 0
+    AND R3, R0, 0
+    AND R4, R0, 0
+    AND R5, R0, 0
+    ADD R7, R7, 1
+    NOP
+
+;Cache Line Boundary
+    ;start test
+    LEA R1, T4_SUCCESS   
+    JMP R1   
+    BRnzp T4_FAIL   
+T4_SUCCESS:   
+    ADD R1, R1, 6   ;Fix this, R1 is used for the JMP
+    BRnzp TEST5   
+T4_FAIL:
+    ADD R1, R1, 5   
+    NOP
+    BRnzp TEST5            
+
+;****************************** Test 5 ******************************
+;*************************** JMP - LDR Miss *************************
+;Cache Line Boundary
+SEGMENT TEST5:
+    ;init regs
+    LEA R0, TEST5
+    AND R1, R0, 0
+    AND R2, R0, 0
+    AND R3, R0, 0
+    AND R4, R0, 0
+    AND R5, R0, 0
+    ADD R7, R7, 1
+    NOP
+
+;Cache Line Boundary
+    ;start test
+    LDR R1, R0, T5_SUCCESS_ADDR   
+    JMP R1   
+    BRnzp T5_FAIL   
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+
+;Cache Line Boundary
+T5_SUCCESS_ADDR:
+    DATA2 T5_SUCCESS   
+    NOP
+    NOP
+T5_SUCCESS:   
+    ADD R1, R1, 6   
+    BRnzp TEST7
+T5_FAIL:
+    ADD R1, R1, 5   
+    BRnzp TEST7
+    NOP
+
+;****************************** Test 6 ******************************
+;******************************* RET ********************************
+;Cache Line Boundary
+SEGMENT TEST6:
+    ;init regs
+    AND R0, R0, 0
+    AND R1, R0, 0
+    AND R2, R0, 0
+    AND R3, R0, 0
+    AND R4, R0, 0
+    AND R5, R0, 0
+    ADD R7, R7, 1
+    NOP
+
+;Cache Line Boundary
+    ;start test
+    LEA R7, T6_SUCCESS    
+    RET   
+    BRnzp T6_FAIL   
+    NOP
+T6_SUCCESS:
+    ADD R1, R1, 6   
+    BRnzp TEST7   
+T6_FAIL:
+    ADD R1, R1, 5   
+    BRnzp TEST7
+
+;****************************** Test 7 ******************************
+;**************************** JSR -> RET ****************************
+;Cache Line Boundary
+SEGMENT TEST7:
+    ;init regs
+    AND R0, R0, 0
+    AND R1, R0, 0
+    AND R2, R0, 0
+    AND R3, R0, 0
+    AND R4, R0, 0
+    AND R5, R0, 0
+    ADD R7, R7, 1
+    NOP
+
+;Cache Line Boundary
+    ;start test
+    LEA R1, T7_SUCCESS    
+    JSRR R1                    ;Instruction miss
+    BRnzp T7_FAIL   
+    ADD R1, R1, 6   
+    BRnzp HALT   
+    BRnzp T7_FAIL   
+    BRnzp T7_FAIL   
+    BRnzp T7_FAIL   
+
+;Cache Line Boundary
+    NOP    
+    NOP
+    NOP
+T7_SUCCESS:   
+    ADD R7, R7, 2                ;RET back to JSRR call + 1 instruction   
+    RET
+T7_FAIL:
+    ADD R1, R1, 5   
+HALT:    BRnzp HALT            
+    NOP

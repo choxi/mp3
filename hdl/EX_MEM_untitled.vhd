@@ -23,9 +23,11 @@ ENTITY EX_MEM IS
       Opcode_EX      : IN     lc3b_opcode;
       RESET_L        : IN     std_logic;
       Read_EX        : IN     std_logic;
+      JSRSel_EX      : IN     std_logic;
       RegWrite_EX    : IN     std_logic;
       SetCC_EX       : IN     std_logic;
       Write_EX       : IN     std_logic;
+      PCout_EX       : IN     lc3b_word;
       address_EX     : IN     lc3b_word;
       clk            : IN     std_logic;
       nzp_EX         : IN     lc3b_nzp;
@@ -40,14 +42,16 @@ ENTITY EX_MEM IS
       SetCC_MEM      : OUT    std_logic;
       Write_MEM      : OUT    std_logic;
       address_MEM    : OUT    lc3b_word;
-      nzp_MEM        : OUT    lc3b_nzp;
+      nzp_mem        : OUT    lc3b_nzp;
       STR_dataout_EX : IN     lc3b_word;
       load_latch     : IN     std_logic;
       brSel          : IN     std_logic;
       indirect_EX    : IN     std_logic;
       isSTI_EX       : IN     std_logic;
       indirect_MEM   : OUT    std_logic;
-      isSTI_MEM      : OUT    std_logic
+      isSTI_MEM      : OUT    std_logic;
+      PC_MEM         : OUT    lc3b_word;
+      JSRSel_MEM     : OUT    std_logic
    );
 
 -- Declarations
@@ -64,8 +68,10 @@ ARCHITECTURE untitled OF EX_MEM IS
       SIGNAL Reg_Branch_MEM       :  std_logic;
       SIGNAL Reg_Write_MEM        :  std_logic;
       SIGNAL Reg_Read_MEM         :  std_logic;
+      SIGNAL Reg_JSRSel_MEM       :  std_logic;
       
       SIGNAL Reg_nzp_MEM          :  lc3b_nzp;
+      SIGNAL Reg_PC_MEM           :  lc3b_word;
       SIGNAL Reg_address_MEM      :  lc3b_word;
       SIGNAL Reg_ALUout_MEM       :  lc3b_word;
       
@@ -84,13 +90,15 @@ BEGIN
 	Reg_Branch_MEM     ,
 	Reg_Write_MEM      ,
 	Reg_Read_MEM       ,
+	Reg_JSRSel_MEM     ,
 	Reg_nzp_MEM        ,
+	Reg_PC_MEM         ,
 	Reg_address_MEM    ,
 	Reg_ALUout_MEM     ,
 	Reg_STR_data_MEM   ,
 	Reg_DR_MEM         ,
-	Reg_Opcode_MEM,
-	Reg_indirect_MEM,
+	Reg_Opcode_MEM     ,
+	Reg_indirect_MEM   ,
 	Reg_isSTI_MEM         
   )
   	
@@ -102,8 +110,10 @@ BEGIN
     Branch_MEM       <=  Reg_Branch_MEM       after delay_reg;
     Write_MEM        <=  Reg_Write_MEM        after delay_reg;
     Read_MEM         <=  Reg_Read_MEM         after delay_reg;
+    JSRSel_MEM       <=  Reg_JSRSel_MEM       after delay_reg;
     
     nzp_MEM          <=  Reg_nzp_MEM          after delay_reg;
+    PC_MEM           <=  Reg_PC_MEM           after delay_reg;
     address_MEM      <=  Reg_address_MEM      after delay_reg;
     ALUout_MEM       <=  Reg_ALUout_MEM       after delay_reg;
     
@@ -126,8 +136,10 @@ BEGIN
       Reg_Branch_MEM       <=   '0';
       Reg_Write_MEM        <=   '1';
       Reg_Read_MEM         <=   '1';
+      Reg_JSRSel_MEM       <=   '0';
       
       Reg_nzp_MEM          <=   "000";
+      Reg_PC_MEM           <=   "0000000000000000";
       Reg_address_MEM      <=   "0000000000000000";
       Reg_ALUout_MEM       <=   "0000000000000000";
       
@@ -138,8 +150,7 @@ BEGIN
       Reg_indirect_MEM     <=   '0';
       Reg_isSTI_MEM        <=   '0';
     END IF;
-    
-    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (brSel = '1')) THEN
+    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (brSel = '1') AND (LOAD_LATCH = '1') ) THEN
       Reg_RegWrite_MEM     <=   '0';
       Reg_ALUMemSel_MEM    <=   '0';
       Reg_SetCC_MEM        <=   '0';
@@ -147,8 +158,10 @@ BEGIN
       Reg_Branch_MEM       <=   '0';
       Reg_Write_MEM        <=   '1';
       Reg_Read_MEM         <=   '1';
+      Reg_JSRSel_MEM       <=   '0';
       
       Reg_nzp_MEM          <=   "000";
+      Reg_PC_MEM           <=   "0000000000000000";
       Reg_address_MEM      <=   "0000000000000000";
       Reg_ALUout_MEM       <=   "0000000000000000";
       
@@ -167,8 +180,10 @@ BEGIN
       Reg_Branch_MEM       <=   Branch_EX    ;
       Reg_Write_MEM        <=   Write_EX     ;
       Reg_Read_MEM         <=   Read_EX      ;
+      Reg_JSRSel_MEM       <=   JSRSel_EX    ;
                                                    
       Reg_nzp_MEM          <=   nzp_EX       ;
+      Reg_PC_MEM           <=   PCout_EX     ;
       Reg_address_MEM      <=   address_EX   ;
       Reg_ALUout_MEM       <=   ALUout_EX    ;
                                                    

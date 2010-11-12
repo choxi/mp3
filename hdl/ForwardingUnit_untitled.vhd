@@ -29,7 +29,8 @@ ENTITY ForwardingUnit IS
       DR_EX           : IN     lc3b_reg;
       Write_EX        : IN     std_logic;
       STR_dataout_sel : OUT    std_logic;
-      FUTypeWB_DR     : OUT    std_logic
+      FUTypeWB_DR     : OUT    std_logic;
+      ImmSel_EX       : IN     std_logic
    );
 
 -- Declarations
@@ -41,10 +42,10 @@ ARCHITECTURE untitled OF ForwardingUnit IS
 BEGIN
   FORWARD : PROCESS(RegWrite_MEM, DR_MEM, SR1_EX, SR2_EX)
   BEGIN
-      IF ((RegWrite_MEM = '1') AND (SR1_EX = DR_MEM)) THEN
+      IF ((RegWrite_MEM = '1') AND (SR1_EX = DR_MEM) AND (ImmSel_EX = '0')) THEN
         FUMux1_sel <= '1';
         FUTypeWB1 <= '0';
-      ELSIF ((RegWrite = '1') AND (SR1_EX = DestReg)
+      ELSIF ((RegWrite = '1') AND (SR1_EX = DestReg) AND (ImmSel_EX = '0')
               AND (NOT ((RegWrite_MEM = '1') AND (SR1_EX = DR_MEM))) ) THEN
         FUMux1_sel <= '1';
         FUTypeWB1 <= '1';
@@ -52,10 +53,10 @@ BEGIN
         FUMux1_sel <= '0';
         FUTypeWB1 <= '0';
       END IF;
-      IF ((RegWrite_MEM = '1') AND (SR2_EX = DR_MEM)) THEN
+      IF ((RegWrite_MEM = '1') AND (SR2_EX = DR_MEM) AND (ImmSel_EX = '0')) THEN
         FUMux2_sel <= '1';
         FUTypeWB2 <= '0';
-      ELSIF ((RegWrite = '1') AND (SR2_EX = DestReg)
+      ELSIF ((RegWrite = '1') AND (SR2_EX = DestReg) AND (ImmSel_EX = '0')
               AND (NOT ((RegWrite_MEM = '1') AND (SR2_EX = DR_MEM))) ) THEN
         FUMux2_sel <= '1';
         FUTypeWB2 <= '1';

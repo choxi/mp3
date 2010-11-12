@@ -26,13 +26,16 @@ ENTITY IF_ID IS
       SR2       : OUT    lc3b_reg;
       bit4_ID   : OUT    std_logic;
       bit5_ID   : OUT    std_logic;
+      bit11_ID  : OUT    std_logic;
       imm5      : OUT    lc3b_imm5;
       nzp_ID    : OUT    lc3b_nzp;
+      --isBub  : IN     std_logic
       offset6   : OUT    lc3b_index6;
       offset9   : OUT    lc3b_offset9;
       Opcode_ID : OUT    LC3b_opcode;
-      fetch     : IN     std_logic;
-      brSel     : IN     std_logic
+      brSel     : IN     std_logic;
+      offset11  : OUT    LC3b_offset11;
+      fetch     : IN     std_logic
    );
 
 -- Declarations
@@ -48,13 +51,16 @@ ARCHITECTURE untitled OF IF_ID IS
   SIGNAL Reg_SR2 : lc3b_reg;
   SIGNAL Reg_bit4_ID : std_logic;
   SIGNAL Reg_bit5_ID : std_logic;
+  SIGNAL Reg_bit11_ID : std_logic;
   SIGNAL Reg_imm5 : lc3b_imm5;
   SIGNAL Reg_nzp_ID : lc3b_nzp;
   SIGNAL Reg_offset6 : lc3b_index6;
   SIGNAL Reg_offset9 : lc3b_offset9;
+  SIGNAL Reg_offset11 : lc3b_offset11;
 BEGIN
   READ_REG : PROCESS(Reg_DR, Reg_Opcode, Reg_PC_ID, Reg_SR1, Reg_SR2, Reg_bit4_ID, 
-                     Reg_bit5_ID, Reg_imm5, Reg_nzp_ID, Reg_offset6, Reg_offset9)
+                     Reg_bit5_ID, Reg_bit11_ID, Reg_imm5, Reg_nzp_ID, Reg_offset6,
+                     Reg_offset9, Reg_offset11)
   BEGIN
     DR <= Reg_DR after delay_reg;
     Opcode_ID <= Reg_Opcode after delay_reg;
@@ -63,10 +69,12 @@ BEGIN
     SR2 <= Reg_SR2 after delay_reg;
     bit4_ID <= Reg_bit4_ID after delay_reg;
     bit5_ID <= Reg_bit5_ID after delay_reg;
+    bit11_ID <= Reg_bit11_ID after delay_reg;
     imm5 <= Reg_imm5 after delay_reg;
     nzp_ID <= Reg_nzp_ID after delay_reg;
     offset6 <= Reg_offset6 after delay_reg;
     offset9 <= Reg_offset9 after delay_reg;
+    offset11 <= Reg_offset11 after delay_reg;
   END PROCESS READ_REG;
                      
   WRITE_REG : PROCESS(CLK, Instrout, RESET_L, FETCH)
@@ -79,10 +87,12 @@ BEGIN
       Reg_SR2 <= "000";
       Reg_bit4_ID <= '0';
       Reg_bit5_ID <= '0';
+      Reg_bit11_ID <= '0';
       Reg_imm5 <= "00000";
       Reg_nzp_ID <= "000";
       Reg_offset6 <= "000000";
-      Reg_offset9 <= "000000000";     
+      Reg_offset9 <= "000000000";
+      Reg_offset11 <= "00000000000";     
     END IF;
     
     IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (brSel = '1')) THEN
@@ -93,10 +103,12 @@ BEGIN
       Reg_SR2 <= "000";
       Reg_bit4_ID <= '0';
       Reg_bit5_ID <= '0';
+      Reg_bit11_ID <= '0';
       Reg_imm5 <= "00000";
       Reg_nzp_ID <= "000";
       Reg_offset6 <= "000000";
-      Reg_offset9 <= "000000000";         
+      Reg_offset9 <= "000000000";
+      Reg_offset11 <= "00000000000";         
 		ELSIF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (FETCH = '1')) THEN  
       Reg_DR <= Instrout(11 downto 9);
       Reg_Opcode <= Instrout(15 downto 12);
@@ -105,10 +117,12 @@ BEGIN
       Reg_SR2 <= Instrout(2 downto 0);
       Reg_bit4_ID <= Instrout(4);
       Reg_bit5_ID <= Instrout(5);
+      Reg_bit11_ID <= Instrout(11);
       Reg_imm5 <= Instrout(4 downto 0);
       Reg_nzp_ID <= Instrout(11 downto 9);
       Reg_offset6 <= Instrout(5 downto 0);
       Reg_offset9 <= Instrout(8 downto 0);
+      Reg_offset11 <= Instrout(10 downto 0);
     END IF;
   END PROCESS WRITE_REG;
 END ARCHITECTURE untitled;

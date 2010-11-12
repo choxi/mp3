@@ -20,8 +20,8 @@ ENTITY ID_EX IS
       ALUop_ID        : IN     LC3b_aluop;
       AdjSel_ID       : IN     std_logic;
       BaseSel_ID      : IN     std_logic;
+      JSRSel_ID       : IN     std_logic;
       Branch_ID       : IN     std_logic;
-      DR              : IN     lc3b_reg;
       ImmSel_ID       : IN     std_logic;
       PC_ID           : IN     lc3b_word;
       RESET_L         : IN     std_logic;
@@ -37,6 +37,7 @@ ENTITY ID_EX IS
       adj_offset9_ID  : IN     lc3b_word;
       clk             : IN     std_logic;
       nzp_ID          : IN     lc3b_nzp;
+      --isBub  : IN     std_logic
       sext_imm5_ID    : IN     lc3b_word;
       sext_offset6_ID : IN     lc3b_word;
       ALUMemSel_EX    : OUT    std_logic;
@@ -58,7 +59,9 @@ ENTITY ID_EX IS
       adj_imm5_EX     : OUT    lc3b_word;
       adj_offset6_EX  : OUT    lc3b_word;
       adj_offset9_EX  : OUT    lc3b_word;
+      adj_offset11_EX : OUT    lc3b_word;
       nzp_EX          : OUT    lc3b_nzp;
+      --isBub  : IN     std_logic
       sext_offset6_EX : OUT    lc3b_word;
       Opcode_EX       : OUT    lc3b_opcode;
       Opcode_ID       : IN     LC3b_opcode;
@@ -73,7 +76,12 @@ ENTITY ID_EX IS
       indirect_ID     : IN     std_logic;
       isSTI_ID        : IN     std_logic;
       indirect_EX     : OUT    std_logic;
-      isSTI_EX        : OUT    std_logic
+      isSTI_EX        : OUT    std_logic;
+      adj_offset11_ID : IN     LC3b_word;
+      JSRSel_EX       : OUT    std_logic;
+      DR_ID           : IN     lc3b_reg;
+      jump_ID         : IN     std_logic;
+      jump_EX         : OUT    std_logic
    );
 
 -- Declarations
@@ -87,6 +95,7 @@ ARCHITECTURE untitled OF ID_EX IS
       SIGNAL Reg_ALUop_EX        :  lc3b_aluop;
       SIGNAL Reg_AdjSel_EX       :  std_logic;
       SIGNAL Reg_BaseSel_EX      :  std_logic;
+      SIGNAL Reg_JSRSel_EX       :  std_logic;
       SIGNAL Reg_Branch_EX       :  std_logic;
       SIGNAL Reg_DR_EX           :  lc3b_reg;
       SIGNAL Reg_ImmSel_EX       :  std_logic;
@@ -102,6 +111,7 @@ ARCHITECTURE untitled OF ID_EX IS
       SIGNAL Reg_adj_imm5_EX     :  lc3b_word;
       SIGNAL Reg_adj_offset6_EX  :  lc3b_word;
       SIGNAL Reg_adj_offset9_EX  :  lc3b_word;
+      SIGNAL Reg_adJ_offset11_EX :  lc3b_word;
       SIGNAL Reg_nzp_EX          :  lc3b_nzp;
       SIGNAL Reg_sext_offset6_EX :  lc3b_word;
       SIGNAL Reg_Opcode_EX       :  lc3b_opcode;
@@ -110,6 +120,7 @@ ARCHITECTURE untitled OF ID_EX IS
       SIGNAL Reg_LEAMuxSel_EX    :  std_logic;
       SIGNAL Reg_indirect_EX     :  std_logic;
       SIGNAL Reg_isSTI_EX        :  std_logic;
+      SIGNAL Reg_jump_EX         :  std_logic;
       
 BEGIN
   
@@ -118,6 +129,7 @@ BEGIN
 	  Reg_ALUop_EX        ,
 	  Reg_AdjSel_EX       ,
 	  Reg_BaseSel_EX      ,
+	  Reg_JSRSel_EX       ,
 	  Reg_Branch_EX       ,
 	  Reg_DR_EX           ,
 	  Reg_ImmSel_EX       ,
@@ -133,6 +145,7 @@ BEGIN
 	  Reg_adj_imm5_EX     ,
 	  Reg_adj_offset6_EX  ,
 	  Reg_adj_offset9_EX  ,
+	  Reg_adj_offset11_EX  ,
 	  Reg_nzp_EX          ,
 	  Reg_sext_offset6_EX,
 	  Reg_Opcode_EX,
@@ -140,13 +153,15 @@ BEGIN
 	  Reg_SR2_EX,
 	  Reg_LEAMuxSel_EX,
 	  Reg_indirect_EX,
-	  Reg_isSTI_EX
+	  Reg_isSTI_EX,
+	  Reg_jump_EX
   )
   BEGIN
     ALUMemSel_EX    <=  Reg_ALUMemSel_EX    after delay_reg;
     ALUop_EX        <=  Reg_ALUop_EX        after delay_reg;
     AdjSel_EX       <=  Reg_AdjSel_EX       after delay_reg;
     BaseSel_EX      <=  Reg_BaseSel_EX      after delay_reg;
+    JSRSel_EX       <=  Reg_JSRSel_EX       after delay_reg;
     Branch_EX       <=  Reg_Branch_EX       after delay_reg;
     DR_EX           <=  Reg_DR_EX           after delay_reg;
     ImmSel_EX       <=  Reg_ImmSel_EX       after delay_reg;
@@ -162,6 +177,7 @@ BEGIN
     adj_imm5_EX     <=  Reg_adj_imm5_EX     after delay_reg;
     adj_offset6_EX  <=  Reg_adj_offset6_EX  after delay_reg;
     adj_offset9_EX  <=  Reg_adj_offset9_EX  after delay_reg;
+    adj_offset11_EX <=  Reg_adj_offset11_EX  after delay_reg;
     nzp_EX          <=  Reg_nzp_EX          after delay_reg;
     sext_offset6_EX <=  Reg_sext_offset6_EX after delay_reg;
     Opcode_EX       <=  Reg_Opcode_EX       after delay_reg;
@@ -169,7 +185,8 @@ BEGIN
     SR2_EX          <=  Reg_SR2_EX          after delay_reg; 
     LEAMuxSel_EX    <=  Reg_LEAMuxSel_EX    after delay_reg;
     indirect_EX     <=  Reg_indirect_EX     after delay_reg;
-    isSTI_EX        <=  Reg_isSTI_EX        after delay_reg;   
+    isSTI_EX        <=  Reg_isSTI_EX        after delay_reg;  
+    jump_EX         <=  Reg_jump_EX         after delay_reg; 
   END PROCESS READ_REG;
 
   WRITE_REG : PROCESS(CLK, RESET_L, LOAD_LATCH)
@@ -180,6 +197,7 @@ BEGIN
       Reg_ALUop_EX        <=   "000";
       Reg_AdjSel_EX       <=   '0';
       Reg_BaseSel_EX      <=   '0';
+      Reg_JSRSel_EX       <=   '0';
       Reg_Branch_EX       <=   '0';
       Reg_DR_EX           <=   "000";
       Reg_ImmSel_EX       <=   '0';
@@ -195,6 +213,7 @@ BEGIN
       Reg_adj_imm5_EX     <=   "0000000000000000";
       Reg_adj_offset6_EX  <=   "0000000000000000";
       Reg_adj_offset9_EX  <=   "0000000000000000";
+      Reg_adj_offset11_EX  <=   "0000000000000000";
       Reg_nzp_EX          <=   "000";
       Reg_sext_offset6_EX <=   "0000000000000000";
       Reg_Opcode_EX       <=   "0000";
@@ -203,13 +222,14 @@ BEGIN
       Reg_LEAMuxSel_EX    <=   '0';
       Reg_indirect_EX     <=   '0';
       Reg_isSTI_EX        <=   '0';
+      Reg_jump_EX         <=   '0';
     END IF;
-    
-    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (brSel = '1')) THEN
+    IF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (brSel = '1') AND (LOAD_LATCH = '1')) THEN
       Reg_ALUMemSel_EX    <=   '0';
       Reg_ALUop_EX        <=   "000";
       Reg_AdjSel_EX       <=   '0';
       Reg_BaseSel_EX      <=   '0';
+      Reg_JSRSel_EX       <=   '0';
       Reg_Branch_EX       <=   '0';
       Reg_DR_EX           <=   "000";
       Reg_ImmSel_EX       <=   '0';
@@ -225,6 +245,7 @@ BEGIN
       Reg_adj_imm5_EX     <=   "0000000000000000";
       Reg_adj_offset6_EX  <=   "0000000000000000";
       Reg_adj_offset9_EX  <=   "0000000000000000";
+      Reg_adj_offset11_EX <=   "0000000000000000";
       Reg_nzp_EX          <=   "000";
       Reg_sext_offset6_EX <=   "0000000000000000";
       Reg_Opcode_EX       <=   "0000";
@@ -233,13 +254,15 @@ BEGIN
       Reg_LEAMuxSel_EX    <=   '0';
       Reg_indirect_EX     <=   '0';
       Reg_isSTI_EX        <=   '0';
+      Reg_jump_EX         <=   '0';
     ELSIF (CLK'EVENT AND (CLK = '1') AND (CLK'LAST_VALUE = '0') AND (LOAD_LATCH = '1')) THEN
       Reg_ALUMemSel_EX    <=   ALUMemSel_ID    ;
       Reg_ALUop_EX        <=   ALUop_ID        ;
       Reg_AdjSel_EX       <=   AdjSel_ID       ;
       Reg_BaseSel_EX      <=   BaseSel_ID      ;
+      Reg_JSRSel_EX       <=   JSRSel_ID       ;
       Reg_Branch_EX       <=   Branch_ID       ;
-      Reg_DR_EX           <=   DR              ;
+      Reg_DR_EX           <=   DR_ID           ;
       Reg_ImmSel_EX       <=   ImmSel_ID       ;
       Reg_PC_EX           <=   PC_ID           ;
       Reg_Read_EX         <=   Read_ID         ;
@@ -253,6 +276,7 @@ BEGIN
       Reg_adj_imm5_EX     <=   sext_imm5_ID    ;
       Reg_adj_offset6_EX  <=   adj_offset6_ID  ;
       Reg_adj_offset9_EX  <=   adj_offset9_ID  ;
+      Reg_adj_offset11_EX <=   adj_offset11_ID ;
       Reg_nzp_EX          <=   nzp_ID          ;
       Reg_sext_offset6_EX <=   sext_offset6_ID ;
       Reg_Opcode_EX       <=   Opcode_ID;
@@ -261,6 +285,7 @@ BEGIN
       Reg_LEAMuxSel_EX    <=   LEAMuxSel_ID;
       Reg_indirect_EX     <=   indirect_ID;
       Reg_isSTI_EX        <=   isSTI_ID;
+      Reg_jump_EX         <=   jump_ID;
     END IF;
   END PROCESS WRITE_REG;
 END ARCHITECTURE untitled;
