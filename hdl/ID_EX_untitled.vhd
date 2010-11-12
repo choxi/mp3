@@ -27,7 +27,7 @@ ENTITY ID_EX IS
       RESET_L         : IN     std_logic;
       Read_ID         : IN     std_logic;
       RegWrite_ID     : IN     std_logic;
-      SR1_data_ID     : IN     lc3b_word;
+      SR1_data_ID     : IN     LC3b_word;
       SR2_data_ID     : IN     lc3b_word;
       STR_data_ID     : IN     lc3b_word;
       SetCC_ID        : IN     std_logic;

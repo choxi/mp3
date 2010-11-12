@@ -4,12 +4,11 @@ SEGMENT CodeSegment:
 ; Should load data to R1~R5 from destination
 
 testStart:
-	NOP
-	NOP
-	NOP
-
-	JMP	
-
+	LDR	R3, R0, target
+	LDR	R1, R0, target
+	LDR	R2, R0, target
+	LDR	R5, R0, target
+	LDR	R4, R0, target
 
 halt:
 	BRnzp	halt

@@ -1,8 +1,8 @@
-$FILENAME = "mp31"
-mp31: mp31.asm
-	LC3bAssembler mp31.asm -v
-	doify.sh mp31.vhd
-	mv mp31.vhd.do mp31.do
+FILENAME = mp31
+$(FILENAME): $(FILENAME).asm
+	LC3bAssembler $(FILENAME).asm -v
+	doify.sh $(FILENAME).vhd
+	mv $(FILENAME).vhd.do $(FILENAME).do
 
 clean:
 	rm -f *.vhd
