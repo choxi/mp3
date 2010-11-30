@@ -7,11 +7,11 @@ USE ece411.LC3b_types.all;
 
 ENTITY LRU IS
    PORT( 
-      LRUIn : IN     std_logic;
-      LRUwrite  : IN     std_logic;
-      index      : IN     lc3b_cindex;
-      LRUout     : OUT    std_logic;
-      RESET_L    : IN     std_logic
+      LRUIn    : IN     std_logic;
+      LRUwrite : IN     std_logic;
+      index    : IN     lc3b_cindex;
+      LRUout   : OUT    std_logic;
+      RESET_L  : IN     std_logic
    );
 
 -- Declarations
