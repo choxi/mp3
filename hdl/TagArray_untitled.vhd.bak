@@ -21,7 +21,8 @@ END TagArray ;
 --
 ARCHITECTURE untitled OF TagArray IS
 
-	SIGNAL Tag : TagArray lc3b_tag;
+	TYPE TagArray IS	array (7 downto 0) of LC3b_tag;
+	SIGNAL Tag : TagArray;
 
 	BEGIN
 		--------------------------------------------------------------

@@ -32,7 +32,7 @@ ARCHITECTURE untitled OF DirtyArray IS
 			VARIABLE DirtyIndex : integer;
 			BEGIN
 				DirtyIndex := to_integer(unsigned(Index));
-				DirtyOut <= Dirty(DirtyIndex) after 20 ns;
+				DirtyOut <= Dirty(DirtyIndex) after 10 ns;
 		
 		END PROCESS ReadFromDirtyArray;
 	

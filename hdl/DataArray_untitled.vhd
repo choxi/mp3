@@ -32,7 +32,7 @@ ARCHITECTURE untitled OF DataArray IS
 			VARIABLE DataIndex : integer;
 			BEGIN
 				DataIndex := to_integer(unsigned(Index));
-				DataOut <= Data(DataIndex) after 20 ns;
+				DataOut <= Data(DataIndex) after 10 ns;
 		
 		END PROCESS ReadFromDataArray;
 	

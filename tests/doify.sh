@@ -25,7 +25,7 @@ fi
 #DEFAULT_MEMPATHS="/mp1_cpu/idram/vhdl_memory,/mp1_cpu/ddram/vhdl_memory"
 DEFAULT_MEMPATHS="/mp3_cpu/memory/DRAM/vhdl_memory"
 
-DEFAULT_CLOCK=50
+DEFAULT_CLOCK=40
 
 CLOCK=${2:-${DEFAULT_CLOCK}}
 HALF_CLOCK=$((CLOCK/2))

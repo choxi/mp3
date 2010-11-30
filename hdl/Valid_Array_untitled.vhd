@@ -39,7 +39,7 @@ TYPE ValidArray IS	array (7 downto 0) of std_logic;
 			VARIABLE ValidIndex : integer;
 			BEGIN
 				ValidIndex := to_integer(unsigned(Index));
-				ValidOut <= Valid(ValidIndex) after 20 ns;
+				ValidOut <= Valid(ValidIndex) after 10 ns;
 		
 		END PROCESS ReadFromValidArray;
 	
