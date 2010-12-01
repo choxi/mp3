@@ -34,6 +34,6 @@ END or8 ;
 --
 ARCHITECTURE untitled OF or8 IS
 BEGIN
-  Output <= A OR B OR C OR D OR E OR F OR G OR H after delay_logic8;
+  Output <= A OR B OR C OR D OR E OR F OR G OR H after 3ns;
 END ARCHITECTURE untitled;
 
