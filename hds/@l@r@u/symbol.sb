@@ -83,7 +83,7 @@ lang 2
 m 1
 decl (Decl
 n "LRUout"
-t "std_logic"
+t "lc3b_reg"
 o 4
 suid 5,0
 )
@@ -322,19 +322,19 @@ value "/home/engr/rchoxi2/ece411/mp3/hds/LRU"
 )
 (vvPair
 variable "date"
-value "11/29/10"
+value "11/30/10"
 )
 (vvPair
 variable "day"
-value "Mon"
+value "Tue"
 )
 (vvPair
 variable "day_long"
-value "Monday"
+value "Tuesday"
 )
 (vvPair
 variable "dd"
-value "29"
+value "30"
 )
 (vvPair
 variable "entity_name"
@@ -362,7 +362,7 @@ value "stdt"
 )
 (vvPair
 variable "host"
-value "gllnx6.ews.illinois.edu"
+value "eelnx36.ews.illinois.edu"
 )
 (vvPair
 variable "language"
@@ -438,7 +438,7 @@ value "<TBD>"
 )
 (vvPair
 variable "time"
-value "23:10:12"
+value "21:53:45"
 )
 (vvPair
 variable "unit"
@@ -505,7 +505,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,3600,60500,4500"
-st "index    : IN     lc3b_cindex  ;"
+st "index    : IN     lc3b_cindex  ;
+"
 )
 thePort (LogicalPort
 lang 2
@@ -549,15 +550,16 @@ uid 107,0
 va (VaSet
 font "courier,8,0"
 )
-xt "44000,4500,59500,5400"
-st "LRUout   : OUT    std_logic  ;"
+xt "44000,4500,59000,5400"
+st "LRUout   : OUT    lc3b_reg  ;
+"
 )
 thePort (LogicalPort
 lang 2
 m 1
 decl (Decl
 n "LRUout"
-t "std_logic"
+t "lc3b_reg"
 o 4
 suid 5,0
 )
@@ -596,7 +598,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,1800,59500,2700"
-st "LRUIn    : IN     std_logic  ;"
+st "LRUIn    : IN     std_logic  ;
+"
 )
 thePort (LogicalPort
 lang 2
@@ -642,7 +645,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,2700,59500,3600"
-st "LRUwrite : IN     std_logic  ;"
+st "LRUwrite : IN     std_logic  ;
+"
 )
 thePort (LogicalPort
 lang 2
@@ -687,7 +691,8 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,5400,58500,6300"
-st "RESET_L  : IN     std_logic "
+st "RESET_L  : IN     std_logic 
+"
 )
 thePort (LogicalPort
 lang 2
@@ -701,6 +706,7 @@ suid 11,0
 )
 ]
 shape (Rectangle
+uid 214,0
 va (VaSet
 vasetType 1
 fg "0,65535,0"
@@ -1380,5 +1386,5 @@ xt "42000,0,42000,0"
 tm "SyDeclarativeTextMgr"
 )
 )
-lastUid 201,0
+lastUid 214,0
 )
