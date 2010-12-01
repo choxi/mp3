@@ -32,7 +32,7 @@ ARCHITECTURE untitled OF TagArray IS
 			VARIABLE TagIndex : integer;
 			BEGIN
 				TagIndex := to_integer(unsigned(Index));
-				TagOut <= Tag(TagIndex) after 20 ns;
+				TagOut <= Tag(TagIndex) after 10 ns;
 		
 		END PROCESS ReadFromTagArray;
 	

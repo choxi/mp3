@@ -1,9 +1,9 @@
 echo "--- Executing initialization force file for mp33.vhd ---"
 
-echo "Setting clock period to 50 ns, starting at 50 ns."
+echo "Setting clock period to 40 ns, starting at 40 ns."
 force /clk 1  0
-force /clk 0 25 -r 50
-force /clk 1 50 -r 50
+force /clk 0 20 -r 40
+force /clk 1 40 -r 40
 
 echo "Resetting processor for 5 ns."
 force /reset_l 0 @0
