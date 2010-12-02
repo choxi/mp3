@@ -14,7 +14,7 @@ USE ieee.NUMERIC_STD.all;
 LIBRARY ece411;
 USE ece411.LC3b_types.all;
 
-ENTITY Valid_Array IS
+ENTITY Valid_Array_L2 IS
    PORT( 
       Reset_l    : IN     std_logic;
       ValidWrite : IN     std_logic;
@@ -24,10 +24,10 @@ ENTITY Valid_Array IS
 
 -- Declarations
 
-END Valid_Array ;
+END Valid_Array_L2 ;
 
 --
-ARCHITECTURE untitled OF Valid_Array IS
+ARCHITECTURE untitled OF Valid_Array_L2 IS
 TYPE ValidArray IS	array (7 downto 0) of std_logic;
 	SIGNAL Valid : ValidArray;
 
@@ -39,7 +39,7 @@ TYPE ValidArray IS	array (7 downto 0) of std_logic;
 			VARIABLE ValidIndex : integer;
 			BEGIN
 				ValidIndex := to_integer(unsigned(Index));
-				ValidOut <= Valid(ValidIndex) after 10 ns;
+				ValidOut <= Valid(ValidIndex) after 25 ns;
 		
 		END PROCESS ReadFromValidArray;
 	
