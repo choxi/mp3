@@ -32,7 +32,7 @@ ARCHITECTURE untitled OF LRU IS
 			VARIABLE LRUIndex : integer;
 			BEGIN
 				LRUIndex := to_integer(unsigned(Index));
-				LRUOut <= LRU(LRUIndex) after 20 ns;
+				LRUOut <= LRU(LRUIndex) after 10 ns;
 		
 		END PROCESS ReadFromLRUArray;
 	

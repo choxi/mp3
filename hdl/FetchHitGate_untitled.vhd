@@ -27,6 +27,6 @@ END FetchHitGate ;
 --
 ARCHITECTURE untitled OF FetchHitGate IS
 BEGIN
-  fetch_gate <= ((clk) OR NOT(clk'delayed(31ns)));
+  fetch_gate <= ((clk) OR NOT(clk'delayed(30ns)));
 END ARCHITECTURE untitled;
 
