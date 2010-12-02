@@ -10,7 +10,7 @@ ENTITY LRU IS
       LRUIn    : IN     std_logic;
       LRUwrite : IN     std_logic;
       index    : IN     lc3b_cindex;
-      LRUout   : OUT    lc3b_reg;
+      LRUout   : OUT    std_logic;
       RESET_L  : IN     std_logic
    );
 
@@ -32,7 +32,7 @@ ARCHITECTURE untitled OF LRU IS
 			VARIABLE LRUIndex : integer;
 			BEGIN
 				LRUIndex := to_integer(unsigned(Index));
-				LRUOut <= LRU(LRUIndex) after 20 ns;
+				LRUOut <= LRU(LRUIndex) after 10 ns;
 		
 		END PROCESS ReadFromLRUArray;
 	
