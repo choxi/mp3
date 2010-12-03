@@ -10,6 +10,7 @@ fwdTest:
 	NOP
 	NOP
 	NOP
+; Cache Line 0x10
 	NOP
 	NOP
 	ADD    R4, R3, 1
@@ -18,14 +19,18 @@ fwdTest:
 	NOP
 	NOP
 	NOP
+; Cache Line 0x20
 	NOP
 	NOP
 	NOP
 	LDR   R5, R1, TheData
 	ADD   R0, R5, 4	
+	NOP
+HALT:   BRnzp HALT
+; Cache Line 0x30
 TheData:
 	NOP
-	DATA2   4x0032
+	DATA2   4x0032 ;0x32
 	NOP
 	NOP
 	NOP

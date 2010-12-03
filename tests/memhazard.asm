@@ -14,7 +14,7 @@ fwdTest:
 	NOP
 	NOP
 	NOP
-	NOP
+HALT:   BRnzp HALT
 TheData:		;ADDRESS = 0x0018(24) 
 	DATA2   4x600D
 	NOP ;STR should store here
