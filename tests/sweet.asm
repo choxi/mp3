@@ -387,14 +387,70 @@ SEGMENT TEST10:
 
 ;Cache Line Boundary
     ;start test
-    ADD R7, R7, 3 
+    ADD R3, R3, 5 
     JSR T10_Routine 
-    NOP
+    STR R3, R0, T10_Data 
 T10_Routine:
+    LDR R1, R0, T10_Data 
     NOP
+    NOP
+    BRnzp TEST11 
+
+;Cache Line Boundary
+    DATA2 4xBADD
+T10_Data:
+    DATA2 4x0006 
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD 
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+
+;****************************** Test 11 *********************************
+;*************************** Data Hazard *******************************
+;Cache Line Boundary 
+SEGMENT TEST11:
+    ;init regs
+    LEA R0, TEST11
+    AND R1, R0, 0
+    AND R2, R0, 0
+    AND R3, R0, 0
+    AND R4, R0, 0
+    AND R5, R0, 0
+    ADD R6, R6, 1
+    AND R7, R7, 0
+
+;Cache Line Boundary
+    ;start test
+    ADD R3, R3, 5 
+    JSR T11_Routine 
+    STR R3, R0, T11_Data 
+    NOP 
     NOP
     NOP
     BRnzp HALT 
 
-HALT: 
-    BRnzp HALT
+;Cache Line BOundary
+    NOP
+    NOP
+    NOP
+    NOP
+T11_Routine:
+    LDR R1, R0, T11_Data 
+    NOP
+    NOP
+    BRnzp HALT 
+
+;Cache Line Boundary
+    DATA2 4xBADD
+T11_Data:
+    DATA2 4x0006 
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD 
+    DATA2 4xBADD
+    DATA2 4xBADD
+    DATA2 4xBADD
+
+

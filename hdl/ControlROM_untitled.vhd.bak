@@ -31,7 +31,8 @@ ENTITY ControlROM IS
       jump_ID      : OUT    std_logic;
       JSRSel_ID    : OUT    std_logic;
       ZextSel_ID   : OUT    std_logic;
-      loadUse      : IN     std_logic
+      loadUse      : IN     std_logic;
+      ZextSel_EX   : IN     std_logic
    );
 
 -- Declarations
@@ -64,7 +65,7 @@ BEGIN
   --input_word <= opcode & bit5 & bit4; 
   generate_signals : process (fetch, loadUse, opcode, bit5, bit4, bit11)
   begin
-  IF (loadUse = '1') THEN
+  IF (fetch = '0' OR loadUse = '1' OR ZextSel_EX) THEN
           AdjSel     <= '1';
           SextSel    <= '0';
           ZextSel    <= '0';
