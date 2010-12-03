@@ -42,7 +42,7 @@ RES16:	     DATA2 0		;
 Bear:	      DATA2 CatchMe
 	
 		
-skip:	LDR R1, R0, ZERO
+skip:	LDR R1, R0, ZERO ; 0x50
 	NOP
 	NOP
 	NOP
