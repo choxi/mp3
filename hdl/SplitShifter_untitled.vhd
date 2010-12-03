@@ -52,9 +52,8 @@ BEGIN
        when others =>
          Pre_output <= "XXXXXXXXXXXXXXXXXXXXXXXX";
       end case; 
-      LRUShiftout <= Pre_output after delay_shifter;
+
  END PROCESS;
-       
-   
+ LRUShiftout <= Pre_output after delay_shifter;        
 END ARCHITECTURE untitled;
 

@@ -51,14 +51,14 @@ ARCHITECTURE untitled OF LRUVector8 IS
 				LRUIndex := to_integer(unsigned(Index));
 				PreLRUout := LRU(LRUIndex);
 				LRUOut <= PreLRUout after 10 ns;
-				LRUout7 <= PreLRUout(2 downto 0) after 10ns;
-				LRUout6 <= PreLRUout(5 downto 3) after 10ns;
-				LRUout5 <= PreLRUout(8 downto 6) after 10ns;
-				LRUout4 <= PreLRUout(11 downto 9) after 10ns;
-				LRUout3 <= PreLRUout(14 downto 12) after 10ns;
-				LRUout2 <= PreLRUout(17 downto 15) after 10ns;
-				LRUout1 <= PreLRUout(20 downto 18) after 10ns;
-				LRUout0 <= PreLRUout(23 downto 21) after 10ns;
+				LRUout7 <= PreLRUout(2 downto 0) after 25ns;
+				LRUout6 <= PreLRUout(5 downto 3) after 25ns;
+				LRUout5 <= PreLRUout(8 downto 6) after 25ns;
+				LRUout4 <= PreLRUout(11 downto 9) after 25ns;
+				LRUout3 <= PreLRUout(14 downto 12) after 25ns;
+				LRUout2 <= PreLRUout(17 downto 15) after 25ns;
+				LRUout1 <= PreLRUout(20 downto 18) after 25ns;
+				LRUout0 <= PreLRUout(23 downto 21) after 25ns;
 		
 		END PROCESS ReadFromLRUArray;
 	
@@ -69,14 +69,14 @@ ARCHITECTURE untitled OF LRUVector8 IS
 			BEGIN
 				LRUIndex := to_integer(unsigned(Index));
 			IF RESET_L = '0' THEN
-				LRU(0) <= "000000000000000000000000";
-				LRU(1) <= "000000000000000000000000";
-				LRU(2) <= "000000000000000000000000";
-				LRU(3) <= "000000000000000000000000";
-				LRU(4) <= "000000000000000000000000";
-				LRU(5) <= "000000000000000000000000";
-				LRU(6) <= "000000000000000000000000";
-				LRU(7) <= "000000000000000000000000";
+				LRU(0) <= "000001010011100101110111";
+				LRU(1) <= "000001010011100101110111";
+				LRU(2) <= "000001010011100101110111";
+				LRU(3) <= "000001010011100101110111";
+				LRU(4) <= "000001010011100101110111";
+				LRU(5) <= "000001010011100101110111";
+				LRU(6) <= "000001010011100101110111";
+				LRU(7) <= "000001010011100101110111";
 			END IF;
 
 			IF (LRUWrite = '1') THEN
