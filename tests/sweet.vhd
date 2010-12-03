@@ -142,7 +142,7 @@
 	mem(141) := To_stdlogicvector(X"1F");
 	mem(142) := To_stdlogicvector(X"00");
 	mem(143) := To_stdlogicvector(X"00");
-	mem(144) := To_stdlogicvector(X"90");
+	mem(144) := To_stdlogicvector(X"10");
 	mem(145) := To_stdlogicvector(X"64");
 	mem(146) := To_stdlogicvector(X"22");
 	mem(147) := To_stdlogicvector(X"10");
@@ -158,8 +158,8 @@
 	mem(157) := To_stdlogicvector(X"00");
 	mem(158) := To_stdlogicvector(X"08");
 	mem(159) := To_stdlogicvector(X"0E");
-	mem(160) := To_stdlogicvector(X"DD");
-	mem(161) := To_stdlogicvector(X"BA");
+	mem(160) := To_stdlogicvector(X"0D");
+	mem(161) := To_stdlogicvector(X"60");
 	mem(162) := To_stdlogicvector(X"A8");
 	mem(163) := To_stdlogicvector(X"00");
 	mem(164) := To_stdlogicvector(X"DD");

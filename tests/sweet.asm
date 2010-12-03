@@ -111,7 +111,7 @@ SEGMENT TEST2:
 
 ;Cache Line Boundary
     ;start test
-    LDR R2, R2, T2_DirectData   
+    LDR R2, R0, T2_DirectData   
     ADD R0, R0, 2
     LDI R1, R0, T2_DirectData
     NOP
@@ -122,7 +122,7 @@ SEGMENT TEST2:
 
 ;Cache Line Boundary
 T2_DirectData:
-    DATA2 4xBADD
+    DATA2 4x600D
     DATA2 T2_IndirectData
     DATA2 4xBADD
     DATA2 4xBADD
@@ -171,7 +171,7 @@ T3_IndirectData:
 
 ;****************************** Test 4 ******************************
 ;*************************** JMP - Hazard ***************************
-;Cache Line Boundary
+;Cache Line Boundary 0xE0
 SEGMENT TEST4:
     ;init regs
     AND R0, R0, 0   
