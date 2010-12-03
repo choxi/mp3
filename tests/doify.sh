@@ -23,7 +23,7 @@ fi
 
 #this is an example of how setting up multiple DRAMS might look
 #DEFAULT_MEMPATHS="/mp1_cpu/idram/vhdl_memory,/mp1_cpu/ddram/vhdl_memory"
-DEFAULT_MEMPATHS="/mp3_cpu/memory/DRAM/vhdl_memory"
+DEFAULT_MEMPATHS="/mp3_cpu/memory/u_0/vhdl_memory"
 
 DEFAULT_CLOCK=34
 

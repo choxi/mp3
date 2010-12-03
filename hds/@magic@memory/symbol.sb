@@ -82,7 +82,7 @@ port (LogicalPort
 lang 2
 decl (Decl
 n "D_DATAIN"
-t "LC3b_oword"
+t "LC3b_word"
 o 2
 suid 2,0
 )
@@ -95,7 +95,7 @@ lang 2
 m 1
 decl (Decl
 n "D_DATAOUT"
-t "LC3b_oword"
+t "LC3b_word"
 o 8
 suid 3,0
 )
@@ -157,7 +157,7 @@ lang 2
 m 1
 decl (Decl
 n "I_DATAOUT"
-t "LC3b_oword"
+t "LC3b_word"
 o 10
 suid 8,0
 )
@@ -394,23 +394,23 @@ VExpander (VariableExpander
 vvMap [
 (vvPair
 variable "HDLDir"
-value "/home/engr/rchoxi2/ece411/mp3/hdl"
+value "/home/engr/tkalbar2/ece411/mp3/hdl"
 )
 (vvPair
 variable "HDSDir"
-value "/home/engr/rchoxi2/ece411/mp3/hds"
+value "/home/engr/tkalbar2/ece411/mp3/hds"
 )
 (vvPair
 variable "SideDataDesignDir"
-value "/home/engr/rchoxi2/ece411/mp3/hds/@magic@memory/symbol.sb.info"
+value "/home/engr/tkalbar2/ece411/mp3/hds/@magic@memory/symbol.sb.info"
 )
 (vvPair
 variable "SideDataUserDir"
-value "/home/engr/rchoxi2/ece411/mp3/hds/@magic@memory/symbol.sb.user"
+value "/home/engr/tkalbar2/ece411/mp3/hds/@magic@memory/symbol.sb.user"
 )
 (vvPair
 variable "SourceDir"
-value "/home/engr/rchoxi2/ece411/mp3/hds"
+value "/home/engr/tkalbar2/ece411/mp3/hds"
 )
 (vvPair
 variable "appl"
@@ -426,27 +426,27 @@ value "%(unit)_config"
 )
 (vvPair
 variable "d"
-value "/home/engr/rchoxi2/ece411/mp3/hds/@magic@memory"
+value "/home/engr/tkalbar2/ece411/mp3/hds/@magic@memory"
 )
 (vvPair
 variable "d_logical"
-value "/home/engr/rchoxi2/ece411/mp3/hds/MagicMemory"
+value "/home/engr/tkalbar2/ece411/mp3/hds/MagicMemory"
 )
 (vvPair
 variable "date"
-value "10/27/10"
+value "12/03/10"
 )
 (vvPair
 variable "day"
-value "Wed"
+value "Fri"
 )
 (vvPair
 variable "day_long"
-value "Wednesday"
+value "Friday"
 )
 (vvPair
 variable "dd"
-value "27"
+value "03"
 )
 (vvPair
 variable "entity_name"
@@ -474,7 +474,7 @@ value "stdt"
 )
 (vvPair
 variable "host"
-value "eelnx32.ews.illinois.edu"
+value "eelnx25.ews.illinois.edu"
 )
 (vvPair
 variable "language"
@@ -490,7 +490,7 @@ value "$HDS_PROJECT_DIR/compile"
 )
 (vvPair
 variable "mm"
-value "10"
+value "12"
 )
 (vvPair
 variable "module_name"
@@ -498,19 +498,19 @@ value "MagicMemory"
 )
 (vvPair
 variable "month"
-value "Oct"
+value "Dec"
 )
 (vvPair
 variable "month_long"
-value "October"
+value "December"
 )
 (vvPair
 variable "p"
-value "/home/engr/rchoxi2/ece411/mp3/hds/@magic@memory/symbol.sb"
+value "/home/engr/tkalbar2/ece411/mp3/hds/@magic@memory/symbol.sb"
 )
 (vvPair
 variable "p_logical"
-value "/home/engr/rchoxi2/ece411/mp3/hds/MagicMemory/symbol.sb"
+value "/home/engr/tkalbar2/ece411/mp3/hds/MagicMemory/symbol.sb"
 )
 (vvPair
 variable "project_name"
@@ -530,7 +530,7 @@ value "<TBD>"
 )
 (vvPair
 variable "task_ModelSimPath"
-value "/apps/Linux/mentor/fpgadv72/Modeltech/bin"
+value "$HDS_HOME/../Modeltech/linux"
 )
 (vvPair
 variable "task_NC-SimPath"
@@ -550,7 +550,7 @@ value "<TBD>"
 )
 (vvPair
 variable "time"
-value "21:03:34"
+value "14:29:49"
 )
 (vvPair
 variable "unit"
@@ -558,7 +558,7 @@ value "MagicMemory"
 )
 (vvPair
 variable "user"
-value "rchoxi2"
+value "tkalbar2"
 )
 (vvPair
 variable "version"
@@ -618,8 +618,7 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,1800,60500,2700"
-st "D_ADDRESS  : IN     LC3b_word  ;
-"
+st "D_ADDRESS  : IN     LC3b_word  ;"
 )
 thePort (LogicalPort
 lang 2
@@ -664,15 +663,14 @@ uid 90,0
 va (VaSet
 font "courier,8,0"
 )
-xt "44000,2700,61000,3600"
-st "D_DATAIN   : IN     LC3b_oword  ;
-"
+xt "44000,2700,60500,3600"
+st "D_DATAIN   : IN     LC3b_word  ;"
 )
 thePort (LogicalPort
 lang 2
 decl (Decl
 n "D_DATAIN"
-t "LC3b_oword"
+t "LC3b_word"
 o 2
 suid 2,0
 )
@@ -711,16 +709,15 @@ uid 95,0
 va (VaSet
 font "courier,8,0"
 )
-xt "44000,8100,61000,9000"
-st "D_DATAOUT  : OUT    LC3b_oword  ;
-"
+xt "44000,8100,60500,9000"
+st "D_DATAOUT  : OUT    LC3b_word  ;"
 )
 thePort (LogicalPort
 lang 2
 m 1
 decl (Decl
 n "D_DATAOUT"
-t "LC3b_oword"
+t "LC3b_word"
 o 8
 suid 3,0
 )
@@ -760,8 +757,7 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,3600,60500,4500"
-st "D_MREAD_L  : IN     std_logic  ;
-"
+st "D_MREAD_L  : IN     std_logic  ;"
 )
 thePort (LogicalPort
 lang 2
@@ -807,8 +803,7 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,9000,60500,9900"
-st "D_MRESP_H  : OUT    std_logic  ;
-"
+st "D_MRESP_H  : OUT    std_logic  ;"
 )
 thePort (LogicalPort
 lang 2
@@ -855,8 +850,7 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,4500,60500,5400"
-st "D_MWRITE_L : IN     std_logic  ;
-"
+st "D_MWRITE_L : IN     std_logic  ;"
 )
 thePort (LogicalPort
 lang 2
@@ -901,8 +895,7 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,5400,60500,6300"
-st "I_ADDRESS  : IN     LC3b_word  ;
-"
+st "I_ADDRESS  : IN     LC3b_word  ;"
 )
 thePort (LogicalPort
 lang 2
@@ -946,16 +939,15 @@ uid 120,0
 va (VaSet
 font "courier,8,0"
 )
-xt "44000,9900,61000,10800"
-st "I_DATAOUT  : OUT    LC3b_oword  ;
-"
+xt "44000,9900,60500,10800"
+st "I_DATAOUT  : OUT    LC3b_word  ;"
 )
 thePort (LogicalPort
 lang 2
 m 1
 decl (Decl
 n "I_DATAOUT"
-t "LC3b_oword"
+t "LC3b_word"
 o 10
 suid 8,0
 )
@@ -994,8 +986,7 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,6300,60500,7200"
-st "I_MREAD_L  : IN     std_logic  ;
-"
+st "I_MREAD_L  : IN     std_logic  ;"
 )
 thePort (LogicalPort
 lang 2
@@ -1040,8 +1031,7 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,10800,59500,11700"
-st "I_MRESP_H  : OUT    std_logic 
-"
+st "I_MRESP_H  : OUT    std_logic "
 )
 thePort (LogicalPort
 lang 2
@@ -1087,8 +1077,7 @@ va (VaSet
 font "courier,8,0"
 )
 xt "44000,7200,60500,8100"
-st "RESET_L    : IN     std_logic  ;
-"
+st "RESET_L    : IN     std_logic  ;"
 )
 thePort (LogicalPort
 lang 2
@@ -1102,7 +1091,6 @@ suid 11,0
 )
 ]
 shape (Rectangle
-uid 9,0
 va (VaSet
 vasetType 1
 fg "0,65535,0"
@@ -1781,5 +1769,5 @@ xt "42000,0,42000,0"
 tm "SyDeclarativeTextMgr"
 )
 )
-lastUid 169,0
+lastUid 181,0
 )
