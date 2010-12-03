@@ -453,5 +453,4 @@ T11_Data:
     DATA2 4xBADD
     DATA2 4xBADD
 
-HALT: 
-    BRnzp HALT
+
