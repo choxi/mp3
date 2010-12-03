@@ -358,7 +358,7 @@ SEGMENT TEST9:
     NOP
     NOP
     LDR R1, R2, T9_Data 
-    BRnzp HALT 
+    BRnzp TEST10 
 
 ;Cache Line Boundary
     DATA2 4xBADD
@@ -370,6 +370,31 @@ T9_Data:
     DATA2 4xBADD
     DATA2 4xBADD
     DATA2 4xBADD
+
+;****************************** Test 10 *********************************
+;*************************** Data Hazard *******************************
+;Cache Line Boundary 
+SEGMENT TEST10:
+    ;init regs
+    LEA R0, TEST10
+    AND R1, R0, 0
+    AND R2, R0, 0
+    AND R3, R0, 0
+    AND R4, R0, 0
+    AND R5, R0, 0
+    ADD R6, R6, 1
+    AND R7, R7, 0
+
+;Cache Line Boundary
+    ;start test
+    ADD R7, R7, 3 
+    JSR T10_Routine 
+    NOP
+T10_Routine:
+    NOP
+    NOP
+    NOP
+    BRnzp HALT 
 
 HALT: 
     BRnzp HALT
