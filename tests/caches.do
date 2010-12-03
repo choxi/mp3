@@ -56,7 +56,7 @@ add wave -noupdate -group InstructionCache -format Logic -height 16 -radix hexad
 add wave -noupdate -group InstructionCache -format Logic -height 16 -radix hexadecimal /mp3_cpu/memory/instrcache/pmwrite_l
 add wave -noupdate -group InstructionCache -format Logic -height 16 -radix hexadecimal /mp3_cpu/memory/instrcache/dirty
 add wave -noupdate -group InstructionCache -format Logic -height 16 -radix hexadecimal /mp3_cpu/memory/instrcache/miss
-add wave -noupdate -expand -group L2Cache
+add wave -noupdate -group L2Cache
 add wave -noupdate -group L2Cache -format Logic -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/clk
 add wave -noupdate -group L2Cache -format Literal -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/al2_controller/current_state
 add wave -noupdate -group L2Cache -format Literal -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/address
@@ -76,28 +76,19 @@ add wave -noupdate -group L2Cache -format Logic -height 16 -radix hexadecimal /m
 add wave -noupdate -group L2Cache -format Logic -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/all_access
 add wave -noupdate -group L2Cache -format Logic -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/dirty
 add wave -noupdate -group L2Cache -format Logic -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/miss
-add wave -noupdate -format Literal /mp3_cpu/memory/al2_cache/al2_datapath/lruout
-add wave -noupdate -format Literal -radix binary /mp3_cpu/memory/al2_cache/al2_datapath/index
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/datawrite0
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/datawrite1
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/datawrite2
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/datawrite3
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/datawrite4
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/datawrite5
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/datawrite6
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/datawrite7
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/dirtyin0
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/dirtyin1
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/dirtyin2
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/dirtyin3
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/dirtyin4
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/dirtyin5
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/dirtyin6
-add wave -noupdate -format Logic /mp3_cpu/memory/al2_cache/al2_datapath/adatawritelogic/dirtyin7
+add wave -noupdate -expand -group L2WayData
+add wave -noupdate -group L2WayData -format Literal -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/al2_datapath/aways/way0/u_0/u_3/data
+add wave -noupdate -group L2WayData -format Literal -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/al2_datapath/aways/way1/u_0/u_3/data
+add wave -noupdate -group L2WayData -format Literal -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/al2_datapath/aways/way2/u_0/u_3/data
+add wave -noupdate -group L2WayData -format Literal -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/al2_datapath/aways/way3/u_0/u_3/data
+add wave -noupdate -group L2WayData -format Literal -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/al2_datapath/aways/way4/u_0/u_3/data
+add wave -noupdate -group L2WayData -format Literal -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/al2_datapath/aways/way5/u_0/u_3/data
+add wave -noupdate -group L2WayData -format Literal -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/al2_datapath/aways/way6/u_0/u_3/data
+add wave -noupdate -group L2WayData -format Literal -height 16 -radix hexadecimal /mp3_cpu/memory/al2_cache/al2_datapath/aways/way7/u_0/u_3/data
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {6745 ns} 0}
-configure wave -namecolwidth 419
-configure wave -valuecolwidth 42
+WaveRestoreCursors {{Cursor 1} {23957 ns} 0}
+configure wave -namecolwidth 242
+configure wave -valuecolwidth 40
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
 configure wave -snapdistance 10
@@ -109,4 +100,4 @@ configure wave -gridperiod 1
 configure wave -griddelta 40
 configure wave -timeline 0
 update
-WaveRestoreZoom {6591 ns} {7053 ns}
+WaveRestoreZoom {23477 ns} {24033 ns}
